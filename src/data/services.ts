@@ -1,5 +1,4 @@
-
-import { Wrench, Zap, Tv, Hammer, Paintbrush, Sofa } from 'lucide-react';
+import { Wrench, Zap, Tv, Hammer, Paintbrush, Sofa, Shield, Leaf, Brush, Wifi, Bell, Box, Home, Bug, Heater } from 'lucide-react';
 import { Service, Task, Handyman } from '@/types';
 
 export const services: Service[] = [
@@ -394,6 +393,454 @@ export const services: Service[] = [
   }
 ];
 
+export const additionalServices: Service[] = [
+  {
+    id: 'general-home-maintenance',
+    title: 'General Home Maintenance',
+    description: 'Regular upkeep and safety checks for your home.',
+    icon: Shield,
+    priceRange: '$50 - $300',
+    longDescription: 'Our comprehensive home maintenance services ensure your home stays in top condition year-round. From safety checks to seasonal maintenance, our professionals can handle regular upkeep tasks that keep your home functioning properly and safely.',
+    tasks: [
+      {
+        id: 'smoke-detector',
+        title: 'Smoke Detector Battery Replacement',
+        price: 75,
+        description: 'Professional replacement of batteries in smoke detectors throughout your home with testing to ensure proper operation.',
+        duration: '30-60 minutes'
+      },
+      {
+        id: 'air-filter',
+        title: 'Air Filter Replacement',
+        price: 75,
+        description: 'Replacement of HVAC air filters to improve air quality and system efficiency. Price includes standard filters.',
+        duration: '30-45 minutes'
+      },
+      {
+        id: 'home-safety',
+        title: 'Home Safety Checks',
+        price: 175,
+        description: 'Comprehensive inspection of doors, windows, locks, and other safety features with minor adjustments included.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'seasonal-inspection',
+        title: 'Seasonal Home Inspection',
+        price: 225,
+        description: 'Thorough inspection of home systems and structure to identify potential seasonal issues or maintenance needs.',
+        duration: '2-3 hours'
+      },
+      {
+        id: 'weather-stripping',
+        title: 'Weather-stripping Installation',
+        price: 175,
+        description: 'Professional installation of weather-stripping around doors and windows to improve energy efficiency.',
+        duration: '1-2 hours'
+      }
+    ]
+  },
+  {
+    id: 'landscaping',
+    title: 'Landscaping & Lawn Care',
+    description: 'Professional care for your outdoor spaces and gardens.',
+    icon: Leaf,
+    priceRange: '$40 - $400',
+    longDescription: 'Our landscaping and lawn care services help maintain and enhance your outdoor living spaces. From regular maintenance like mowing and trimming to more specialized services like garden bed creation and sod installation, our team ensures your yard looks its best year-round.',
+    tasks: [
+      {
+        id: 'lawn-mowing',
+        title: 'Lawn Mowing',
+        price: 70,
+        description: 'Professional mowing of average-sized yard including edging and cleanup. Price may vary based on lot size.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'leaf-removal',
+        title: 'Leaf Removal',
+        price: 200,
+        description: 'Thorough removal of leaves from lawn, garden beds, and gutters with proper disposal.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'shrub-trimming',
+        title: 'Shrub Trimming',
+        price: 275,
+        description: 'Professional trimming and shaping of shrubs and bushes to maintain health and appearance.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'mulching',
+        title: 'Mulching Garden Beds',
+        price: 250,
+        description: 'Application of fresh mulch to garden beds to improve appearance and soil health. Price includes standard mulch.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'flower-bed',
+        title: 'Flower Bed Planting',
+        price: 275,
+        description: 'Professional planting of seasonal flowers in existing garden beds. Price does not include plants.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'sod-installation',
+        title: 'Sod Installation',
+        price: 150,
+        description: 'Professional installation of fresh sod. Price is per 100 sq. ft. and includes ground preparation.',
+        duration: 'Varies by area'
+      },
+      {
+        id: 'weed-treatment',
+        title: 'Weed Removal & Lawn Treatment',
+        price: 175,
+        description: 'Comprehensive weed removal and application of lawn treatment products for a healthier lawn.',
+        duration: '1-3 hours'
+      }
+    ]
+  },
+  {
+    id: 'cleaning',
+    title: 'Cleaning & Organization',
+    description: 'Declutter and clean spaces throughout your home.',
+    icon: Brush,
+    priceRange: '$100 - $700',
+    longDescription: 'Our cleaning and organization services help transform cluttered spaces into functional, clean areas. From garage organization to pressure washing exteriors, our professionals have the tools and expertise to tackle even the most challenging cleaning projects.',
+    tasks: [
+      {
+        id: 'garage-organization',
+        title: 'Garage Organization',
+        price: 425,
+        description: 'Comprehensive organization of garage space including sorting, cleaning, and implementing basic storage solutions.',
+        duration: '4-8 hours'
+      },
+      {
+        id: 'attic-cleanup',
+        title: 'Attic/Basement Cleanup',
+        price: 500,
+        description: 'Thorough cleanup and organization of attic or basement spaces with removal of unwanted items.',
+        duration: '4-8 hours'
+      },
+      {
+        id: 'junk-removal',
+        title: 'Junk Removal',
+        price: 275,
+        description: 'Professional removal and disposal of junk items from home or yard. Price varies based on volume.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'pressure-washing',
+        title: 'Pressure Washing Home Exterior',
+        price: 350,
+        description: 'Professional pressure washing of home exterior surfaces including siding, driveways, and walkways.',
+        duration: '3-5 hours'
+      },
+      {
+        id: 'window-cleaning',
+        title: 'Window Cleaning',
+        price: 200,
+        description: 'Professional cleaning of interior and exterior window surfaces. Price for average home with accessible windows.',
+        duration: '2-4 hours'
+      }
+    ]
+  },
+  {
+    id: 'smart-home',
+    title: 'Tech & Smart Home',
+    description: 'Installation and setup of home technology and smart devices.',
+    icon: Wifi,
+    priceRange: '$75 - $300',
+    longDescription: 'Our tech and smart home services help you integrate modern technology into your living space. From smart doorbell installation to home network troubleshooting, our technicians ensure your devices are properly installed, configured, and working seamlessly together.',
+    tasks: [
+      {
+        id: 'smart-doorbell',
+        title: 'Smart Doorbell Installation',
+        price: 150,
+        description: 'Professional installation and setup of smart doorbell systems like Ring or Nest. Price does not include equipment.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'smart-thermostat',
+        title: 'Smart Thermostat Installation',
+        price: 175,
+        description: 'Installation and configuration of smart thermostats like Nest or Ecobee with app setup and testing.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'wifi-extender',
+        title: 'Wi-Fi Extender Setup',
+        price: 100,
+        description: 'Professional installation and configuration of Wi-Fi range extenders for improved coverage throughout your home.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'smart-lock',
+        title: 'Smart Lock Installation',
+        price: 225,
+        description: 'Professional installation and setup of smart door locks with app configuration and testing.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'network-troubleshooting',
+        title: 'Home Network Troubleshooting',
+        price: 175,
+        description: 'Professional diagnosis and resolution of home network issues affecting Wi-Fi, internet connectivity, or device connections.',
+        duration: '1-3 hours'
+      }
+    ]
+  },
+  {
+    id: 'safety-security',
+    title: 'Safety & Security',
+    description: 'Enhance your home\'s security and safety features.',
+    icon: Bell,
+    priceRange: '$75 - $600',
+    longDescription: 'Our safety and security services help protect your home and family. From security camera installation to childproofing, our professionals can implement a variety of solutions to enhance your home\'s security features and provide peace of mind.',
+    tasks: [
+      {
+        id: 'security-camera',
+        title: 'Security Camera System Setup',
+        price: 425,
+        description: 'Professional installation and configuration of home security camera systems. Price varies based on number of cameras.',
+        duration: '3-6 hours'
+      },
+      {
+        id: 'motion-sensor',
+        title: 'Motion Sensor Lights Installation',
+        price: 225,
+        description: 'Installation of motion-activated security lights around home exterior with proper wiring and configuration.',
+        duration: '2-3 hours'
+      },
+      {
+        id: 'security-bars',
+        title: 'Security Bars Installation',
+        price: 425,
+        description: 'Professional installation of security bars on doors or windows for enhanced home security.',
+        duration: '3-5 hours'
+      },
+      {
+        id: 'childproofing',
+        title: 'Childproofing Home',
+        price: 275,
+        description: 'Comprehensive childproofing including cabinet locks, outlet covers, furniture anchoring, and more.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'carbon-monoxide',
+        title: 'Carbon Monoxide Detector Installation',
+        price: 100,
+        description: 'Professional installation of carbon monoxide detectors with testing and battery backup configuration.',
+        duration: '1-2 hours'
+      }
+    ]
+  },
+  {
+    id: 'moving-assembly',
+    title: 'Moving & Assembly',
+    description: 'Help with furniture moving, hanging artwork, and assembly projects.',
+    icon: Box,
+    priceRange: '$75 - $800',
+    longDescription: 'Our moving and assembly services make rearranging your home or setting up new items easy. From moving furniture within your home to assembling complex equipment, our skilled professionals handle the heavy lifting and ensure everything is properly set up.',
+    tasks: [
+      {
+        id: 'furniture-moving',
+        title: 'Moving Furniture Within Home',
+        price: 175,
+        description: 'Professional moving of furniture items within your home with care to prevent damage to items or flooring.',
+        duration: '1-3 hours'
+      },
+      {
+        id: 'artwork-hanging',
+        title: 'Picture and Artwork Hanging',
+        price: 125,
+        description: 'Professional hanging of artwork, photos, and decorative items with proper anchoring and alignment.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'mirror-hanging',
+        title: 'Mirror Hanging',
+        price: 175,
+        description: 'Professional mounting of heavy mirrors with appropriate hardware and secure attachment to wall studs.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'exercise-equipment',
+        title: 'Exercise Equipment Assembly',
+        price: 275,
+        description: 'Professional assembly of treadmills, ellipticals, weight machines, and other exercise equipment.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'playground-assembly',
+        title: 'Playground Equipment Assembly',
+        price: 575,
+        description: 'Complete assembly and installation of backyard playground equipment with safety testing.',
+        duration: '4-8 hours'
+      }
+    ]
+  },
+  {
+    id: 'roofing-gutter',
+    title: 'Roofing & Gutter Services',
+    description: 'Maintain and repair roof components and gutter systems.',
+    icon: Home,
+    priceRange: '$150 - $1,200',
+    longDescription: 'Our roofing and gutter services help maintain your home\'s first line of defense against the elements. From minor roof repairs to gutter maintenance and installation, our professionals ensure your roof and drainage systems function properly to protect your home.',
+    tasks: [
+      {
+        id: 'roof-leak',
+        title: 'Roof Leak Repairs (Minor)',
+        price: 550,
+        description: 'Professional repair of minor roof leaks including shingle replacement and sealing. Price for standard repairs.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'skylight',
+        title: 'Skylight Installation/Repair',
+        price: 850,
+        description: 'Professional installation or repair of roof skylights with proper flashing and weatherproofing.',
+        duration: '4-8 hours'
+      },
+      {
+        id: 'roof-inspection',
+        title: 'Roof Inspection',
+        price: 225,
+        description: 'Comprehensive inspection of roof condition with detailed report on needed repairs or maintenance.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'gutter-guard',
+        title: 'Gutter Guard Installation',
+        price: 650,
+        description: 'Installation of gutter guard systems to prevent debris buildup and clogging. Price for average home.',
+        duration: '3-5 hours'
+      },
+      {
+        id: 'downspout',
+        title: 'Downspout Repair or Installation',
+        price: 275,
+        description: 'Professional repair or installation of downspouts with proper drainage configuration.',
+        duration: '1-3 hours'
+      }
+    ]
+  },
+  {
+    id: 'pest-management',
+    title: 'Pest & Wildlife Management',
+    description: 'Prevent and address pest issues around your home.',
+    icon: Bug,
+    priceRange: '$150 - $700',
+    longDescription: 'Our pest and wildlife management services help keep unwanted visitors out of your home. From rodent-proofing to repairing animal damage, our professionals can implement effective solutions to address and prevent pest issues while ensuring your home remains protected.',
+    tasks: [
+      {
+        id: 'rodent-proofing',
+        title: 'Rodent-proofing Home',
+        price: 500,
+        description: 'Comprehensive inspection and sealing of potential entry points to prevent rodent intrusion.',
+        duration: '3-5 hours'
+      },
+      {
+        id: 'bird-nest',
+        title: 'Bird Nest Removal and Prevention',
+        price: 275,
+        description: 'Safe removal of bird nests and installation of preventative measures to discourage nesting in unwanted areas.',
+        duration: '2-3 hours'
+      },
+      {
+        id: 'animal-damage',
+        title: 'Animal Damage Repair (Minor)',
+        price: 425,
+        description: 'Repair of minor damage caused by animals to home exterior, insulation, or ductwork.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'pest-barrier',
+        title: 'Pest Barrier Installation',
+        price: 350,
+        description: 'Installation of physical barriers and deterrents to prevent pest entry around home foundation and structure.',
+        duration: '2-4 hours'
+      }
+    ]
+  },
+  {
+    id: 'insulation',
+    title: 'Insulation & Energy Efficiency',
+    description: 'Improve your home\'s efficiency and comfort.',
+    icon: Heater,
+    priceRange: '$150 - $3,000',
+    longDescription: 'Our insulation and energy efficiency services help reduce energy costs while improving home comfort. From attic insulation to window treatments, our professionals can implement solutions that enhance your home\'s thermal performance and reduce utility bills year-round.',
+    tasks: [
+      {
+        id: 'attic-insulation',
+        title: 'Attic Insulation Installation',
+        price: 1850,
+        description: 'Professional installation of insulation in attic spaces to improve energy efficiency. Price for average-sized attic.',
+        duration: '4-8 hours'
+      },
+      {
+        id: 'insulation-replacement',
+        title: 'Insulation Removal & Replacement',
+        price: 2250,
+        description: 'Complete removal of old or damaged insulation and installation of new insulation materials.',
+        duration: '6-10 hours'
+      },
+      {
+        id: 'window-film',
+        title: 'Window Film Installation',
+        price: 275,
+        description: 'Application of energy-saving window film to reduce heat transfer and UV exposure. Price per room (3-5 windows).',
+        duration: '2-4 hours'
+      }
+    ]
+  },
+  {
+    id: 'miscellaneous',
+    title: 'Miscellaneous Services',
+    description: 'Specialized home projects and seasonal services.',
+    icon: Hammer,
+    priceRange: '$150 - $600',
+    longDescription: 'Our miscellaneous services cover those unique projects that don\'t fit neatly into other categories. From mailbox installation to holiday decorating, our versatile professionals can handle a wide range of specialized tasks to enhance and maintain your home.',
+    tasks: [
+      {
+        id: 'mailbox',
+        title: 'Mailbox Installation/Replacement',
+        price: 225,
+        description: 'Professional installation or replacement of residential mailbox with proper mounting and alignment.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'flagpole',
+        title: 'Flagpole Installation',
+        price: 425,
+        description: 'Complete installation of residential flagpole including proper foundation and mounting hardware.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'holiday-decoration',
+        title: 'Holiday Decoration Installation/Removal',
+        price: 325,
+        description: 'Professional installation or removal of holiday decorations with careful handling and secure mounting.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'pet-door',
+        title: 'Pet Door Installation',
+        price: 250,
+        description: 'Professional installation of pet access door in standard interior or exterior door.',
+        duration: '2-3 hours'
+      },
+      {
+        id: 'basketball-hoop',
+        title: 'Basketball Hoop Installation',
+        price: 350,
+        description: 'Assembly and installation of basketball hoop system with proper anchoring and stability testing.',
+        duration: '2-4 hours'
+      }
+    ]
+  }
+];
+
+export const allServices = [...services, ...additionalServices];
+
 export const handymen: Handyman[] = [
   {
     id: 'handyman-1',
@@ -438,7 +885,7 @@ export const handymen: Handyman[] = [
 ];
 
 export const getServiceById = (id: string): Service | undefined => {
-  return services.find(service => service.id === id);
+  return allServices.find(service => service.id === id);
 };
 
 export const getRandomHandyman = (): Handyman => {

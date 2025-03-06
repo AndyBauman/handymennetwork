@@ -1,5 +1,5 @@
 
-import { Wrench, Zap, Tv, Hammer, Paintbrush, Sofa } from 'lucide-react';
+import { Wrench, Zap, Tv, Hammer, Paintbrush, Sofa, Shield, Leaf, Box } from 'lucide-react';
 import ServiceCard from './ServiceCard';
 import { useNavigate } from 'react-router-dom';
 
@@ -33,11 +33,25 @@ const services = [
     priceRange: '$60 - $450'
   },
   {
-    id: 'home-improvement',
-    title: 'Home Improvement',
-    description: 'Upgrades and fixes to make your home better than ever.',
-    icon: Hammer,
-    priceRange: '$100 - $500'
+    id: 'general-home-maintenance',
+    title: 'Home Maintenance',
+    description: 'Regular upkeep and safety checks for your home.',
+    icon: Shield,
+    priceRange: '$50 - $300'
+  },
+  {
+    id: 'landscaping',
+    title: 'Landscaping',
+    description: 'Professional care for your outdoor spaces and gardens.',
+    icon: Leaf,
+    priceRange: '$40 - $400'
+  },
+  {
+    id: 'moving-assembly',
+    title: 'Moving & Assembly',
+    description: 'Help with furniture moving, hanging artwork, and assembly.',
+    icon: Box,
+    priceRange: '$75 - $800'
   },
   {
     id: 'painting',
@@ -65,7 +79,7 @@ const FeaturedServices = () => {
           </p>
         </div>
         
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {services.map((service) => (
             <ServiceCard
               key={service.id}

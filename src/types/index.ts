@@ -29,3 +29,10 @@ export interface Handyman {
   experience: string;
   bio: string;
 }
+
+export interface ServiceCategory {
+  id: string;
+  name: string;
+  description: string;
+  services: Service[];
+}
