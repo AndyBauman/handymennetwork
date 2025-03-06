@@ -58,3 +58,35 @@ export interface JobNotification {
   urgency: 'low' | 'medium' | 'high';
   timeLeft: number;
 }
+
+export interface User {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  addresses: Address[];
+  paymentMethods: PaymentMethod[];
+  profileImage?: string;
+}
+
+export interface Address {
+  id: string;
+  street: string;
+  unit?: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  isDefault: boolean;
+  label?: string; // e.g., "Home", "Office", "Rental Property"
+}
+
+export interface PaymentMethod {
+  id: string;
+  type: 'credit' | 'debit' | 'paypal' | 'applepay' | 'googlepay';
+  lastFour: string;
+  expiryDate?: string;
+  isDefault: boolean;
+  cardholderName?: string;
+}
+

@@ -8,6 +8,8 @@ import Index from "./pages/Index";
 import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";
 import Booking from "./pages/Booking";
+import HomeownerSignup from "./pages/HomeownerSignup";
+import HomeownerLogin from "./pages/HomeownerLogin";
 import HandymanSignup from "./pages/HandymanSignup";
 import HandymanLogin from "./pages/HandymanLogin";
 import HandymanDashboard from "./pages/HandymanDashboard";
@@ -26,6 +28,8 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/services/:id" element={<ServiceDetail />} />
           <Route path="/book" element={<Booking />} />
+          <Route path="/signup" element={<HomeownerSignup />} />
+          <Route path="/login" element={<HomeownerLogin />} />
           <Route path="/handyman-signup" element={<HandymanSignup />} />
           <Route path="/handyman-login" element={<HandymanLogin />} />
           <Route path="/handyman-dashboard" element={<HandymanDashboard />} />

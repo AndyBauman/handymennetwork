@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, User, Wrench } from 'lucide-react';
@@ -38,6 +39,16 @@ const Navbar = () => {
           </Button>
           
           <div className="hidden md:flex items-center gap-2">
+            <Button variant="ghost" size="sm" asChild>
+              <Link to="/login">Login</Link>
+            </Button>
+            
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/signup">Sign Up</Link>
+            </Button>
+            
+            <div className="h-5 mx-1 border-l border-gray-300"></div>
+
             <Button variant="ghost" size="sm" asChild>
               <Link to="/handyman-login">Pro Login</Link>
             </Button>
@@ -81,7 +92,18 @@ const Navbar = () => {
                 <Link to="/profile" className="text-lg font-medium">
                   Profile
                 </Link>
+                
                 <div className="py-2 my-2 border-t border-b">
+                  <h3 className="mb-2 font-medium text-gray-500">Account</h3>
+                  <Link to="/login" className="block py-1 text-lg font-medium">
+                    Login
+                  </Link>
+                  <Link to="/signup" className="block py-1 text-lg font-medium">
+                    Sign Up
+                  </Link>
+                </div>
+                
+                <div className="py-2 my-2 border-b">
                   <h3 className="mb-2 font-medium text-gray-500">For Professionals</h3>
                   <Link to="/handyman-login" className="block py-1 text-lg font-medium">
                     Pro Login
@@ -90,6 +112,7 @@ const Navbar = () => {
                     Join as Pro
                   </Link>
                 </div>
+                
                 <Button variant="default" className="mt-4" asChild>
                   <Link to="/book">Book Now</Link>
                 </Button>
