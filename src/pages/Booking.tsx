@@ -1,7 +1,6 @@
-
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Calendar, Clock, MapPin, CreditCard, CheckCircle } from 'lucide-react';
+import { Calendar, Clock, MapPin, CreditCard, CheckCircle, Star } from 'lucide-react';
 import { format } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -40,11 +39,9 @@ const Booking = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   
-  // Get booking data from location state
   const bookingData = location.state || {};
   const handyman = getHandymanById(bookingData.handymanId);
   
-  // Booking form state
   const [currentStep, setCurrentStep] = useState(1);
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [timeSlot, setTimeSlot] = useState<string | undefined>();
@@ -98,7 +95,6 @@ const Booking = () => {
   const handleBookingSubmit = () => {
     setIsProcessing(true);
     
-    // Simulate booking process
     setTimeout(() => {
       setIsProcessing(false);
       setIsBookingComplete(true);
