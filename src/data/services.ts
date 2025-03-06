@@ -47,7 +47,7 @@ export const services: Service[] = [
     description: 'Install fixtures, troubleshoot problems, upgrade panels.',
     icon: Zap,
     priceRange: '$85 - $275',
-    longDescription: 'Our licensed electricians can handle all your electrical needs safely and efficiently. From installing new fixtures to troubleshooting electrical problems and upgrading panels, we ensure your home's electrical system is safe and functioning properly.',
+    longDescription: 'Our licensed electricians can handle all your electrical needs safely and efficiently. From installing new fixtures to troubleshooting electrical problems and upgrading panels, we ensure your home\'s electrical system is safe and functioning properly.',
     tasks: [
       {
         id: 'light-fixture',
