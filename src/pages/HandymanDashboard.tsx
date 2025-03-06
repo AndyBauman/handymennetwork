@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -28,7 +27,7 @@ import JobsList from '@/components/handyman/JobsList';
 import JobInProgress from '@/components/handyman/JobInProgress';
 import { Job, JobNotification as JobNotificationType } from '@/types';
 
-const mockJobs = [
+const mockJobs: Job[] = [
   {
     id: '1',
     title: 'Fix leaking kitchen faucet',
@@ -92,7 +91,6 @@ const HandymanDashboard = () => {
   const [jobNotifications, setJobNotifications] = useState<JobNotificationType[]>(mockJobNotifications);
   const [timers, setTimers] = useState<{[key: string]: number}>({});
   
-  // Set up countdown timers for job notifications
   useEffect(() => {
     const intervals: {[key: string]: NodeJS.Timeout} = {};
     
@@ -103,7 +101,6 @@ const HandymanDashboard = () => {
         setTimers(prev => {
           const newTime = prev[notification.id] - 1;
           
-          // Remove notification when timer reaches 0
           if (newTime <= 0) {
             clearInterval(intervals[notification.id]);
             setJobNotifications(currentNotifications => 
@@ -123,7 +120,6 @@ const HandymanDashboard = () => {
       }, 1000);
     });
     
-    // Cleanup timers
     return () => {
       Object.values(intervals).forEach(interval => clearInterval(interval));
     };
@@ -141,11 +137,9 @@ const HandymanDashboard = () => {
   };
   
   const handleAcceptJob = (jobId: string) => {
-    // Find the notification
     const notification = jobNotifications.find(n => n.id === jobId);
     
     if (notification) {
-      // Add to jobs
       const newJob: Job = {
         id: jobId,
         title: notification.title,
@@ -159,7 +153,6 @@ const HandymanDashboard = () => {
       
       setJobs(prev => [...prev, newJob]);
       
-      // Remove from notifications
       setJobNotifications(prev => prev.filter(n => n.id !== jobId));
     }
   };

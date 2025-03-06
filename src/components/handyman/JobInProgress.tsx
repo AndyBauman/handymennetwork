@@ -86,7 +86,7 @@ const JobInProgress = ({ job, onStatusUpdate }: JobInProgressProps) => {
                 </Button>
               )}
               
-              {(job.status === 'arrived' && job.status !== 'started') && (
+              {job.status === 'arrived' && (
                 <Button 
                   variant="outline" 
                   className="border-yellow-500 text-yellow-500 hover:bg-yellow-50" 

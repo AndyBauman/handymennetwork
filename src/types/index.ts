@@ -40,7 +40,7 @@ export interface ServiceCategory {
 export interface Job {
   id: string;
   title: string;
-  status: 'pending' | 'accepted' | 'arrived' | 'started' | 'completed';
+  status: 'pending' | 'accepted' | 'arrived' | 'started' | 'completed' | 'upcoming';
   date: string;
   time: string;
   client: string;
