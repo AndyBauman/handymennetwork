@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -10,7 +9,7 @@ import {
   Settings, 
   User, 
   Clock,
-  Tool, 
+  Wrench, 
   CheckCircle2,
   MapPin,
   Star,
@@ -24,7 +23,6 @@ import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
 
-// This would come from your API in a real application
 const mockJobs = [
   {
     id: '1',
@@ -79,7 +77,6 @@ const HandymanDashboard = () => {
       <Navbar />
       <div className="container p-4 mx-auto">
         <div className="flex flex-col gap-6 md:flex-row">
-          {/* Sidebar */}
           <aside className="w-full p-4 bg-white rounded-lg shadow-sm md:w-64">
             <div className="flex flex-col items-center mb-6">
               <div className="w-20 h-20 mb-3 overflow-hidden rounded-full bg-gray-100">
@@ -137,7 +134,7 @@ const HandymanDashboard = () => {
                         : 'hover:bg-gray-100'
                     }`}
                   >
-                    <Tool className="w-5 h-5 mr-3" />
+                    <Wrench className="w-5 h-5 mr-3" />
                     Jobs
                   </button>
                 </li>
@@ -216,18 +213,16 @@ const HandymanDashboard = () => {
             </nav>
           </aside>
           
-          {/* Main Content */}
           <main className="flex-1">
             {activeTab === 'dashboard' && (
               <div className="space-y-6">
                 <h1 className="text-2xl font-bold">Dashboard</h1>
                 
-                {/* Stats */}
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                   <Card>
                     <CardContent className="flex flex-col items-center justify-center p-6">
                       <div className="p-2 mb-4 text-white bg-blue-500 rounded-full">
-                        <Tool className="w-6 h-6" />
+                        <Wrench className="w-6 h-6" />
                       </div>
                       <p className="text-sm text-gray-500">Completed Jobs</p>
                       <h3 className="text-3xl font-bold">23</h3>
@@ -265,7 +260,6 @@ const HandymanDashboard = () => {
                   </Card>
                 </div>
                 
-                {/* Upcoming Jobs */}
                 <Card>
                   <CardHeader>
                     <CardTitle>Upcoming Jobs</CardTitle>
@@ -309,7 +303,6 @@ const HandymanDashboard = () => {
                   </CardContent>
                 </Card>
                 
-                {/* Job Alerts */}
                 <Card>
                   <CardHeader>
                     <CardTitle>Recent Notifications</CardTitle>

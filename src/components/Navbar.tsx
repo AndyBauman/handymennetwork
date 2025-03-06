@@ -1,7 +1,6 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, User, Tool } from 'lucide-react';
+import { Menu, X, User, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
@@ -45,7 +44,7 @@ const Navbar = () => {
             
             <Button variant="outline" size="sm" className="gap-1" asChild>
               <Link to="/handyman-signup">
-                <Tool className="w-4 h-4" />
+                <Wrench className="w-4 h-4" />
                 Join as Pro
               </Link>
             </Button>
