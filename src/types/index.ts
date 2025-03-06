@@ -36,3 +36,25 @@ export interface ServiceCategory {
   description: string;
   services: Service[];
 }
+
+export interface Job {
+  id: string;
+  title: string;
+  status: 'pending' | 'accepted' | 'arrived' | 'started' | 'completed';
+  date: string;
+  time: string;
+  client: string;
+  address: string;
+  payment: string;
+}
+
+export interface JobNotification {
+  id: string;
+  title: string;
+  location: string;
+  distance: string;
+  payment: string;
+  duration: string;
+  urgency: 'low' | 'medium' | 'high';
+  timeLeft: number;
+}

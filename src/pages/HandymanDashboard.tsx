@@ -1,4 +1,5 @@
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Bell, 
@@ -22,6 +23,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
+import JobNotification from '@/components/handyman/JobNotification';
+import JobsList from '@/components/handyman/JobsList';
+import JobInProgress from '@/components/handyman/JobInProgress';
+import { Job, JobNotification as JobNotificationType } from '@/types';
 
 const mockJobs = [
   {
@@ -47,8 +52,8 @@ const mockJobs = [
   {
     id: '3',
     title: 'Assemble office desk',
-    status: 'upcoming',
-    date: '2023-06-25',
+    status: 'started',
+    date: '2023-06-20',
     time: '9:00 AM - 12:00 PM',
     client: 'Robert Johnson',
     address: '789 Pine Ave, Elsewhere, CA',
@@ -56,10 +61,73 @@ const mockJobs = [
   }
 ];
 
+const mockJobNotifications: JobNotificationType[] = [
+  {
+    id: '101',
+    title: 'Install bathroom sink',
+    location: 'Oak Street, Downtown',
+    distance: '2.3 miles',
+    payment: '$150.00',
+    duration: '1-2 hours',
+    urgency: 'medium',
+    timeLeft: 165 // seconds
+  },
+  {
+    id: '102',
+    title: 'Fix electrical outlet',
+    location: 'Pine Avenue, Westside',
+    distance: '1.5 miles',
+    payment: '$85.00',
+    duration: '30-45 min',
+    urgency: 'high',
+    timeLeft: 105 // seconds
+  }
+];
+
 const HandymanDashboard = () => {
   const { toast } = useToast();
   const [isAvailable, setIsAvailable] = useState(true);
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [jobs, setJobs] = useState<Job[]>(mockJobs);
+  const [jobNotifications, setJobNotifications] = useState<JobNotificationType[]>(mockJobNotifications);
+  const [timers, setTimers] = useState<{[key: string]: number}>({});
+  
+  // Set up countdown timers for job notifications
+  useEffect(() => {
+    const intervals: {[key: string]: NodeJS.Timeout} = {};
+    
+    jobNotifications.forEach(notification => {
+      setTimers(prev => ({...prev, [notification.id]: notification.timeLeft}));
+      
+      intervals[notification.id] = setInterval(() => {
+        setTimers(prev => {
+          const newTime = prev[notification.id] - 1;
+          
+          // Remove notification when timer reaches 0
+          if (newTime <= 0) {
+            clearInterval(intervals[notification.id]);
+            setJobNotifications(currentNotifications => 
+              currentNotifications.filter(n => n.id !== notification.id)
+            );
+            
+            toast({
+              title: "Job Opportunity Expired",
+              description: `The ${notification.title} job is no longer available.`
+            });
+            
+            return {...prev, [notification.id]: 0};
+          }
+          
+          return {...prev, [notification.id]: newTime};
+        });
+      }, 1000);
+    });
+    
+    // Cleanup timers
+    return () => {
+      Object.values(intervals).forEach(interval => clearInterval(interval));
+    };
+  }, [jobNotifications, toast]);
   
   const handleAvailabilityChange = (checked: boolean) => {
     setIsAvailable(checked);
@@ -71,6 +139,51 @@ const HandymanDashboard = () => {
         : "You won't receive any new job requests."
     });
   };
+  
+  const handleAcceptJob = (jobId: string) => {
+    // Find the notification
+    const notification = jobNotifications.find(n => n.id === jobId);
+    
+    if (notification) {
+      // Add to jobs
+      const newJob: Job = {
+        id: jobId,
+        title: notification.title,
+        status: 'accepted',
+        date: new Date().toLocaleDateString(),
+        time: `${new Date().getHours()}:${new Date().getMinutes()} - Est. ${notification.duration}`,
+        client: 'New Client',
+        address: notification.location,
+        payment: notification.payment
+      };
+      
+      setJobs(prev => [...prev, newJob]);
+      
+      // Remove from notifications
+      setJobNotifications(prev => prev.filter(n => n.id !== jobId));
+    }
+  };
+  
+  const handleDeclineJob = (jobId: string) => {
+    setJobNotifications(prev => prev.filter(n => n.id !== jobId));
+    
+    toast({
+      title: "Job Declined",
+      description: "You've passed on this job opportunity."
+    });
+  };
+  
+  const handleJobStatusUpdate = (jobId: string, status: string) => {
+    setJobs(prev => 
+      prev.map(job => 
+        job.id === jobId 
+          ? {...job, status: status as 'pending' | 'accepted' | 'arrived' | 'started' | 'completed'} 
+          : job
+      )
+    );
+  };
+  
+  const currentJob = jobs.find(job => ['accepted', 'arrived', 'started'].includes(job.status));
   
   return (
     <>
@@ -218,6 +331,28 @@ const HandymanDashboard = () => {
               <div className="space-y-6">
                 <h1 className="text-2xl font-bold">Dashboard</h1>
                 
+                {isAvailable && jobNotifications.length > 0 && (
+                  <div className="mb-6">
+                    <h2 className="mb-3 text-xl font-semibold">New Job Opportunities</h2>
+                    {jobNotifications.map(notification => (
+                      <JobNotification
+                        key={notification.id}
+                        {...notification}
+                        timeLeft={timers[notification.id] || notification.timeLeft}
+                        onAccept={handleAcceptJob}
+                        onDecline={handleDeclineJob}
+                      />
+                    ))}
+                  </div>
+                )}
+                
+                {currentJob && (
+                  <JobInProgress 
+                    job={currentJob} 
+                    onStatusUpdate={handleJobStatusUpdate} 
+                  />
+                )}
+                
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                   <Card>
                     <CardContent className="flex flex-col items-center justify-center p-6">
@@ -265,41 +400,10 @@ const HandymanDashboard = () => {
                     <CardTitle>Upcoming Jobs</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-4">
-                      {mockJobs
-                        .filter(job => job.status === 'upcoming')
-                        .map(job => (
-                          <div key={job.id} className="p-4 border rounded-lg">
-                            <div className="flex flex-wrap items-start justify-between gap-2">
-                              <div>
-                                <h3 className="font-semibold">{job.title}</h3>
-                                <div className="flex items-center mt-1 text-sm text-gray-500">
-                                  <Calendar className="w-4 h-4 mr-1" />
-                                  {job.date} • {job.time}
-                                </div>
-                                <div className="flex items-center mt-1 text-sm text-gray-500">
-                                  <MapPin className="w-4 h-4 mr-1" />
-                                  {job.address}
-                                </div>
-                              </div>
-                              <div className="text-right">
-                                <p className="font-semibold text-brand-blue">{job.payment}</p>
-                                <p className="text-sm text-gray-500">{job.client}</p>
-                              </div>
-                            </div>
-                            <div className="flex justify-end gap-2 mt-3">
-                              <Button variant="outline" size="sm">
-                                <MessageSquare className="w-4 h-4 mr-1" />
-                                Contact
-                              </Button>
-                              <Button size="sm">
-                                <CheckCircle2 className="w-4 h-4 mr-1" />
-                                View Details
-                              </Button>
-                            </div>
-                          </div>
-                        ))}
-                    </div>
+                    <JobsList 
+                      jobs={jobs.filter(job => job.status === 'upcoming')} 
+                      type="upcoming" 
+                    />
                   </CardContent>
                 </Card>
                 
@@ -341,7 +445,44 @@ const HandymanDashboard = () => {
               </div>
             )}
             
-            {activeTab !== 'dashboard' && (
+            {activeTab === 'jobs' && (
+              <div className="space-y-6">
+                <h1 className="text-2xl font-bold">Jobs</h1>
+                
+                {currentJob && (
+                  <JobInProgress 
+                    job={currentJob} 
+                    onStatusUpdate={handleJobStatusUpdate} 
+                  />
+                )}
+                
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Upcoming Jobs</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <JobsList 
+                      jobs={jobs.filter(job => job.status === 'upcoming')} 
+                      type="upcoming" 
+                    />
+                  </CardContent>
+                </Card>
+                
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Completed Jobs</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <JobsList 
+                      jobs={jobs.filter(job => job.status === 'completed')} 
+                      type="completed" 
+                    />
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+            
+            {!['dashboard', 'jobs'].includes(activeTab) && (
               <div className="flex flex-col items-center justify-center h-96">
                 <h2 className="mb-2 text-xl font-semibold">{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h2>
                 <p className="text-gray-500">This section is under development</p>
