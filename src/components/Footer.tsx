@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="container px-4 py-12 mx-auto">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h2 className="mb-4 text-xl font-bold text-white">Handy<span className="text-brand-orange">cierge</span></h2>
+            <h2 className="mb-4 text-xl font-bold text-white">Handymen<span className="text-brand-orange">Network</span></h2>
             <p className="mb-4">
               Expert handyman services on demand with upfront pricing and verified professionals.
             </p>
@@ -64,7 +64,7 @@ const Footer = () => {
         </div>
         
         <div className="pt-8 mt-8 border-t border-gray-800 text-center">
-          <p>&copy; {currentYear} Handycierge. All rights reserved.</p>
+          <p>&copy; {currentYear} Handymen Network. All rights reserved.</p>
         </div>
       </div>
     </footer>

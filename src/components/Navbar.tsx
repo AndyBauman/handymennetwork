@@ -12,7 +12,7 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 w-full bg-white border-b shadow-sm">
       <div className="container flex items-center justify-between h-16 px-4 md:px-6">
         <Link to="/" className="flex items-center gap-2">
-          <span className="text-2xl font-bold text-brand-blue">Handy<span className="text-brand-orange">cierge</span></span>
+          <span className="text-2xl font-bold text-brand-blue">Handymen<span className="text-brand-orange">Network</span></span>
         </Link>
         
         <nav className="hidden md:flex md:items-center md:gap-6">
