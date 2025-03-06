@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, User } from 'lucide-react';
+import { Menu, X, User, Tool } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
@@ -38,6 +38,19 @@ const Navbar = () => {
             </Link>
           </Button>
           
+          <div className="hidden md:flex items-center gap-2">
+            <Button variant="ghost" size="sm" asChild>
+              <Link to="/handyman-login">Pro Login</Link>
+            </Button>
+            
+            <Button variant="outline" size="sm" className="gap-1" asChild>
+              <Link to="/handyman-signup">
+                <Tool className="w-4 h-4" />
+                Join as Pro
+              </Link>
+            </Button>
+          </div>
+          
           <Button variant="default" className="hidden md:inline-flex" asChild>
             <Link to="/book">Book Now</Link>
           </Button>
@@ -69,6 +82,15 @@ const Navbar = () => {
                 <Link to="/profile" className="text-lg font-medium">
                   Profile
                 </Link>
+                <div className="py-2 my-2 border-t border-b">
+                  <h3 className="mb-2 font-medium text-gray-500">For Professionals</h3>
+                  <Link to="/handyman-login" className="block py-1 text-lg font-medium">
+                    Pro Login
+                  </Link>
+                  <Link to="/handyman-signup" className="block py-1 text-lg font-medium">
+                    Join as Pro
+                  </Link>
+                </div>
                 <Button variant="default" className="mt-4" asChild>
                   <Link to="/book">Book Now</Link>
                 </Button>
