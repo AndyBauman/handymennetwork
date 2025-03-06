@@ -1,0 +1,84 @@
+
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Menu, X, User } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <header className="sticky top-0 z-50 w-full bg-white border-b shadow-sm">
+      <div className="container flex items-center justify-between h-16 px-4 md:px-6">
+        <Link to="/" className="flex items-center gap-2">
+          <span className="text-2xl font-bold text-brand-blue">Handy<span className="text-brand-orange">cierge</span></span>
+        </Link>
+        
+        <nav className="hidden md:flex md:items-center md:gap-6">
+          <Link to="/services" className="text-sm font-medium transition-colors hover:text-brand-blue">
+            Services
+          </Link>
+          <Link to="/how-it-works" className="text-sm font-medium transition-colors hover:text-brand-blue">
+            How It Works
+          </Link>
+          <Link to="/about" className="text-sm font-medium transition-colors hover:text-brand-blue">
+            About
+          </Link>
+          <Link to="/contact" className="text-sm font-medium transition-colors hover:text-brand-blue">
+            Contact
+          </Link>
+        </nav>
+        
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="icon" className="hidden md:flex" asChild>
+            <Link to="/profile">
+              <User className="w-5 h-5" />
+              <span className="sr-only">Profile</span>
+            </Link>
+          </Button>
+          
+          <Button variant="default" className="hidden md:inline-flex" asChild>
+            <Link to="/book">Book Now</Link>
+          </Button>
+          
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Menu className="w-5 h-5" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <nav className="flex flex-col gap-4 mt-8">
+                <Link to="/" className="text-lg font-medium">
+                  Home
+                </Link>
+                <Link to="/services" className="text-lg font-medium">
+                  Services
+                </Link>
+                <Link to="/how-it-works" className="text-lg font-medium">
+                  How It Works
+                </Link>
+                <Link to="/about" className="text-lg font-medium">
+                  About
+                </Link>
+                <Link to="/contact" className="text-lg font-medium">
+                  Contact
+                </Link>
+                <Link to="/profile" className="text-lg font-medium">
+                  Profile
+                </Link>
+                <Button variant="default" className="mt-4" asChild>
+                  <Link to="/book">Book Now</Link>
+                </Button>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Navbar;
