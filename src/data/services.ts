@@ -8,28 +8,70 @@ export const services: Service[] = [
     title: 'Plumbing',
     description: 'Fix leaks, install fixtures, repair pipes, and more.',
     icon: Wrench,
-    priceRange: '$75 - $250',
+    priceRange: '$75 - $500',
     longDescription: 'Our experienced plumbers can handle all your home plumbing needs, from fixing leaking faucets to installing new fixtures and repairing damaged pipes. We provide fast, reliable service with upfront pricing.',
     tasks: [
       {
         id: 'faucet-installation',
         title: 'Faucet Installation',
-        price: 175,
+        price: 150,
         description: 'Professional installation of a new kitchen or bathroom faucet. Price includes removal of old faucet and installation of customer-provided new faucet.',
         duration: '1-2 hours'
       },
       {
         id: 'toilet-repair',
         title: 'Toilet Repair',
-        price: 125,
+        price: 150,
         description: 'Fix running toilets, leaks, or replace internal components. Does not include replacement of entire toilet.',
         duration: '1 hour'
       },
       {
-        id: 'drain-unclogging',
-        title: 'Drain Unclogging',
-        price: 95,
-        description: 'Clear blockages from sinks, tubs, or shower drains using professional tools. Price is per drain.',
+        id: 'toilet-installation',
+        title: 'Toilet Installation',
+        price: 225,
+        description: 'Complete removal of old toilet and installation of new toilet. Does not include cost of the toilet.',
+        duration: '2-3 hours'
+      },
+      {
+        id: 'drain-cleaning',
+        title: 'Drain Cleaning',
+        price: 200,
+        description: 'Professional cleaning of clogged or slow drains using specialized equipment. Price is per drain.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'sink-installation',
+        title: 'Sink Installation',
+        price: 200,
+        description: 'Removal of old sink and installation of new sink. Does not include cost of the sink or any required plumbing modifications.',
+        duration: '2-3 hours'
+      },
+      {
+        id: 'garbage-disposal',
+        title: 'Garbage Disposal Installation',
+        price: 175,
+        description: 'Installation of new garbage disposal or replacement of existing unit. Price does not include the disposal unit.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'water-heater',
+        title: 'Water Heater Installation',
+        price: 500,
+        description: 'Removal of old water heater and installation of new unit. Does not include cost of the water heater.',
+        duration: '3-5 hours'
+      },
+      {
+        id: 'leak-repair',
+        title: 'Water Leak Detection/Repair',
+        price: 250,
+        description: 'Professional detection and repair of water leaks. Price may vary based on complexity and accessibility.',
+        duration: '1-3 hours'
+      },
+      {
+        id: 'showerhead',
+        title: 'Showerhead Installation',
+        price: 100,
+        description: 'Removal of old showerhead and installation of new showerhead. Price does not include cost of the showerhead.',
         duration: '30-60 minutes'
       },
       {
@@ -46,36 +88,99 @@ export const services: Service[] = [
     title: 'Electrical',
     description: 'Install fixtures, troubleshoot problems, upgrade panels.',
     icon: Zap,
-    priceRange: '$85 - $275',
+    priceRange: '$75 - $850',
     longDescription: 'Our licensed electricians can handle all your electrical needs safely and efficiently. From installing new fixtures to troubleshooting electrical problems and upgrading panels, we ensure your home\'s electrical system is safe and functioning properly.',
     tasks: [
       {
         id: 'light-fixture',
         title: 'Light Fixture Installation',
-        price: 95,
+        price: 150,
         description: 'Professional installation of ceiling or wall mounted light fixtures. Price is per fixture and includes removal of old fixture if needed.',
-        duration: '30-60 minutes'
+        duration: '1-2 hours'
       },
       {
-        id: 'outlet-installation',
-        title: 'Outlet Installation/Replacement',
-        price: 85,
-        description: 'Install new electrical outlets or replace existing ones. Price is per outlet.',
+        id: 'outlet-replacement',
+        title: 'Outlet/Switch Replacement',
+        price: 100,
+        description: 'Replace existing electrical outlets or switches. Price is per outlet/switch.',
         duration: '30-45 minutes'
       },
       {
         id: 'ceiling-fan',
         title: 'Ceiling Fan Installation',
-        price: 150,
+        price: 200,
         description: 'Remove old fixture and install a new ceiling fan with proper mounting and wiring. Price does not include fan.',
         duration: '1-2 hours'
       },
       {
-        id: 'electrical-troubleshooting',
-        title: 'Electrical Troubleshooting',
+        id: 'thermostat',
+        title: 'Thermostat Installation',
         price: 125,
-        description: 'Diagnose and resolve common electrical issues like circuit breaker problems, faulty switches, or electrical failures.',
-        duration: '1+ hours'
+        description: 'Removal of old thermostat and installation of new programmable or smart thermostat. Does not include cost of thermostat.',
+        duration: '1 hour'
+      },
+      {
+        id: 'security-camera',
+        title: 'Security Camera Installation',
+        price: 200,
+        description: 'Professional installation of up to 3 security cameras with basic setup and testing. Does not include cost of cameras.',
+        duration: '2-3 hours'
+      },
+      {
+        id: 'smoke-detector',
+        title: 'Smoke Detector Installation',
+        price: 75,
+        description: 'Installation of hardwired or battery-operated smoke detectors. Price is per unit.',
+        duration: '30-60 minutes'
+      },
+      {
+        id: 'doorbell',
+        title: 'Doorbell Installation',
+        price: 100,
+        description: 'Installation of standard or video doorbell with proper wiring and testing. Does not include cost of doorbell.',
+        duration: '1 hour'
+      },
+      {
+        id: 'tv-mount-standard',
+        title: 'TV Wall Mounting (Standard)',
+        price: 150,
+        description: 'Professional mounting of TV on drywall with standard bracket. Includes bracket installation, TV mounting, and basic cable management.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'tv-mount-outdoor',
+        title: 'TV Wall Mounting (Outdoor)',
+        price: 250,
+        description: 'Professional mounting of TV in outdoor setting with weather-resistant mounting hardware. Includes proper sealing and weatherproofing.',
+        duration: '2-3 hours'
+      },
+      {
+        id: 'outlet-installation',
+        title: 'New Outlet Installation',
+        price: 125,
+        description: 'Installation of a new electrical outlet where one did not exist previously. Requires running new wiring.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'recessed-lighting',
+        title: 'Recessed Lighting Installation',
+        price: 200,
+        description: 'Installation of recessed lighting fixtures in ceiling. Price is per light and includes cutting holes and wiring.',
+        duration: '1-2 hours per light'
+      },
+      {
+        id: 'chandelier',
+        title: 'Chandelier Installation',
+        price: 300,
+        description: 'Removal of existing light fixture and installation of decorative chandelier with proper support and wiring. Does not include chandelier.',
+        duration: '2-3 hours'
+      },
+      {
+        id: 'ev-charger',
+        title: 'EV Charger Installation',
+        price: 600,
+        description: 'Installation of standard residential electric vehicle charging station with proper wiring and circuit. Does not include charger unit.',
+        duration: '3-5 hours'
       }
     ]
   },
@@ -212,29 +317,57 @@ export const services: Service[] = [
     title: 'Painting',
     description: 'Professional painting for rooms, walls, or touch-ups.',
     icon: Paintbrush,
-    priceRange: '$150 - $500',
+    priceRange: '$50 - $3,500',
     longDescription: 'Our painting services deliver flawless results that transform your space. Whether you need a single room painted, an accent wall, or touch-ups to existing paint, our professionals ensure clean lines, even coverage, and a perfect finish every time.',
     tasks: [
       {
         id: 'room-painting',
-        title: 'Single Room Painting',
-        price: 350,
+        title: 'Interior Room Painting',
+        price: 750,
         description: 'Professional painting of one room (up to 12x12 ft) including walls and ceiling. Price includes basic prep, paint, and cleanup.',
         duration: '4-6 hours'
       },
       {
+        id: 'exterior-painting',
+        title: 'Exterior House Painting',
+        price: 2500,
+        description: 'Professional painting of home exterior. Price varies based on size of home and number of stories.',
+        duration: '2-4 days'
+      },
+      {
+        id: 'deck-painting',
+        title: 'Deck Staining/Painting',
+        price: 750,
+        description: 'Preparation and painting or staining of wooden deck. Price varies based on deck size.',
+        duration: '1-2 days'
+      },
+      {
+        id: 'cabinet-painting',
+        title: 'Cabinet Painting',
+        price: 1500,
+        description: 'Professional painting of kitchen or bathroom cabinets including proper preparation, priming, and finishing.',
+        duration: '2-3 days'
+      },
+      {
         id: 'accent-wall',
         title: 'Accent Wall Painting',
-        price: 150,
+        price: 300,
         description: 'Paint a single accent wall with premium paint in the color of your choice. Includes prep work and cleanup.',
         duration: '2-3 hours'
       },
       {
         id: 'ceiling-painting',
         title: 'Ceiling Painting',
-        price: 200,
+        price: 250,
         description: 'Professional painting of ceiling only for one room (up to 250 sq ft). Includes preparation, painting, and cleanup.',
         duration: '3-4 hours'
+      },
+      {
+        id: 'door-painting',
+        title: 'Door Painting',
+        price: 100,
+        description: 'Professional painting of interior or exterior door including preparation and finishing. Price is per door.',
+        duration: '2-3 hours'
       },
       {
         id: 'trim-painting',
@@ -244,11 +377,18 @@ export const services: Service[] = [
         duration: '3-5 hours'
       },
       {
-        id: 'exterior-door-painting',
-        title: 'Exterior Door Painting',
-        price: 175,
-        description: 'Professional painting of exterior door including preparation, priming if needed, and finishing with weather-resistant paint.',
-        duration: '3-4 hours'
+        id: 'wallpaper-removal',
+        title: 'Wallpaper Removal',
+        price: 750,
+        description: 'Professional removal of existing wallpaper and preparation of walls for painting. Price is per room of standard size.',
+        duration: '1-2 days'
+      },
+      {
+        id: 'garage-floor',
+        title: 'Garage Floor Painting',
+        price: 550,
+        description: 'Thorough cleaning, preparation, and painting of concrete garage floor with durable epoxy coating. Price for standard 2-car garage.',
+        duration: '1-2 days'
       }
     ]
   }
