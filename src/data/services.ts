@@ -788,7 +788,7 @@ export const services: Service[] = [
       {
         id: 'oven-installation',
         title: 'Oven Installation',
-        price: 200,
+        price: 350,
         description: 'Installation of wall ovens or range units with proper electrical or gas connections.',
         duration: '2-3 hours'
       }
