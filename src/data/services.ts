@@ -760,7 +760,7 @@ export const services: Service[] = [
       {
         id: 'appliance-installation',
         title: 'Appliance Installation',
-        price: 150,
+        price: 200,
         description: 'Professional installation of major home appliances with proper connections and testing.',
         duration: '1-3 hours'
       },
@@ -929,3 +929,4 @@ export const getNearbyAvailableHandymen = (serviceType: string, limit = 3): Hand
     })
     .slice(0, limit);
 };
+
