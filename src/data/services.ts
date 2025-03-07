@@ -1,4 +1,5 @@
-import { Wrench, Zap, Tv, Hammer, Paintbrush, Sofa, Shield, Leaf, Brush, Wifi, Bell, Box, Home, Bug, Heater } from 'lucide-react';
+
+import { Wrench, Zap, Tv, Hammer, Paintbrush, Sofa, Shield, Leaf, Brush, Wifi, Bell, Box, Home, Bug, Heater, Droplets, Fence, HardHat, Warehouse, Sun } from 'lucide-react';
 import { Service, Task, Handyman } from '@/types';
 
 export const services: Service[] = [
@@ -6,7 +7,7 @@ export const services: Service[] = [
     id: 'plumbing',
     title: 'Plumbing',
     description: 'Fix leaks, install fixtures, repair pipes, and more.',
-    icon: Wrench,
+    icon: Droplets,
     priceRange: '$75 - $500',
     longDescription: 'Our experienced plumbers can handle all your home plumbing needs, from fixing leaking faucets to installing new fixtures and repairing damaged pipes. We provide fast, reliable service with upfront pricing.',
     tasks: [
@@ -33,9 +34,9 @@ export const services: Service[] = [
       },
       {
         id: 'drain-cleaning',
-        title: 'Drain Cleaning',
+        title: 'Drain Services',
         price: 200,
-        description: 'Professional cleaning of clogged or slow drains using specialized equipment. Price is per drain.',
+        description: 'Professional cleaning of clogged or slow drains, installation of new drains, and unclogging services.',
         duration: '1-2 hours'
       },
       {
@@ -61,30 +62,93 @@ export const services: Service[] = [
       },
       {
         id: 'leak-repair',
-        title: 'Water Leak Detection/Repair',
+        title: 'Leak Detection & Repair',
         price: 250,
-        description: 'Professional detection and repair of water leaks. Price may vary based on complexity and accessibility.',
+        description: 'Professional detection and repair of water or gas leaks. Price may vary based on complexity and accessibility.',
         duration: '1-3 hours'
       },
       {
         id: 'showerhead',
-        title: 'Showerhead Installation',
-        price: 100,
-        description: 'Removal of old showerhead and installation of new showerhead. Price does not include cost of the showerhead.',
-        duration: '30-60 minutes'
+        title: 'Shower Installation & Repair',
+        price: 275,
+        description: 'Installation of new shower systems or repair of existing showers including leaks and component replacement.',
+        duration: '1-4 hours'
       },
       {
         id: 'pipe-repair',
-        title: 'Pipe Repair',
-        price: 185,
-        description: 'Fix leaking or damaged pipes. Price includes standard repairs; extensive damage may require additional costs.',
+        title: 'Plumbing Re-Piping & Pipe Repair',
+        price: 600,
+        description: 'Comprehensive replacement of old pipes or repair of damaged pipes throughout your home.',
+        duration: '4-10 hours'
+      },
+      {
+        id: 'frozen-pipe-repair',
+        title: 'Frozen Pipe Repair',
+        price: 225,
+        description: 'Thawing of frozen pipes and repair of any damage caused by freezing.',
+        duration: '1-4 hours'
+      },
+      {
+        id: 'water-line-installation',
+        title: 'Water Line Installation',
+        price: 600,
+        description: 'Installation of new water supply lines with proper connections and pressure testing.',
+        duration: '4-8 hours'
+      },
+      {
+        id: 'gas-pipe',
+        title: 'Gas Pipe Installation & Repair',
+        price: 450,
+        description: 'Professional installation of gas piping with proper fittings and safety testing, or repairs of existing gas lines.',
+        duration: '3-6 hours'
+      },
+      {
+        id: 'sump-pump',
+        title: 'Sump Pump Installation & Repair',
+        price: 350,
+        description: 'Installation of new sump pump systems or diagnosis and repair of existing pumps.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'water-purification',
+        title: 'Water Purification Systems',
+        price: 500,
+        description: 'Installation of under-sink or whole-house water filtration systems for cleaner, healthier water.',
+        duration: '2-6 hours'
+      },
+      {
+        id: 'water-softener',
+        title: 'Water Softener Installation & Repair',
+        price: 450,
+        description: 'Professional installation or repair of water softening systems to reduce mineral buildup.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'backflow-preventer',
+        title: 'Backflow Preventer Installation',
+        price: 425,
+        description: 'Installation of backflow prevention device to protect water supply from contamination.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'hydro-jetting',
+        title: 'Hydro Jetting',
+        price: 350,
+        description: 'Powerful water pressure cleaning of drains and pipes to remove stubborn clogs and buildup.',
         duration: '1-3 hours'
+      },
+      {
+        id: 'grout-repair',
+        title: 'Grout Repair & Sealing',
+        price: 225,
+        description: 'Professional repair of damaged grout and application of sealant to prevent water damage.',
+        duration: '2-4 hours'
       }
     ]
   },
   {
     id: 'electrical',
-    title: 'Electrical',
+    title: 'Electrical & Lighting',
     description: 'Install fixtures, troubleshoot problems, upgrade panels.',
     icon: Zap,
     priceRange: '$75 - $850',
@@ -92,16 +156,16 @@ export const services: Service[] = [
     tasks: [
       {
         id: 'light-fixture',
-        title: 'Light Fixture Installation',
+        title: 'Interior Lighting Installation',
         price: 150,
         description: 'Professional installation of ceiling or wall mounted light fixtures. Price is per fixture and includes removal of old fixture if needed.',
         duration: '1-2 hours'
       },
       {
         id: 'outlet-replacement',
-        title: 'Outlet/Switch Replacement',
+        title: 'Outlet Installation & Replacement',
         price: 100,
-        description: 'Replace existing electrical outlets or switches. Price is per outlet/switch.',
+        description: 'Replace existing electrical outlets or install new ones. Price is per outlet.',
         duration: '30-45 minutes'
       },
       {
@@ -112,74 +176,53 @@ export const services: Service[] = [
         duration: '1-2 hours'
       },
       {
-        id: 'thermostat',
-        title: 'Thermostat Installation',
+        id: 'smart-thermostat',
+        title: 'Smart Thermostat Installation',
         price: 125,
         description: 'Removal of old thermostat and installation of new programmable or smart thermostat. Does not include cost of thermostat.',
         duration: '1 hour'
       },
       {
         id: 'security-camera',
-        title: 'Security Camera Installation',
+        title: 'Camera Installation & Setup',
         price: 200,
-        description: 'Professional installation of up to 3 security cameras with basic setup and testing. Does not include cost of cameras.',
+        description: 'Professional installation of security cameras with basic setup and testing. Does not include cost of cameras.',
         duration: '2-3 hours'
       },
       {
-        id: 'smoke-detector',
-        title: 'Smoke Detector Installation',
-        price: 75,
-        description: 'Installation of hardwired or battery-operated smoke detectors. Price is per unit.',
-        duration: '30-60 minutes'
-      },
-      {
-        id: 'doorbell',
-        title: 'Doorbell Installation',
-        price: 100,
-        description: 'Installation of standard or video doorbell with proper wiring and testing. Does not include cost of doorbell.',
-        duration: '1 hour'
-      },
-      {
-        id: 'tv-mount-standard',
-        title: 'TV Wall Mounting (Standard)',
-        price: 150,
-        description: 'Professional mounting of TV on drywall with standard bracket. Includes bracket installation, TV mounting, and basic cable management.',
-        duration: '1-2 hours'
-      },
-      {
-        id: 'tv-mount-outdoor',
-        title: 'TV Wall Mounting (Outdoor)',
-        price: 250,
-        description: 'Professional mounting of TV in outdoor setting with weather-resistant mounting hardware. Includes proper sealing and weatherproofing.',
+        id: 'accent-lighting',
+        title: 'Accent Lighting Installation',
+        price: 225,
+        description: 'Installation of decorative lighting to highlight architectural features or artwork.',
         duration: '2-3 hours'
       },
       {
-        id: 'outlet-installation',
-        title: 'New Outlet Installation',
-        price: 125,
-        description: 'Installation of a new electrical outlet where one did not exist previously. Requires running new wiring.',
-        duration: '1-2 hours'
+        id: 'light-switch',
+        title: 'Light Switch Installation & Replacement',
+        price: 90,
+        description: 'Installation of new light switches or replacement of existing switches with standard or smart options.',
+        duration: '30-90 minutes'
       },
       {
-        id: 'recessed-lighting',
-        title: 'Recessed Lighting Installation',
-        price: 200,
-        description: 'Installation of recessed lighting fixtures in ceiling. Price is per light and includes cutting holes and wiring.',
-        duration: '1-2 hours per light'
+        id: 'security-lighting',
+        title: 'Security Lighting Installation',
+        price: 275,
+        description: 'Installation of motion-sensor or timed security lights around home exterior.',
+        duration: '2-4 hours'
       },
       {
-        id: 'chandelier',
-        title: 'Chandelier Installation',
-        price: 300,
-        description: 'Removal of existing light fixture and installation of decorative chandelier with proper support and wiring. Does not include chandelier.',
-        duration: '2-3 hours'
+        id: 'outdoor-lighting',
+        title: 'Landscape & Outdoor Lighting',
+        price: 400,
+        description: 'Installation of various outdoor lighting fixtures including path lights, spotlights, and ambient lighting.',
+        duration: '3-6 hours'
       },
       {
-        id: 'ev-charger',
-        title: 'EV Charger Installation',
-        price: 600,
-        description: 'Installation of standard residential electric vehicle charging station with proper wiring and circuit. Does not include charger unit.',
-        duration: '3-5 hours'
+        id: 'electrical-repairs',
+        title: 'Electrical Repairs (General)',
+        price: 175,
+        description: 'Professional diagnosis and repair of various electrical issues from circuit problems to wiring repairs.',
+        duration: '1-3 hours'
       }
     ]
   },
@@ -188,7 +231,7 @@ export const services: Service[] = [
     title: 'TV Mounting',
     description: 'Secure installation for all TV sizes on any wall type.',
     icon: Tv,
-    priceRange: '$100 - $200',
+    priceRange: '$100 - $250',
     longDescription: 'Our technicians specialize in professionally mounting TVs of all sizes on various wall types. We ensure secure installation, proper leveling, and can also conceal cables for a clean look. All mounts are tested for safety and stability.',
     tasks: [
       {
@@ -226,7 +269,7 @@ export const services: Service[] = [
     title: 'Furniture Assembly',
     description: 'Quick assembly for all types of furniture and fixtures.',
     icon: Sofa,
-    priceRange: '$60 - $450',
+    priceRange: '$60 - $550',
     longDescription: 'Our skilled assemblers can put together virtually any type of furniture quickly and correctly. From simple bookcases to complex wardrobes and outdoor furniture, we handle the assembly while you save time and avoid frustration.',
     tasks: [
       {
@@ -258,11 +301,25 @@ export const services: Service[] = [
         duration: '1-3 hours'
       },
       {
-        id: 'gazebo-assembly',
-        title: 'Gazebo Assembly',
-        price: 450,
-        description: 'Complete assembly of outdoor gazebo. Price includes foundation preparation, structure assembly, and roof installation.',
+        id: 'storage-shed-assembly',
+        title: 'Storage Shed Assembly',
+        price: 550,
+        description: 'Complete assembly of pre-fabricated storage shed with proper leveling and anchoring.',
         duration: '4-8 hours'
+      },
+      {
+        id: 'exercise-equipment',
+        title: 'Exercise Equipment Assembly',
+        price: 275,
+        description: 'Assembly of exercise machines like treadmills, ellipticals, and weight machines.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'closet-organizer',
+        title: 'Closet Organizer Installation',
+        price: 250,
+        description: 'Assembly and installation of closet organization systems with proper wall mounting.',
+        duration: '2-4 hours'
       }
     ]
   },
@@ -271,36 +328,36 @@ export const services: Service[] = [
     title: 'Home Improvement',
     description: 'Upgrades and fixes to make your home better than ever.',
     icon: Hammer,
-    priceRange: '$100 - $500',
+    priceRange: '$100 - $3000',
     longDescription: 'Our home improvement services cover a wide range of projects to enhance your living space. From installing shelving and hanging artwork to door repairs and drywall patching, our skilled handymen can handle it all with precision and care.',
     tasks: [
       {
         id: 'shelving-installation',
-        title: 'Shelving Installation',
+        title: 'Shelf Installation',
         price: 100,
         description: 'Professional installation of wall-mounted shelving units. Price includes mounting hardware and installation for standard shelving.',
         duration: '1-2 hours'
       },
       {
         id: 'door-repair',
-        title: 'Door Repair/Adjustment',
-        price: 125,
-        description: 'Fix sticking doors, replace hardware, adjust alignment, or repair minor damage to interior doors.',
-        duration: '1-2 hours'
+        title: 'Door Installation & Repair',
+        price: 150,
+        description: 'Installation of new doors or repair of existing doors including sticking doors, hardware replacement, and alignment issues.',
+        duration: '1-3 hours'
       },
       {
         id: 'drywall-repair',
-        title: 'Drywall Repair',
-        price: 150,
-        description: 'Patch holes, repair damage, and finish drywall to match existing wall texture. Price is for repairs up to 2 sq ft.',
-        duration: '2-3 hours'
+        title: 'Drywall Installation & Repair',
+        price: 200,
+        description: 'Patch holes, install new drywall, apply texturing, and finish to match existing walls.',
+        duration: '2-6 hours'
       },
       {
         id: 'trim-installation',
-        title: 'Trim/Molding Installation',
-        price: 200,
-        description: 'Install baseboards, crown molding, or decorative trim. Price is per room for standard ceiling height.',
-        duration: '3-4 hours'
+        title: 'Trim Work & Molding Installation',
+        price: 275,
+        description: 'Install baseboards, crown molding, or decorative trim. Professional installation with proper cuts and finishing.',
+        duration: '3-8 hours'
       },
       {
         id: 'backsplash-installation',
@@ -308,37 +365,72 @@ export const services: Service[] = [
         price: 450,
         description: 'Install tile backsplash in kitchen or bathroom. Price includes basic tile installation for up to 20 sq ft.',
         duration: '4-6 hours'
+      },
+      {
+        id: 'wood-rot-repair',
+        title: 'Rot Repair / Wood Rot Repair',
+        price: 350,
+        description: 'Removal and replacement of rotted wood with proper treatments to prevent future damage.',
+        duration: '2-6 hours'
+      },
+      {
+        id: 'handrail-installation',
+        title: 'Handrail Installation & Repair',
+        price: 225,
+        description: 'Installation of new handrails or repair of existing rails with proper mounting and support.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'art-hanging',
+        title: 'Art/Photo/Mirror Hanging',
+        price: 125,
+        description: 'Professional hanging of artwork, photos, and mirrors with proper anchoring and positioning.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'childproofing',
+        title: 'Childproofing',
+        price: 200,
+        description: 'Comprehensive childproofing including cabinet locks, outlet covers, furniture anchoring, and more.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'junk-removal',
+        title: 'Junk/Trash Removal',
+        price: 200,
+        description: 'Removal and proper disposal of unwanted items, debris, and trash from your property.',
+        duration: '1-4 hours'
       }
     ]
   },
   {
     id: 'painting',
-    title: 'Painting',
-    description: 'Professional painting for rooms, walls, or touch-ups.',
+    title: 'Painting & Finishing',
+    description: 'Professional painting for interior and exterior surfaces.',
     icon: Paintbrush,
-    priceRange: '$50 - $3,500',
-    longDescription: 'Our painting services deliver flawless results that transform your space. Whether you need a single room painted, an accent wall, or touch-ups to existing paint, our professionals ensure clean lines, even coverage, and a perfect finish every time.',
+    priceRange: '$150 - $3,500',
+    longDescription: 'Our painting services deliver flawless results that transform your space. Whether you need interior rooms painted, exterior surfaces refreshed, or specialized finishes, our professionals ensure clean lines, even coverage, and a perfect finish every time.',
     tasks: [
       {
-        id: 'room-painting',
-        title: 'Interior Room Painting',
+        id: 'interior-painting',
+        title: 'Interior Painting',
         price: 750,
-        description: 'Professional painting of one room (up to 12x12 ft) including walls and ceiling. Price includes basic prep, paint, and cleanup.',
-        duration: '4-6 hours'
+        description: 'Professional painting of interior rooms including walls and ceilings with prep work, priming, and cleanup.',
+        duration: '4-10 hours per room'
       },
       {
         id: 'exterior-painting',
-        title: 'Exterior House Painting',
+        title: 'Exterior Painting',
         price: 2500,
-        description: 'Professional painting of home exterior. Price varies based on size of home and number of stories.',
-        duration: '2-4 days'
+        description: 'Professional painting of home exterior surfaces with proper preparation and weatherproof finishes.',
+        duration: '2-5 days'
       },
       {
         id: 'deck-painting',
-        title: 'Deck Staining/Painting',
+        title: 'Deck & Fence Staining/Painting',
         price: 750,
-        description: 'Preparation and painting or staining of wooden deck. Price varies based on deck size.',
-        duration: '1-2 days'
+        description: 'Preparation and painting or staining of wooden decks and fences for protection and beauty.',
+        duration: '1-3 days'
       },
       {
         id: 'cabinet-painting',
@@ -349,96 +441,550 @@ export const services: Service[] = [
       },
       {
         id: 'accent-wall',
-        title: 'Accent Wall Painting',
-        price: 300,
-        description: 'Paint a single accent wall with premium paint in the color of your choice. Includes prep work and cleanup.',
-        duration: '2-3 hours'
+        title: 'Decorative & Faux Painting',
+        price: 400,
+        description: 'Specialty painting techniques including accent walls, faux finishes, and decorative effects.',
+        duration: '1-2 days'
       },
       {
-        id: 'ceiling-painting',
-        title: 'Ceiling Painting',
-        price: 250,
-        description: 'Professional painting of ceiling only for one room (up to 250 sq ft). Includes preparation, painting, and cleanup.',
-        duration: '3-4 hours'
+        id: 'wallpapering',
+        title: 'Wallpapering',
+        price: 550,
+        description: 'Professional installation of wallpaper or removal of existing wallpaper and wall preparation.',
+        duration: '1-3 days'
       },
       {
-        id: 'door-painting',
-        title: 'Door Painting',
-        price: 100,
-        description: 'Professional painting of interior or exterior door including preparation and finishing. Price is per door.',
-        duration: '2-3 hours'
+        id: 'texture-painting',
+        title: 'Texture Painting',
+        price: 350,
+        description: 'Application of textured finishes to walls and ceilings for added dimension and interest.',
+        duration: '1-2 days'
+      }
+    ]
+  },
+  {
+    id: 'flooring',
+    title: 'Flooring',
+    description: 'Installation and repair of various flooring types.',
+    icon: Home,
+    priceRange: '$250 - $5,000',
+    longDescription: 'Our flooring specialists can install, repair, or refinish virtually any type of flooring. From hardwood and tile to laminate and vinyl, we ensure proper installation with attention to detail for a beautiful, long-lasting result.',
+    tasks: [
+      {
+        id: 'hardwood-flooring',
+        title: 'Hardwood Flooring',
+        price: 3500,
+        description: 'Installation, refinishing, or repair of solid hardwood flooring with proper subfloor preparation.',
+        duration: '2-5 days'
       },
       {
-        id: 'trim-painting',
-        title: 'Trim/Baseboard Painting',
-        price: 250,
-        description: 'Painting of all trim, baseboards, and moldings in one room. Includes preparation, painting, and cleanup.',
+        id: 'laminate-flooring',
+        title: 'Laminate Flooring',
+        price: 1800,
+        description: 'Installation or repair of durable laminate flooring with underlayment and proper transitions.',
+        duration: '1-3 days'
+      },
+      {
+        id: 'tile-flooring',
+        title: 'Tile Flooring',
+        price: 2500,
+        description: 'Installation, refinishing, or repair of ceramic, porcelain, or stone tile flooring with proper substrate preparation.',
+        duration: '2-4 days'
+      },
+      {
+        id: 'vinyl-flooring',
+        title: 'Vinyl Flooring',
+        price: 1500,
+        description: 'Installation or repair of sheet vinyl or luxury vinyl tile/plank (LVT/LVP) flooring for a durable, water-resistant surface.',
+        duration: '1-3 days'
+      },
+      {
+        id: 'engineered-wood',
+        title: 'Engineered Wood Flooring',
+        price: 2800,
+        description: 'Installation, refinishing, or repair of engineered wood flooring with proper moisture barriers.',
+        duration: '2-4 days'
+      },
+      {
+        id: 'concrete-flooring',
+        title: 'Concrete Flooring',
+        price: 2200,
+        description: 'Installation, refinishing, or repair of concrete floors including polishing and epoxy coating.',
+        duration: '2-5 days'
+      },
+      {
+        id: 'epoxy-flooring',
+        title: 'Epoxy Floor Coating',
+        price: 1200,
+        description: 'Application of durable epoxy coating to concrete floors for garages, basements, or other areas.',
+        duration: '2-3 days'
+      }
+    ]
+  },
+  {
+    id: 'doors-windows',
+    title: 'Doors, Windows & Hardware',
+    description: 'Installation and repair of doors, windows, and related hardware.',
+    icon: Home,
+    priceRange: '$100 - $3,500',
+    longDescription: 'Our specialists can install or repair all types of doors and windows, from entry doors and interior doors to windows of all sizes. We also install and repair hardware like locks, handles, and curtain rods for a complete solution.',
+    tasks: [
+      {
+        id: 'door-installation',
+        title: 'Door Installation',
+        price: 350,
+        description: 'Professional installation of interior or exterior doors including frame adjustments and hardware.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'window-installation',
+        title: 'Window Installation & Replacement',
+        price: 550,
+        description: 'Installation of new windows or replacement of existing windows with proper sealing and insulation.',
+        duration: '2-6 hours per window'
+      },
+      {
+        id: 'window-sealing',
+        title: 'Window Sealing & Weatherproofing',
+        price: 175,
+        description: 'Application of weatherstripping, caulking, and seals to improve energy efficiency and prevent drafts.',
+        duration: '1-3 hours'
+      },
+      {
+        id: 'window-tinting',
+        title: 'Window Tinting & Coating',
+        price: 275,
+        description: 'Application of window film for privacy, UV protection, or security purposes.',
         duration: '3-5 hours'
       },
       {
-        id: 'wallpaper-removal',
-        title: 'Wallpaper Removal',
+        id: 'lock-installation',
+        title: 'Door Lock Installation & Replacement',
+        price: 125,
+        description: 'Installation or replacement of door locks, deadbolts, and handle sets with proper alignment.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'pet-door',
+        title: 'Pet Door Installation',
+        price: 250,
+        description: 'Installation of pet access door in exterior door or wall with proper weathersealing.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'skylight',
+        title: 'Skylight Installation & Repair',
+        price: 850,
+        description: 'Installation or repair of skylights with proper flashing and weatherproofing.',
+        duration: '4-8 hours'
+      },
+      {
+        id: 'curtain-installation',
+        title: 'Curtain/Blinds Installation',
+        price: 125,
+        description: 'Professional installation of curtain rods, drapery hardware, and window blinds.',
+        duration: '1-3 hours'
+      },
+      {
+        id: 'shutter-installation',
+        title: 'Shutter Installation',
+        price: 200,
+        description: 'Installation of interior or exterior window shutters with proper mounting and alignment.',
+        duration: '1-3 hours per window'
+      },
+      {
+        id: 'mailbox-installation',
+        title: 'Mailbox Installation & Replacement',
+        price: 150,
+        description: 'Installation of new mailbox or replacement of existing unit with secure mounting.',
+        duration: '1-2 hours'
+      }
+    ]
+  },
+  {
+    id: 'outdoor-structures',
+    title: 'Fencing & Outdoor Structures',
+    description: 'Installation and repair of fences, decks, and outdoor features.',
+    icon: Fence,
+    priceRange: '$150 - $6,500',
+    longDescription: 'Our outdoor structure specialists can build, repair, or upgrade fences, decks, patios, and more. We use quality materials and proper construction techniques to ensure your outdoor spaces are beautiful, functional, and built to last.',
+    tasks: [
+      {
+        id: 'fence-installation',
+        title: 'Fence Installation & Repair',
+        price: 2500,
+        description: 'Installation of new fencing or repair of existing fence sections of various materials including wood, vinyl, and chain link.',
+        duration: '1-3 days'
+      },
+      {
+        id: 'deck-construction',
+        title: 'Deck Construction & Repair',
+        price: 5500,
+        description: 'Building new decks or repairing existing ones including rot repair and structural improvements.',
+        duration: '2-7 days'
+      },
+      {
+        id: 'patio-installation',
+        title: 'Patio Installation & Repair',
+        price: 3500,
+        description: 'Installation of stone, concrete, or paver patios with proper drainage and leveling.',
+        duration: '2-5 days'
+      },
+      {
+        id: 'outdoor-kitchen',
+        title: 'Outdoor Kitchen Installation',
+        price: 4500,
+        description: 'Construction of outdoor cooking areas including counters, appliance installation, and utility connections.',
+        duration: '3-7 days'
+      },
+      {
+        id: 'doghouse-installation',
+        title: 'Doghouse Installation',
+        price: 150,
+        description: 'Assembly and secure installation of doghouse with proper leveling and anchoring.',
+        duration: '1-3 hours'
+      },
+      {
+        id: 'fence-staining',
+        title: 'Fence Staining',
         price: 750,
-        description: 'Professional removal of existing wallpaper and preparation of walls for painting. Price is per room of standard size.',
+        description: 'Preparation and application of stain or sealant to wooden fences for protection and appearance.',
         duration: '1-2 days'
       },
       {
-        id: 'garage-floor',
-        title: 'Garage Floor Painting',
+        id: 'fence-post-repair',
+        title: 'Fence Post Repair',
+        price: 175,
+        description: 'Repair or replacement of damaged fence posts with proper anchoring and alignment.',
+        duration: '1-4 hours'
+      },
+      {
+        id: 'pool-security-fencing',
+        title: 'Pool Security Fencing',
+        price: 1800,
+        description: 'Installation of safety fencing around pools to meet local codes and prevent accidents.',
+        duration: '1-3 days'
+      }
+    ]
+  },
+  {
+    id: 'roofing',
+    title: 'Roofing & Chimney',
+    description: 'Repair and installation of roofing components and chimney features.',
+    icon: Home,
+    priceRange: '$225 - $15,000',
+    longDescription: 'Our roofing specialists can repair leaks, replace damaged shingles, and handle other roofing issues to maintain your home\'s protection. We also provide chimney maintenance services to ensure safe and efficient operation.',
+    tasks: [
+      {
+        id: 'roof-leak',
+        title: 'Roof Leak Repairs',
         price: 550,
-        description: 'Thorough cleaning, preparation, and painting of concrete garage floor with durable epoxy coating. Price for standard 2-car garage.',
+        description: 'Professional repair of roof leaks including shingle replacement and sealing. Price for standard repairs.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'shingle-repair',
+        title: 'Shingle Roof Repair',
+        price: 450,
+        description: 'Replacement of damaged or missing shingles with matching materials and proper installation.',
+        duration: '2-5 hours'
+      },
+      {
+        id: 'shingle-replacement',
+        title: 'Shingle Roof Replacement',
+        price: 8500,
+        description: 'Complete removal of old shingles and installation of new roofing with proper underlayment and flashing.',
+        duration: '1-3 days'
+      },
+      {
+        id: 'chimney-cap',
+        title: 'Chimney Cap Installation',
+        price: 250,
+        description: 'Installation of protective cap on chimney to prevent water intrusion and animal entry.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'roof-inspection',
+        title: 'Roof Inspection',
+        price: 225,
+        description: 'Comprehensive inspection of roof condition with detailed report on needed repairs or maintenance.',
+        duration: '1-2 hours'
+      }
+    ]
+  },
+  {
+    id: 'remodeling',
+    title: 'Remodeling & Renovation',
+    description: 'Comprehensive updates and transformations for your living spaces.',
+    icon: HardHat,
+    priceRange: '$450 - $25,000',
+    longDescription: 'Our remodeling team can transform your living spaces from concept to completion. Whether you\'re updating a kitchen or bathroom, finishing a basement, or renovating your entire home, we provide quality craftsmanship with attention to detail.',
+    tasks: [
+      {
+        id: 'kitchen-remodel',
+        title: 'Kitchen Remodeling',
+        price: 15000,
+        description: 'Comprehensive kitchen renovation including cabinets, countertops, fixtures, and appliances, tailored to your specifications.',
+        duration: '1-3 weeks'
+      },
+      {
+        id: 'bathroom-remodel',
+        title: 'Bathroom Remodeling',
+        price: 9500,
+        description: 'Complete bathroom renovation including fixtures, tile, vanity, and lighting to create your ideal bathroom.',
+        duration: '1-2 weeks'
+      },
+      {
+        id: 'basement-renovation',
+        title: 'Basement Renovation',
+        price: 18000,
+        description: 'Transformation of unfinished basement into functional living space with proper insulation, wiring, and finishes.',
+        duration: '2-4 weeks'
+      },
+      {
+        id: 'interior-remodeling',
+        title: 'Interior Spaces Remodeling',
+        price: 12000,
+        description: 'Renovation of living rooms, bedrooms, or other interior spaces with updated features and finishes.',
+        duration: '1-3 weeks'
+      },
+      {
+        id: 'structural-modifications',
+        title: 'Drywall & Structural Modifications',
+        price: 3500,
+        description: 'Modification of interior walls and structures to create new layouts or open-concept designs.',
+        duration: '3-10 days'
+      }
+    ]
+  },
+  {
+    id: 'appliance-services',
+    title: 'Appliance Services',
+    description: 'Installation and repair of home appliances.',
+    icon: Home,
+    priceRange: '$100 - $500',
+    longDescription: 'Our appliance specialists can install new appliances or repair existing ones to keep your home running smoothly. We handle everything from refrigerators and dishwashers to ovens and garbage disposals with professional expertise.',
+    tasks: [
+      {
+        id: 'appliance-installation',
+        title: 'Appliance Installation',
+        price: 150,
+        description: 'Professional installation of major home appliances with proper connections and testing.',
+        duration: '1-3 hours'
+      },
+      {
+        id: 'appliance-repair',
+        title: 'Appliance Repair',
+        price: 200,
+        description: 'Diagnosis and repair of malfunctioning appliances to restore proper operation.',
+        duration: '1-3 hours'
+      },
+      {
+        id: 'dishwasher-installation',
+        title: 'Dishwasher Installation',
+        price: 175,
+        description: 'Removal of old dishwasher and installation of new unit with proper plumbing and electrical connections.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'gas-appliance',
+        title: 'Gas Appliance Connection',
+        price: 225,
+        description: 'Professional connection of gas appliances with proper fittings and safety testing.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'oven-installation',
+        title: 'Oven Installation',
+        price: 200,
+        description: 'Installation of wall ovens or range units with proper electrical or gas connections.',
+        duration: '2-3 hours'
+      }
+    ]
+  },
+  {
+    id: 'hvac',
+    title: 'HVAC & Water Heaters',
+    description: 'Installation and service for heating, cooling, and water heating systems.',
+    icon: Heater,
+    priceRange: '$125 - $2,200',
+    longDescription: 'Our HVAC specialists can install, repair, and maintain your heating and cooling systems for optimal comfort and efficiency. We also provide water heater services to ensure reliable hot water in your home.',
+    tasks: [
+      {
+        id: 'water-heater-standard',
+        title: 'Conventional Water Heater Installation',
+        price: 750,
+        description: 'Installation of standard tank-type water heater with proper connections and safety features.',
+        duration: '3-5 hours'
+      },
+      {
+        id: 'tankless-installation',
+        title: 'Tankless Water Heater Installation',
+        price: 1200,
+        description: 'Installation of energy-efficient tankless water heater with appropriate venting and connections.',
+        duration: '4-8 hours'
+      },
+      {
+        id: 'water-heater-repair',
+        title: 'Water Heater Repair',
+        price: 250,
+        description: 'Diagnosis and repair of water heater issues including element replacement and thermostat problems.',
+        duration: '1-3 hours'
+      },
+      {
+        id: 'smart-thermostat',
+        title: 'Smart Thermostat Installation',
+        price: 150,
+        description: 'Installation and programming of smart thermostat systems with WiFi setup and app configuration.',
+        duration: '1-2 hours'
+      }
+    ]
+  },
+  {
+    id: 'exterior-services',
+    title: 'Exterior & Outdoor Services',
+    description: 'Maintenance and improvements for your home\'s exterior and outdoor areas.',
+    icon: Home,
+    priceRange: '$150 - $3,500',
+    longDescription: 'Our exterior specialists can clean, repair, and enhance your home\'s outdoor areas. From pressure washing and gutter cleaning to driveway sealing and sprinkler systems, we help maintain your property\'s appearance and functionality.',
+    tasks: [
+      {
+        id: 'pressure-washing',
+        title: 'Pressure Washing',
+        price: 300,
+        description: 'Professional cleaning of driveways, patios, walkways, and exterior surfaces using high-pressure water.',
+        duration: '2-5 hours'
+      },
+      {
+        id: 'gutter-cleaning',
+        title: 'Gutter Cleaning & Repair',
+        price: 175,
+        description: 'Removal of debris from gutters and downspouts with minor repairs to ensure proper drainage.',
+        duration: '1-3 hours'
+      },
+      {
+        id: 'driveway-sealing',
+        title: 'Driveway Sealing',
+        price: 400,
+        description: 'Application of protective sealant to asphalt or concrete driveways to prevent damage.',
+        duration: '3-5 hours'
+      },
+      {
+        id: 'holiday-lighting',
+        title: 'Holiday Lighting',
+        price: 375,
+        description: 'Professional installation of seasonal holiday lighting with secure mounting and electrical connections.',
+        duration: '2-5 hours'
+      },
+      {
+        id: 'sprinkler-services',
+        title: 'Sprinkler Installation & Repair',
+        price: 650,
+        description: 'Installation, repair, programming, or winterizing of lawn sprinkler systems.',
+        duration: '2-8 hours'
+      },
+      {
+        id: 'siding-repair',
+        title: 'Siding Installation & Repair',
+        price: 850,
+        description: 'Repair or replacement of damaged siding sections of various materials including vinyl, wood, and fiber cement.',
+        duration: '1-3 days'
+      }
+    ]
+  },
+  {
+    id: 'specialty-services',
+    title: 'Specialty & Green Services',
+    description: 'Specialized installations and eco-friendly home improvements.',
+    icon: Sun,
+    priceRange: '$175 - $12,000',
+    longDescription: 'Our specialty team offers advanced services like solar panel installation, soundproofing, and water quality testing. These specialized solutions help improve your home\'s efficiency, comfort, and environmental impact.',
+    tasks: [
+      {
+        id: 'solar-panel',
+        title: 'Solar Panel Installation & Repair',
+        price: 8500,
+        description: 'Professional installation or repair of solar panel systems including mounting, wiring, and connection to home electrical system.',
+        duration: '1-3 days'
+      },
+      {
+        id: 'solar-panel-cleaning',
+        title: 'Solar Panel Cleaning',
+        price: 250,
+        description: 'Thorough cleaning of solar panels to maintain maximum efficiency and power generation.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'solar-water-heater',
+        title: 'Solar Water Heater Installation',
+        price: 2200,
+        description: 'Installation of solar water heating system including roof panels and storage tank.',
         duration: '1-2 days'
+      },
+      {
+        id: 'soundproofing',
+        title: 'Soundproofing',
+        price: 1200,
+        description: 'Installation of soundproofing materials in walls, ceilings, or floors to reduce noise transmission.',
+        duration: '1-3 days'
+      },
+      {
+        id: 'water-quality',
+        title: 'Water Quality Testing & Maintenance',
+        price: 175,
+        description: 'Professional testing of water quality and implementation of solutions for improved water safety.',
+        duration: '1-3 hours'
+      }
+    ]
+  },
+  {
+    id: 'general-handyman',
+    title: 'General Handyman Services',
+    description: 'Reliable help for various home maintenance tasks and repairs.',
+    icon: Wrench,
+    priceRange: '$50 - $300',
+    longDescription: 'Our general handyman services cover a wide range of home maintenance tasks and small repairs. From fixing leaky faucets to hanging pictures and assembling furniture, our skilled professionals can handle your to-do list efficiently and professionally.',
+    tasks: [
+      {
+        id: 'general-repairs',
+        title: 'General Repairs & Odd Jobs',
+        price: 75,
+        description: 'Professional handling of various small home repairs and maintenance tasks. Price is per hour.',
+        duration: 'Varies'
+      },
+      {
+        id: 'light-caulking',
+        title: 'Light Caulking & Sealant Work',
+        price: 100,
+        description: 'Application of caulk or sealant around tubs, sinks, windows, or other areas to prevent water damage.',
+        duration: '1-3 hours'
+      },
+      {
+        id: 'demolition',
+        title: 'Demolition Projects',
+        price: 300,
+        description: 'Controlled demolition of small structures, walls, or fixtures with proper debris removal.',
+        duration: '2-8 hours'
+      },
+      {
+        id: 'firewood-chopping',
+        title: 'Firewood Chopping',
+        price: 150,
+        description: 'Splitting and stacking of firewood for your home heating needs.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'cleaning',
+        title: 'Specialized Cleaning',
+        price: 200,
+        description: 'Deep cleaning of specific areas or items requiring special attention or techniques.',
+        duration: '2-6 hours'
       }
     ]
   }
 ];
 
 export const additionalServices: Service[] = [
-  {
-    id: 'general-home-maintenance',
-    title: 'General Home Maintenance',
-    description: 'Regular upkeep and safety checks for your home.',
-    icon: Shield,
-    priceRange: '$50 - $300',
-    longDescription: 'Our comprehensive home maintenance services ensure your home stays in top condition year-round. From safety checks to seasonal maintenance, our professionals can handle regular upkeep tasks that keep your home functioning properly and safely.',
-    tasks: [
-      {
-        id: 'smoke-detector',
-        title: 'Smoke Detector Battery Replacement',
-        price: 75,
-        description: 'Professional replacement of batteries in smoke detectors throughout your home with testing to ensure proper operation.',
-        duration: '30-60 minutes'
-      },
-      {
-        id: 'air-filter',
-        title: 'Air Filter Replacement',
-        price: 75,
-        description: 'Replacement of HVAC air filters to improve air quality and system efficiency. Price includes standard filters.',
-        duration: '30-45 minutes'
-      },
-      {
-        id: 'home-safety',
-        title: 'Home Safety Checks',
-        price: 175,
-        description: 'Comprehensive inspection of doors, windows, locks, and other safety features with minor adjustments included.',
-        duration: '1-2 hours'
-      },
-      {
-        id: 'seasonal-inspection',
-        title: 'Seasonal Home Inspection',
-        price: 225,
-        description: 'Thorough inspection of home systems and structure to identify potential seasonal issues or maintenance needs.',
-        duration: '2-3 hours'
-      },
-      {
-        id: 'weather-stripping',
-        title: 'Weather-stripping Installation',
-        price: 175,
-        description: 'Professional installation of weather-stripping around doors and windows to improve energy efficiency.',
-        duration: '1-2 hours'
-      }
-    ]
-  },
   {
     id: 'landscaping',
     title: 'Landscaping & Lawn Care',
@@ -679,51 +1225,6 @@ export const additionalServices: Service[] = [
     ]
   },
   {
-    id: 'roofing-gutter',
-    title: 'Roofing & Gutter Services',
-    description: 'Maintain and repair roof components and gutter systems.',
-    icon: Home,
-    priceRange: '$150 - $1,200',
-    longDescription: 'Our roofing and gutter services help maintain your home\'s first line of defense against the elements. From minor roof repairs to gutter maintenance and installation, our professionals ensure your roof and drainage systems function properly to protect your home.',
-    tasks: [
-      {
-        id: 'roof-leak',
-        title: 'Roof Leak Repairs (Minor)',
-        price: 550,
-        description: 'Professional repair of minor roof leaks including shingle replacement and sealing. Price for standard repairs.',
-        duration: '2-4 hours'
-      },
-      {
-        id: 'skylight',
-        title: 'Skylight Installation/Repair',
-        price: 850,
-        description: 'Professional installation or repair of roof skylights with proper flashing and weatherproofing.',
-        duration: '4-8 hours'
-      },
-      {
-        id: 'roof-inspection',
-        title: 'Roof Inspection',
-        price: 225,
-        description: 'Comprehensive inspection of roof condition with detailed report on needed repairs or maintenance.',
-        duration: '1-2 hours'
-      },
-      {
-        id: 'gutter-guard',
-        title: 'Gutter Guard Installation',
-        price: 650,
-        description: 'Installation of gutter guard systems to prevent debris buildup and clogging. Price for average home.',
-        duration: '3-5 hours'
-      },
-      {
-        id: 'downspout',
-        title: 'Downspout Repair or Installation',
-        price: 275,
-        description: 'Professional repair or installation of downspouts with proper drainage configuration.',
-        duration: '1-3 hours'
-      }
-    ]
-  },
-  {
     id: 'pest-management',
     title: 'Pest & Wildlife Management',
     description: 'Prevent and address pest issues around your home.',
@@ -747,9 +1248,9 @@ export const additionalServices: Service[] = [
       },
       {
         id: 'animal-damage',
-        title: 'Animal Damage Repair (Minor)',
+        title: 'Animal Damage Repair',
         price: 425,
-        description: 'Repair of minor damage caused by animals to home exterior, insulation, or ductwork.',
+        description: 'Repair of damage caused by animals to home exterior, insulation, or ductwork.',
         duration: '2-4 hours'
       },
       {
@@ -757,82 +1258,6 @@ export const additionalServices: Service[] = [
         title: 'Pest Barrier Installation',
         price: 350,
         description: 'Installation of physical barriers and deterrents to prevent pest entry around home foundation and structure.',
-        duration: '2-4 hours'
-      }
-    ]
-  },
-  {
-    id: 'insulation',
-    title: 'Insulation & Energy Efficiency',
-    description: 'Improve your home\'s efficiency and comfort.',
-    icon: Heater,
-    priceRange: '$150 - $3,000',
-    longDescription: 'Our insulation and energy efficiency services help reduce energy costs while improving home comfort. From attic insulation to window treatments, our professionals can implement solutions that enhance your home\'s thermal performance and reduce utility bills year-round.',
-    tasks: [
-      {
-        id: 'attic-insulation',
-        title: 'Attic Insulation Installation',
-        price: 1850,
-        description: 'Professional installation of insulation in attic spaces to improve energy efficiency. Price for average-sized attic.',
-        duration: '4-8 hours'
-      },
-      {
-        id: 'insulation-replacement',
-        title: 'Insulation Removal & Replacement',
-        price: 2250,
-        description: 'Complete removal of old or damaged insulation and installation of new insulation materials.',
-        duration: '6-10 hours'
-      },
-      {
-        id: 'window-film',
-        title: 'Window Film Installation',
-        price: 275,
-        description: 'Application of energy-saving window film to reduce heat transfer and UV exposure. Price per room (3-5 windows).',
-        duration: '2-4 hours'
-      }
-    ]
-  },
-  {
-    id: 'miscellaneous',
-    title: 'Miscellaneous Services',
-    description: 'Specialized home projects and seasonal services.',
-    icon: Hammer,
-    priceRange: '$150 - $600',
-    longDescription: 'Our miscellaneous services cover those unique projects that don\'t fit neatly into other categories. From mailbox installation to holiday decorating, our versatile professionals can handle a wide range of specialized tasks to enhance and maintain your home.',
-    tasks: [
-      {
-        id: 'mailbox',
-        title: 'Mailbox Installation/Replacement',
-        price: 225,
-        description: 'Professional installation or replacement of residential mailbox with proper mounting and alignment.',
-        duration: '1-2 hours'
-      },
-      {
-        id: 'flagpole',
-        title: 'Flagpole Installation',
-        price: 425,
-        description: 'Complete installation of residential flagpole including proper foundation and mounting hardware.',
-        duration: '2-4 hours'
-      },
-      {
-        id: 'holiday-decoration',
-        title: 'Holiday Decoration Installation/Removal',
-        price: 325,
-        description: 'Professional installation or removal of holiday decorations with careful handling and secure mounting.',
-        duration: '2-4 hours'
-      },
-      {
-        id: 'pet-door',
-        title: 'Pet Door Installation',
-        price: 250,
-        description: 'Professional installation of pet access door in standard interior or exterior door.',
-        duration: '2-3 hours'
-      },
-      {
-        id: 'basketball-hoop',
-        title: 'Basketball Hoop Installation',
-        price: 350,
-        description: 'Assembly and installation of basketball hoop system with proper anchoring and stability testing.',
         duration: '2-4 hours'
       }
     ]
