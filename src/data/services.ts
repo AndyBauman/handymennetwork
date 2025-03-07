@@ -525,7 +525,7 @@ export const services: Service[] = [
         id: 'door-installation',
         title: 'Door Installation',
         price: 350,
-        description: 'Professional installation of interior or exterior doors including frame adjustments and hardware.',
+        description: 'Professional installation of interior doors including frame adjustments and hardware. Exterior doors are $650.',
         duration: '2-4 hours'
       },
       {
