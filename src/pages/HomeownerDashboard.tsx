@@ -4,7 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Clock, Home, Calendar, CheckCircle, Clock3, User, MapPin } from 'lucide-react';
-import { Job } from '@/types';
+import { Job, PaymentMethod, User } from '@/types';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import UserProfile from '@/components/homeowner/UserProfile';
@@ -12,8 +12,11 @@ import PropertyList from '@/components/homeowner/PropertyList';
 import AppointmentList from '@/components/homeowner/AppointmentList';
 import JobHistoryList from '@/components/homeowner/JobHistoryList';
 
+// Define valid payment types
+const validPaymentTypes = ["credit", "debit", "paypal", "applepay", "googlepay"] as const;
+
 // Mock data - in a real app this would come from an API
-const mockUser = {
+const mockUserData = {
   id: '1',
   firstName: 'John',
   lastName: 'Smith',
@@ -44,13 +47,22 @@ const mockUser = {
   paymentMethods: [
     {
       id: '1',
-      type: 'credit' as 'credit', // Specifying the exact type from the union
+      type: 'credit',
       lastFour: '4242',
       expiryDate: '04/25',
       isDefault: true,
       cardholderName: 'John Smith'
     }
   ]
+};
+
+// Properly format the user with valid payment method types
+const mockUser: User = {
+  ...mockUserData,
+  paymentMethods: mockUserData.paymentMethods.map(pm => ({
+    ...pm,
+    type: validPaymentTypes.includes(pm.type as any) ? pm.type as PaymentMethod['type'] : "credit"
+  }))
 };
 
 const mockJobs: Job[] = [
