@@ -413,8 +413,8 @@ export const services: Service[] = [
       {
         id: 'exterior-painting',
         title: 'Exterior Painting',
-        price: 2500,
-        description: 'Professional painting of home exterior surfaces with proper preparation and weatherproof finishes.',
+        price: 3200,
+        description: 'Professional painting of home exterior surfaces with proper preparation and weatherproof finishes. Price is for every 1000 square feet of surface area.',
         duration: '2-5 days'
       },
       {
@@ -929,4 +929,3 @@ export const getNearbyAvailableHandymen = (serviceType: string, limit = 3): Hand
     })
     .slice(0, limit);
 };
-
