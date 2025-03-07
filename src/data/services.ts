@@ -42,7 +42,7 @@ export const services: Service[] = [
         id: 'sink-installation',
         title: 'Sink Installation',
         price: 200,
-        description: 'Removal of old sink and installation of new sink. Does not include cost of the sink or any required plumbing modifications.',
+6 description: 'Removal of old sink and installation of new sink. Does not include cost of the sink or any required plumbing modifications.',
         duration: '2-3 hours'
       },
       {
@@ -920,14 +920,21 @@ export const getServiceById = (id: string): Service | undefined => {
   return allServices.find(service => service.id === id);
 };
 
-export const getNearbyAvailableHandymen = (limit = 3): Handyman[] => {
-  // Filter available handymen and sort by distance
+export const getNearbyAvailableHandymen = (serviceTitle: string, limit = 3): Handyman[] => {
+  // Filter available handymen by service skill match and sort by distance
   return handymen
-    .filter(handyman => handyman.availability)
+    .filter(handyman => 
+      handyman.availability && 
+      handyman.skills.some(skill => 
+        skill.toLowerCase() === serviceTitle.toLowerCase() || 
+        serviceTitle.toLowerCase().includes(skill.toLowerCase()) ||
+        skill.toLowerCase().includes(serviceTitle.toLowerCase())
+      )
+    )
     .sort((a, b) => {
       // Extract the numeric distance value for sorting
-      const distanceA = parseFloat(a.distance.split(' ')[0]);
-      const distanceB = parseFloat(b.distance.split(' ')[0]);
+      const distanceA = parseFloat(a.distance?.split(' ')[0] || '0');
+      const distanceB = parseFloat(b.distance?.split(' ')[0] || '0');
       return distanceA - distanceB;
     })
     .slice(0, limit);

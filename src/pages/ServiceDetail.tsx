@@ -15,7 +15,7 @@ const ServiceDetail = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const service = getServiceById(id || '');
-  const nearbyHandymen = getNearbyAvailableHandymen(3);
+  const nearbyHandymen = service ? getNearbyAvailableHandymen(service.title, 3) : [];
   
   const [selectedTask, setSelectedTask] = useState<string | null>(null);
   const [selectedHandyman, setSelectedHandyman] = useState<Handyman | null>(null);
@@ -195,6 +195,22 @@ const ServiceDetail = () => {
                                   </div>
                                 </div>
                               </div>
+                              <div className="flex flex-wrap gap-1 mb-2">
+                                {handyman.skills.map((skill, index) => (
+                                  <span 
+                                    key={index} 
+                                    className={`text-xs px-2 py-1 rounded ${
+                                      skill.toLowerCase() === service.title.toLowerCase() ||
+                                      service.title.toLowerCase().includes(skill.toLowerCase()) ||
+                                      skill.toLowerCase().includes(service.title.toLowerCase())
+                                        ? 'bg-green-100 text-green-800'
+                                        : 'bg-gray-100 text-gray-800'
+                                    }`}
+                                  >
+                                    {skill}
+                                  </span>
+                                ))}
+                              </div>
                               <p className="text-sm text-gray-600 line-clamp-2">{handyman.bio}</p>
                               <div className="mt-2 flex text-sm text-gray-500">
                                 <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs mr-2">
@@ -206,7 +222,7 @@ const ServiceDetail = () => {
                           ))}
                         </div>
                       ) : (
-                        <p className="text-gray-500 text-sm">No professionals available at the moment. Please check back later.</p>
+                        <p className="text-gray-500 text-sm">No professionals with {service.title} skills are currently available. Please check back later.</p>
                       )}
                     </div>
                   </CardContent>
