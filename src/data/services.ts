@@ -825,4 +825,11 @@ export const services: Service[] = [
       },
       {
         id: 'smart-thermostat-hvac',
-        title: 'Smart Thermostat
+        title: 'Smart Thermostat Installation',
+        price: 125,
+        description: 'Installation of programmable or smart thermostat for HVAC system with proper wiring and setup.',
+        duration: '1-2 hours'
+      }
+    ]
+  }
+];
