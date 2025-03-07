@@ -42,7 +42,7 @@ export const services: Service[] = [
         id: 'sink-installation',
         title: 'Sink Installation',
         price: 200,
-6 description: 'Removal of old sink and installation of new sink. Does not include cost of the sink or any required plumbing modifications.',
+        description: 'Removal of old sink and installation of new sink. Does not include cost of the sink or any required plumbing modifications.',
         duration: '2-3 hours'
       },
       {
