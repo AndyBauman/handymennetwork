@@ -112,7 +112,7 @@ export const services: Service[] = [
         id: 'water-softener',
         title: 'Water Softener Installation & Repair',
         price: 450,
-6 description: 'Professional installation or repair of water softening systems to reduce mineral buildup.',
+        description: 'Professional installation or repair of water softening systems to reduce mineral buildup.',
         duration: '2-4 hours'
       },
       {
