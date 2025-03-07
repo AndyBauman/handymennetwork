@@ -46,19 +46,6 @@ const Navbar = () => {
             <Button variant="outline" size="sm" asChild>
               <Link to="/signup">Sign Up</Link>
             </Button>
-            
-            <div className="h-5 mx-1 border-l border-gray-300"></div>
-
-            <Button variant="ghost" size="sm" asChild>
-              <Link to="/handyman-login">Pro Login</Link>
-            </Button>
-            
-            <Button variant="outline" size="sm" className="gap-1" asChild>
-              <Link to="/handyman-signup">
-                <Wrench className="w-4 h-4" />
-                Join as Pro
-              </Link>
-            </Button>
           </div>
           
           <Button variant="default" className="hidden md:inline-flex" asChild>
@@ -100,16 +87,6 @@ const Navbar = () => {
                   </Link>
                   <Link to="/signup" className="block py-1 text-lg font-medium">
                     Sign Up
-                  </Link>
-                </div>
-                
-                <div className="py-2 my-2 border-b">
-                  <h3 className="mb-2 font-medium text-gray-500">For Professionals</h3>
-                  <Link to="/handyman-login" className="block py-1 text-lg font-medium">
-                    Pro Login
-                  </Link>
-                  <Link to="/handyman-signup" className="block py-1 text-lg font-medium">
-                    Join as Pro
                   </Link>
                 </div>
                 
