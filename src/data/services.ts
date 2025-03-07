@@ -112,7 +112,7 @@ export const services: Service[] = [
         id: 'water-softener',
         title: 'Water Softener Installation & Repair',
         price: 450,
-        description: 'Professional installation or repair of water softening systems to reduce mineral buildup.',
+6 description: 'Professional installation or repair of water softening systems to reduce mineral buildup.',
         duration: '2-4 hours'
       },
       {
@@ -486,7 +486,7 @@ export const services: Service[] = [
       {
         id: 'vinyl-flooring',
         title: 'Vinyl Flooring',
-        price: 1500,
+        price: 2800,
         description: 'Installation or repair of sheet vinyl or luxury vinyl tile/plank (LVT/LVP) flooring for a durable, water-resistant surface.',
         duration: '1-3 days'
       },
@@ -929,4 +929,3 @@ export const getNearbyAvailableHandymen = (serviceType: string, limit = 3): Hand
     })
     .slice(0, limit);
 };
-
