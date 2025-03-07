@@ -229,7 +229,7 @@ export const services: Service[] = [
       {
         id: 'standard-tv-mount',
         title: 'Standard TV Mounting (up to 55")',
-        price: 100,
+        price: 175,
         description: 'Professional mounting of TV up to 55" on drywall with standard bracket. Includes bracket installation, TV mounting, and basic cable management.',
         duration: '1 hour'
       },
@@ -929,4 +929,3 @@ export const getNearbyAvailableHandymen = (serviceType: string, limit = 3): Hand
     })
     .slice(0, limit);
 };
-
