@@ -112,7 +112,7 @@ export const services: Service[] = [
         id: 'water-softener',
         title: 'Water Softener Installation & Repair',
         price: 450,
-        description: 'Professional installation or repair of water softening systems to reduce mineral buildup.',
+6 description: 'Professional installation or repair of water softening systems to reduce mineral buildup.',
         duration: '2-4 hours'
       },
       {
@@ -479,7 +479,7 @@ export const services: Service[] = [
       {
         id: 'tile-flooring',
         title: 'Tile Flooring',
-        price: 2500,
+        price: 3200,
         description: 'Installation, refinishing, or repair of ceramic, porcelain, or stone tile flooring with proper substrate preparation.',
         duration: '2-4 days'
       },
