@@ -460,7 +460,7 @@ export const services: Service[] = [
     description: 'Installation and repair of various flooring types.',
     icon: Home,
     priceRange: '$250 - $5,000',
-    longDescription: 'Our flooring specialists can install, repair, or refinish virtually any type of flooring. From hardwood and tile to laminate and vinyl, we ensure proper installation with attention to detail for a beautiful, long-lasting result.',
+    longDescription: 'Our flooring specialists can install, repair, or refinish virtually any type of flooring. From hardwood and tile to laminate and vinyl, we ensure proper installation with attention to detail for a beautiful, long-lasting result. All prices are for each 1000 square feet.',
     tasks: [
       {
         id: 'hardwood-flooring',
@@ -929,3 +929,4 @@ export const getNearbyAvailableHandymen = (serviceType: string, limit = 3): Hand
     })
     .slice(0, limit);
 };
+
