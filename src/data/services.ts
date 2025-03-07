@@ -249,9 +249,9 @@ export const services: Service[] = [
       },
       {
         id: 'tv-mount-with-concealment',
-        title: 'TV Mounting with Cable Concealment',
-        price: 180,
-        description: 'Standard TV mounting plus professional in-wall cable concealment for a clean, wire-free look. Limited to drywall installations.',
+        title: 'Cable and Outlet Wiring Concealment',
+        price: 200,
+        description: 'Professional in-wall cable and outlet wiring concealment for a clean, wire-free appearance. Service is limited to drywall installations.',
         duration: '2-3 hours'
       }
     ]
