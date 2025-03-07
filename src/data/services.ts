@@ -818,3 +818,114 @@ export const services: Service[] = [
       },
       {
         id: 'water-heater-repair',
+        title: 'Water Heater Repair',
+        price: 250,
+        description: 'Diagnosis and repair of water heater issues including element replacement and thermostat problems.',
+        duration: '1-3 hours'
+      },
+      {
+        id: 'smart-thermostat-hvac',
+        title: 'Smart Thermostat Installation',
+        price: 125,
+        description: 'Installation of programmable or smart thermostat for HVAC system with proper wiring and setup.',
+        duration: '1-2 hours'
+      }
+    ]
+  }
+];
+
+// Sample handymen data
+export const handymen: Handyman[] = [
+  {
+    id: "hm-001",
+    name: "John Smith",
+    photo: "/placeholder.svg", 
+    rating: 4.9,
+    reviewCount: 142,
+    skills: ["Plumbing", "Electrical", "Appliance Installation"],
+    experience: "15 years",
+    bio: "Certified plumber and electrician with extensive experience in both residential and commercial projects.",
+    distance: "2.3 miles",
+    availability: true
+  },
+  {
+    id: "hm-002",
+    name: "Maria Rodriguez",
+    photo: "/placeholder.svg",
+    rating: 4.7,
+    reviewCount: 89,
+    skills: ["Painting", "Drywall Repair", "Flooring"],
+    experience: "8 years",
+    bio: "Specializing in interior finishing with an eye for detail and quality craftsmanship.",
+    distance: "4.1 miles",
+    availability: true
+  },
+  {
+    id: "hm-003",
+    name: "David Chen",
+    photo: "/placeholder.svg",
+    rating: 4.8,
+    reviewCount: 115,
+    skills: ["HVAC", "Water Heater Installation", "Appliance Repair"],
+    experience: "12 years",
+    bio: "HVAC certified technician with expertise in all heating and cooling systems and appliance repair.",
+    distance: "3.5 miles",
+    availability: true
+  },
+  {
+    id: "hm-004",
+    name: "Sarah Johnson",
+    photo: "/placeholder.svg",
+    rating: 4.6,
+    reviewCount: 78,
+    skills: ["Furniture Assembly", "TV Mounting", "Home Improvement"],
+    experience: "6 years",
+    bio: "Skilled in a variety of home improvement tasks with attention to customer satisfaction.",
+    distance: "1.8 miles",
+    availability: true
+  },
+  {
+    id: "hm-005",
+    name: "Michael Williams",
+    photo: "/placeholder.svg",
+    rating: 4.9,
+    reviewCount: 203,
+    skills: ["Electrical", "TV Mounting", "Smart Home Installation"],
+    experience: "10 years",
+    bio: "Licensed electrician specializing in home automation and entertainment system installation.",
+    distance: "5.2 miles",
+    availability: true
+  }
+];
+
+// Function to get a service by its ID
+export const getServiceById = (id: string): Service | undefined => {
+  return services.find(service => service.id === id);
+};
+
+// Function to get a handyman by their ID
+export const getHandymanById = (id: string): Handyman | undefined => {
+  return handymen.find(handyman => handyman.id === id);
+};
+
+// Function to get nearby available handymen for a specific service
+export const getNearbyAvailableHandymen = (serviceType: string, limit = 3): Handyman[] => {
+  // Filter handymen by service type and availability
+  const matchingHandymen = handymen.filter(handyman => {
+    return handyman.availability && 
+      handyman.skills.some(skill => 
+        skill.toLowerCase() === serviceType.toLowerCase() || 
+        serviceType.toLowerCase().includes(skill.toLowerCase()) || 
+        skill.toLowerCase().includes(serviceType.toLowerCase())
+      );
+  });
+  
+  // Sort by distance and limit the results
+  return matchingHandymen
+    .sort((a, b) => {
+      const distanceA = parseFloat(a.distance?.replace(" miles", "") || "0");
+      const distanceB = parseFloat(b.distance?.replace(" miles", "") || "0");
+      return distanceA - distanceB;
+    })
+    .slice(0, limit);
+};
