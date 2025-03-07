@@ -42,7 +42,7 @@ export const services: Service[] = [
         id: 'sink-installation',
         title: 'Sink Installation',
         price: 200,
- description: 'Removal of old sink and installation of new sink. Does not include cost of the sink or any required plumbing modifications.',
+        description: 'Removal of old sink and installation of new sink. Does not include cost of the sink or any required plumbing modifications.',
         duration: '2-3 hours'
       },
       {
@@ -243,7 +243,7 @@ export const services: Service[] = [
       {
         id: 'complex-tv-mount',
         title: 'Complex TV Mounting (brick/concrete)',
-        price: 200,
+        price: 300,
         description: 'TV mounting on brick, stone, or concrete walls. Includes special anchoring hardware and professional installation.',
         duration: '2-3 hours'
       },
@@ -929,3 +929,4 @@ export const getNearbyAvailableHandymen = (serviceType: string, limit = 3): Hand
     })
     .slice(0, limit);
 };
+
