@@ -1,99 +1,106 @@
 
 import { format } from 'date-fns';
-import { Calendar, MapPin, Star } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Calendar, Clock, MapPin, User, DollarSign } from 'lucide-react';
+import { 
+  Card, 
+  CardContent, 
+  CardDescription, 
+  CardHeader, 
+  CardTitle 
+} from '@/components/ui/card';
 
 interface BookingSummaryProps {
   bookingData: any;
-  handyman: any;
+  handyman?: {
+    name: string;
+    photo: string;
+    rating: number;
+    reviewCount: number;
+  };
   date?: Date;
   timeSlot?: string;
-  address: string;
+  address?: string;
 }
 
-const BookingSummary = ({ 
-  bookingData, 
-  handyman, 
-  date, 
-  timeSlot, 
-  address 
-}: BookingSummaryProps) => {
+const BookingSummary = ({ bookingData, handyman, date, timeSlot, address }: BookingSummaryProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Booking Details</CardTitle>
+        <CardTitle>Booking Summary</CardTitle>
+        <CardDescription>Review your service details</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="p-4 border rounded-lg flex items-center space-x-3">
-          <div className="p-2 bg-brand-blue-light/10 rounded-full">
-            <bookingData.icon className="w-5 h-5 text-brand-blue" />
-          </div>
-          <div>
-            <h3 className="font-medium">{bookingData.serviceName}</h3>
-            <p className="text-sm text-gray-600">{bookingData.taskName}</p>
+        <div>
+          <h3 className="font-semibold mb-2">Service</h3>
+          <div className="flex items-start">
+            <div className="w-5 h-5 mr-2 text-brand-blue">
+              {bookingData.serviceIcon}
+            </div>
+            <div>
+              <p>{bookingData.serviceName}</p>
+              <p className="text-sm text-gray-500">{bookingData.taskName}</p>
+            </div>
           </div>
         </div>
-        
+
+        {date && (
+          <div>
+            <h3 className="font-semibold mb-2">Date & Time</h3>
+            <div className="flex items-center text-sm text-gray-600">
+              <Calendar className="w-4 h-4 mr-2" />
+              <span>{date ? format(date, 'PPP') : 'Not selected'}</span>
+            </div>
+            {timeSlot && (
+              <div className="flex items-center mt-1 text-sm text-gray-600">
+                <Clock className="w-4 h-4 mr-2" />
+                <span>{timeSlot}</span>
+              </div>
+            )}
+          </div>
+        )}
+
+        {address && (
+          <div>
+            <h3 className="font-semibold mb-2">Location</h3>
+            <div className="flex items-center text-sm text-gray-600">
+              <MapPin className="w-4 h-4 mr-2" />
+              <span>{address}</span>
+            </div>
+          </div>
+        )}
+
         {handyman && (
-          <div className="p-4 border rounded-lg flex items-center space-x-3">
-            <img 
-              src={handyman.photo} 
-              alt={handyman.name}
-              className="w-10 h-10 rounded-full object-cover"
-            />
-            <div>
-              <h3 className="font-medium">{handyman.name}</h3>
-              <div className="flex items-center">
-                <div className="flex mr-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-3 h-3 ${
-                        i < Math.floor(handyman.rating)
-                          ? 'text-yellow-400 fill-yellow-400'
-                          : 'text-gray-300'
-                      }`}
-                    />
-                  ))}
-                </div>
-                <span className="text-xs text-gray-600">
-                  {handyman.rating}
-                </span>
+          <div>
+            <h3 className="font-semibold mb-2">Handyman</h3>
+            <div className="flex items-center">
+              {handyman.photo && (
+                <img 
+                  src={handyman.photo} 
+                  alt={handyman.name}
+                  className="w-10 h-10 mr-3 rounded-full object-cover"
+                />
+              )}
+              <div>
+                <p className="font-medium">{handyman.name}</p>
+                <p className="text-sm text-gray-500">
+                  {handyman.rating} stars ({handyman.reviewCount} reviews)
+                </p>
               </div>
             </div>
           </div>
         )}
-        
-        <div className="p-4 border rounded-lg space-y-3">
-          {date && timeSlot && (
-            <div className="flex items-center text-sm">
-              <Calendar className="w-4 h-4 mr-2 text-gray-500" />
-              <span>{format(date, 'PPP')} at {timeSlot}</span>
+
+        {bookingData.price && (
+          <div className="pt-4 border-t">
+            <div className="flex justify-between items-center">
+              <span className="font-semibold">Total</span>
+              <span className="text-xl font-bold text-brand-blue">${bookingData.price}</span>
             </div>
-          )}
-          
-          {address && (
-            <div className="flex items-center text-sm">
-              <MapPin className="w-4 h-4 mr-2 text-gray-500" />
-              <span>{address}</span>
-            </div>
-          )}
-        </div>
-        
-        <div className="border-t pt-4">
-          <div className="flex justify-between mb-2">
-            <span className="text-gray-600">Service Price</span>
-            <span>${bookingData.price}</span>
+            <p className="text-xs text-gray-500 mt-1">
+              * Price may vary based on the scope of work
+            </p>
           </div>
-          <div className="flex justify-between mb-2">
-            <span className="text-gray-600">Platform Fee</span>
-            <span>${(bookingData.price * 0.10).toFixed(2)}</span>
-          </div>
-          <div className="flex justify-between font-semibold">
-            <span>Total</span>
-            <span>${(bookingData.price * 1.10).toFixed(2)}</span>
-          </div>
-        </div>
+        )}
       </CardContent>
     </Card>
   );
