@@ -421,7 +421,7 @@ export const services: Service[] = [
         id: 'deck-painting',
         title: 'Deck & Fence Staining/Painting',
         price: 750,
-        description: 'Preparation and painting or staining of wooden decks and fences for protection and beauty.',
+        description: 'Preparation and painting or staining of wooden decks and fences for protection and beauty. Price for a standard 10x10 deck.',
         duration: '1-3 days'
       },
       {
