@@ -44,7 +44,7 @@ const mockUser = {
   paymentMethods: [
     {
       id: '1',
-      type: 'credit',
+      type: 'credit' as 'credit', // Specifying the exact type from the union
       lastFour: '4242',
       expiryDate: '04/25',
       isDefault: true,
