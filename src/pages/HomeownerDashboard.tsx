@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Clock, Home, Calendar, CheckCircle, Clock3, User, MapPin } from 'lucide-react';
-import { Job, PaymentMethod, User } from '@/types';
+import { Clock, Home, Calendar, CheckCircle, Clock3, User as UserIcon, MapPin } from 'lucide-react';
+import { Job, PaymentMethod, User as UserType } from '@/types';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import UserProfile from '@/components/homeowner/UserProfile';
@@ -57,7 +57,7 @@ const mockUserData = {
 };
 
 // Properly format the user with valid payment method types
-const mockUser: User = {
+const mockUser: UserType = {
   ...mockUserData,
   paymentMethods: mockUserData.paymentMethods.map(pm => ({
     ...pm,
