@@ -3,6 +3,7 @@ import { Wrench, Zap, Tv, Hammer, Paintbrush, Sofa, Shield, Leaf, Box } from 'lu
 import ServiceCard from './ServiceCard';
 import { useNavigate } from 'react-router-dom';
 import { services } from '@/data/services';
+import { Button } from '@/components/ui/button';
 
 const FeaturedServices = () => {
   const navigate = useNavigate();
@@ -36,6 +37,15 @@ const FeaturedServices = () => {
               onClick={() => handleServiceClick(service.id)}
             />
           ))}
+        </div>
+        
+        <div className="mt-12 text-center">
+          <Button 
+            onClick={() => navigate('/services')}
+            className="px-8"
+          >
+            View All Services
+          </Button>
         </div>
       </div>
     </section>

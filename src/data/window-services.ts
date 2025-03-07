@@ -1,60 +1,65 @@
 
-import { Service, Task } from '@/types';
-import { Window } from 'lucide-react';
+import { Paintbrush, Home, Shield } from 'lucide-react';
+import { Service } from '@/types';
 
-export const windowService: Service = {
-  id: 'window-services',
-  title: 'Window Services',
-  description: 'Installation, treatment, and maintenance of windows.',
-  icon: Window,
-  priceRange: '$100 - $3,500',
-  longDescription: 'Our comprehensive window services include professional installation, treatment, and maintenance. From installing new windows to applying treatments for energy efficiency and privacy, our skilled technicians ensure proper fit, sealing, and functionality for all window types.',
-  tasks: [
-    {
-      id: 'window-treatments',
-      title: 'Interior Window Treatments',
-      price: 350,
-      description: 'Professional installation of window treatments including blinds, shades, and drapes. Price per window.',
-      duration: '1-3 hours'
-    },
-    {
-      id: 'blinds-installation',
-      title: 'Blinds Installation',
-      price: 125,
-      description: 'Professional mounting and installation of window blinds with proper hardware. Price per window.',
-      duration: '30-60 minutes'
-    },
-    {
-      id: 'curtain-installation',
-      title: 'Curtain Installation',
-      price: 150,
-      description: 'Installation of curtains including secure mounting of curtain rods and hanging of curtains. Price per window.',
-      duration: '30-60 minutes'
-    },
-    {
-      id: 'curtain-rod-installation',
-      title: 'Curtain Rod Installation',
-      price: 85,
-      description: 'Professional mounting of curtain rods with secure anchoring to wall studs. Price per window.',
-      duration: '20-40 minutes'
-    },
-    {
-      id: 'drapery-installation',
-      title: 'Drapery Installation',
-      price: 175,
-      description: 'Installation of formal draperies including hardware mounting and proper hanging. Price per window.',
-      duration: '1-2 hours'
-    },
-    {
-      id: 'shutter-installation',
-      title: 'Shutter Installation',
-      price: 225,
-      description: 'Professional installation of interior or exterior window shutters with proper alignment. Price per window.',
-      duration: '1-2 hours'
-    }
-  ]
-};
-
-export const getWindowService = (): Service => {
-  return windowService;
-};
+export const windowServices: Service[] = [
+  {
+    id: 'window-services',
+    title: 'Window Services',
+    description: 'Professional window installation, replacement, and repair.',
+    icon: Home, // Changed from Window to Home icon
+    priceRange: '$150 - $3,500',
+    longDescription: 'Our window experts provide high-quality installation, replacement, and repair services for all types of windows. We offer energy-efficient options that can help reduce your utility bills while enhancing your home's appearance and comfort.',
+    tasks: [
+      {
+        id: 'window-installation',
+        title: 'Window Installation',
+        price: 550,
+        description: 'Professional installation of new window including proper framing, insulation, and sealing.',
+        duration: '3-5 hours'
+      },
+      {
+        id: 'window-replacement-one',
+        title: 'Window Replacement - 1 Window',
+        price: 450,
+        description: 'Removal of old window and installation of new replacement window with proper sealing.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'window-replacement-two',
+        title: 'Window Replacement - 2 Windows',
+        price: 850,
+        description: 'Replacement of two windows with new units including proper insulation and trim.',
+        duration: '4-6 hours'
+      },
+      {
+        id: 'window-replacement-multiple',
+        title: 'Window Replacement - 3 to 5 Windows',
+        price: 1950,
+        description: 'Comprehensive replacement of multiple windows with coordinated installation.',
+        duration: '1-2 days'
+      },
+      {
+        id: 'window-replacement-many',
+        title: 'Window Replacement - 6 or more Windows',
+        price: 3500,
+        description: 'Large-scale window replacement project for substantial home upgrade.',
+        duration: '2-3 days'
+      },
+      {
+        id: 'window-tinting',
+        title: 'Window Tinting and Coating Installation',
+        price: 275,
+        description: 'Application of window film for privacy, UV protection, or security purposes.',
+        duration: '3-5 hours'
+      },
+      {
+        id: 'window-sealing',
+        title: 'Seal Windows',
+        price: 225,
+        description: 'Professional sealing of windows to prevent drafts and improve energy efficiency.',
+        duration: '2-3 hours'
+      }
+    ]
+  }
+];
