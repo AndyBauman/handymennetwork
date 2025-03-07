@@ -112,7 +112,7 @@ export const services: Service[] = [
         id: 'water-softener',
         title: 'Water Softener Installation & Repair',
         price: 450,
-        description: 'Professional installation or repair of water softening systems to reduce mineral buildup.',
+6 description: 'Professional installation or repair of water softening systems to reduce mineral buildup.',
         duration: '2-4 hours'
       },
       {
@@ -493,7 +493,7 @@ export const services: Service[] = [
       {
         id: 'engineered-wood',
         title: 'Engineered Wood Flooring',
-        price: 2800,
+        price: 4200,
         description: 'Installation, refinishing, or repair of engineered wood flooring with proper moisture barriers.',
         duration: '2-4 days'
       },
