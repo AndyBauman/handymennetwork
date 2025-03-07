@@ -1,4 +1,3 @@
-
 import { Wrench, Zap, Tv, Hammer, Paintbrush, Sofa, Shield, Leaf, Brush, Wifi, Bell, Box, Home, Bug, Heater, Droplets, Fence, HardHat, Warehouse, Sun } from 'lucide-react';
 import { Service, Task, Handyman } from '@/types';
 
@@ -43,7 +42,7 @@ export const services: Service[] = [
         id: 'sink-installation',
         title: 'Sink Installation',
         price: 200,
-        description: 'Removal of old sink and installation of new sink. Does not include cost of the sink or any required plumbing modifications.',
+ description: 'Removal of old sink and installation of new sink. Does not include cost of the sink or any required plumbing modifications.',
         duration: '2-3 hours'
       },
       {
@@ -237,7 +236,7 @@ export const services: Service[] = [
       {
         id: 'large-tv-mount',
         title: 'Large TV Mounting (56" and above)',
-        price: 150,
+        price: 250,
         description: 'Professional mounting of TV 56" or larger on drywall with heavy-duty bracket. Includes bracket installation, TV mounting, and basic cable management.',
         duration: '1-2 hours'
       },
