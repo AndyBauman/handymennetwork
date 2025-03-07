@@ -448,8 +448,8 @@ export const services: Service[] = [
       {
         id: 'texture-painting',
         title: 'Texture Painting',
-        price: 350,
-        description: 'Application of textured finishes to walls and ceilings for added dimension and interest.',
+        price: 450,
+        description: 'Application of textured finishes to walls and ceilings for added dimension and interest. Price is per room and does not include wall preparation or drywall repair.',
         duration: '1-2 days'
       }
     ]
@@ -929,4 +929,3 @@ export const getNearbyAvailableHandymen = (serviceType: string, limit = 3): Hand
     })
     .slice(0, limit);
 };
-
