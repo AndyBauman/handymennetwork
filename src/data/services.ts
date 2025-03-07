@@ -850,7 +850,9 @@ export const handymen: Handyman[] = [
     reviewCount: 284,
     skills: ['Plumbing', 'Electrical', 'Home Improvement'],
     experience: '15 years',
-    bio: 'Licensed master plumber with extensive experience in residential repairs and installations. Specializes in fixing complex plumbing issues and electrical work.'
+    bio: 'Licensed master plumber with extensive experience in residential repairs and installations. Specializes in fixing complex plumbing issues and electrical work.',
+    distance: '1.2 miles',
+    availability: true
   },
   {
     id: 'handyman-2',
@@ -860,7 +862,9 @@ export const handymen: Handyman[] = [
     reviewCount: 176,
     skills: ['TV Mounting', 'Furniture Assembly', 'Electrical'],
     experience: '8 years',
-    bio: 'Former electronics store installation specialist with perfect attention to detail. Expert in TV mounting, home theater setup, and furniture assembly.'
+    bio: 'Former electronics store installation specialist with perfect attention to detail. Expert in TV mounting, home theater setup, and furniture assembly.',
+    distance: '2.5 miles',
+    availability: true
   },
   {
     id: 'handyman-3',
@@ -870,7 +874,9 @@ export const handymen: Handyman[] = [
     reviewCount: 132,
     skills: ['Painting', 'Home Improvement', 'Furniture Assembly'],
     experience: '12 years',
-    bio: 'Professional painter and carpenter with background in home renovations. Delivers high-quality finishes and expert furniture assembly.'
+    bio: 'Professional painter and carpenter with background in home renovations. Delivers high-quality finishes and expert furniture assembly.',
+    distance: '3.7 miles',
+    availability: false
   },
   {
     id: 'handyman-4',
@@ -880,12 +886,51 @@ export const handymen: Handyman[] = [
     reviewCount: 207,
     skills: ['Electrical', 'TV Mounting', 'Home Improvement'],
     experience: '10 years',
-    bio: 'Licensed electrician with specialty in home media installation and smart home setup. Expert in all electrical work and home improvements.'
+    bio: 'Licensed electrician with specialty in home media installation and smart home setup. Expert in all electrical work and home improvements.',
+    distance: '0.8 miles',
+    availability: true
+  },
+  {
+    id: 'handyman-5',
+    name: 'Michael Chen',
+    photo: 'https://randomuser.me/api/portraits/men/57.jpg',
+    rating: 4.6,
+    reviewCount: 95,
+    skills: ['Plumbing', 'Home Improvement', 'Smart Home'],
+    experience: '6 years',
+    bio: 'Specializes in home automation and plumbing repairs. Known for efficient work and clean installations.',
+    distance: '4.2 miles',
+    availability: true
+  },
+  {
+    id: 'handyman-6',
+    name: 'Sarah Rodriguez',
+    photo: 'https://randomuser.me/api/portraits/women/63.jpg',
+    rating: 5.0,
+    reviewCount: 42,
+    skills: ['Electrical', 'Furniture Assembly', 'TV Mounting'],
+    experience: '4 years',
+    bio: 'Former electrical engineer with precise attention to detail. Perfect 5-star rating on all jobs.',
+    distance: '5.5 miles',
+    availability: false
   }
 ];
 
 export const getServiceById = (id: string): Service | undefined => {
   return allServices.find(service => service.id === id);
+};
+
+export const getNearbyAvailableHandymen = (limit = 3): Handyman[] => {
+  // Filter available handymen and sort by distance
+  return handymen
+    .filter(handyman => handyman.availability)
+    .sort((a, b) => {
+      // Extract the numeric distance value for sorting
+      const distanceA = parseFloat(a.distance.split(' ')[0]);
+      const distanceB = parseFloat(b.distance.split(' ')[0]);
+      return distanceA - distanceB;
+    })
+    .slice(0, limit);
 };
 
 export const getRandomHandyman = (): Handyman => {

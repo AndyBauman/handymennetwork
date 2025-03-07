@@ -1,4 +1,3 @@
-
 import { LucideIcon } from 'lucide-react';
 
 export interface Service {
@@ -28,6 +27,8 @@ export interface Handyman {
   skills: string[];
   experience: string;
   bio: string;
+  distance?: string;
+  availability?: boolean;
 }
 
 export interface ServiceCategory {
@@ -89,4 +90,3 @@ export interface PaymentMethod {
   isDefault: boolean;
   cardholderName?: string;
 }
-

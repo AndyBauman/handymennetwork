@@ -1,6 +1,7 @@
 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 
 interface LocationStepProps {
   address: string;
@@ -22,6 +23,7 @@ const LocationStep = ({ address, onAddressChange }: LocationStepProps) => {
           className="mt-1"
           value={address}
           onChange={handleAddressChange}
+          required
         />
       </div>
       
@@ -41,6 +43,7 @@ const LocationStep = ({ address, onAddressChange }: LocationStepProps) => {
             id="city"
             placeholder="City"
             className="mt-1"
+            required
           />
         </div>
         <div>
@@ -49,16 +52,17 @@ const LocationStep = ({ address, onAddressChange }: LocationStepProps) => {
             id="zipcode"
             placeholder="ZIP Code"
             className="mt-1"
+            required
           />
         </div>
       </div>
       
       <div>
         <Label htmlFor="instructions">Special Instructions (Optional)</Label>
-        <Input
+        <Textarea
           id="instructions"
           placeholder="Parking information, gate code, etc."
-          className="mt-1"
+          className="mt-1 h-24"
         />
       </div>
     </div>

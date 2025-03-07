@@ -6,17 +6,19 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { getServiceById, getRandomHandyman } from '@/data/services';
+import { getServiceById, getNearbyAvailableHandymen } from '@/data/services';
 import { useToast } from '@/components/ui/use-toast';
+import { Handyman } from '@/types';
 
 const ServiceDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { toast } = useToast();
   const service = getServiceById(id || '');
-  const handyman = getRandomHandyman();
+  const nearbyHandymen = getNearbyAvailableHandymen(3);
   
   const [selectedTask, setSelectedTask] = useState<string | null>(null);
+  const [selectedHandyman, setSelectedHandyman] = useState<Handyman | null>(null);
 
   if (!service) {
     return (
@@ -42,6 +44,15 @@ const ServiceDetail = () => {
       return;
     }
     
+    if (!selectedHandyman) {
+      toast({
+        title: "Please select a professional",
+        description: "Choose one of the available professionals to continue",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     const task = service.tasks?.find(task => task.id === selectedTask);
     
     navigate('/book', { 
@@ -51,8 +62,8 @@ const ServiceDetail = () => {
         taskId: selectedTask,
         taskName: task?.title,
         price: task?.price,
-        handymanId: handyman.id,
-        handymanName: handyman.name
+        handymanId: selectedHandyman.id,
+        handymanName: selectedHandyman.name
       }
     });
   };
@@ -143,36 +154,60 @@ const ServiceDetail = () => {
                       Book Service Now
                     </Button>
                     
-                    <div className="p-4 border rounded-lg">
-                      <h3 className="mb-3 text-lg font-semibold">Available Professional</h3>
-                      <div className="flex items-center mb-3">
-                        <img 
-                          src={handyman.photo} 
-                          alt={handyman.name}
-                          className="w-12 h-12 mr-3 rounded-full object-cover"
-                        />
-                        <div>
-                          <p className="font-medium">{handyman.name}</p>
-                          <div className="flex items-center">
-                            <div className="flex mr-1">
-                              {[...Array(5)].map((_, i) => (
-                                <Star
-                                  key={i}
-                                  className={`w-4 h-4 ${
-                                    i < Math.floor(handyman.rating)
-                                      ? 'text-yellow-400 fill-yellow-400'
-                                      : 'text-gray-300'
-                                  }`}
+                    <div className="mb-4">
+                      <h3 className="mb-3 text-lg font-semibold">Available Professionals</h3>
+                      {nearbyHandymen.length > 0 ? (
+                        <div className="space-y-4">
+                          {nearbyHandymen.map((handyman) => (
+                            <div 
+                              key={handyman.id}
+                              className={`p-3 border rounded-lg cursor-pointer transition-all ${
+                                selectedHandyman?.id === handyman.id 
+                                  ? 'border-brand-blue bg-brand-blue/5' 
+                                  : 'hover:border-gray-300'
+                              }`}
+                              onClick={() => setSelectedHandyman(handyman)}
+                            >
+                              <div className="flex items-center mb-2">
+                                <img 
+                                  src={handyman.photo} 
+                                  alt={handyman.name}
+                                  className="w-12 h-12 mr-3 rounded-full object-cover"
                                 />
-                              ))}
+                                <div>
+                                  <p className="font-medium">{handyman.name}</p>
+                                  <div className="flex items-center">
+                                    <div className="flex mr-1">
+                                      {[...Array(5)].map((_, i) => (
+                                        <Star
+                                          key={i}
+                                          className={`w-4 h-4 ${
+                                            i < Math.floor(handyman.rating)
+                                              ? 'text-yellow-400 fill-yellow-400'
+                                              : 'text-gray-300'
+                                          }`}
+                                        />
+                                      ))}
+                                    </div>
+                                    <span className="text-sm text-gray-600">
+                                      {handyman.rating} ({handyman.reviewCount} reviews)
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                              <p className="text-sm text-gray-600 line-clamp-2">{handyman.bio}</p>
+                              <div className="mt-2 flex text-sm text-gray-500">
+                                <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs mr-2">
+                                  Available
+                                </span>
+                                <span className="text-xs">{handyman.distance} away</span>
+                              </div>
                             </div>
-                            <span className="text-sm text-gray-600">
-                              {handyman.rating} ({handyman.reviewCount} reviews)
-                            </span>
-                          </div>
+                          ))}
                         </div>
-                      </div>
-                      <p className="text-sm text-gray-600">{handyman.bio}</p>
+                      ) : (
+                        <p className="text-gray-500 text-sm">No professionals available at the moment. Please check back later.</p>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
