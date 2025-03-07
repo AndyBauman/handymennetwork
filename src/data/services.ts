@@ -1,4 +1,3 @@
-<lov-code>
 import { Wrench, Zap, Tv, Hammer, Paintbrush, Sofa, Shield, Leaf, Brush, Wifi, Bell, Box, Home, Bug, Heater } from 'lucide-react';
 import { Service, Task, Handyman } from '@/types';
 
@@ -202,7 +201,6 @@ export const services: Service[] = [
       },
       {
         id: 'water-heater-repair',
-        title: 'Water Heater Repair',
         price: 275,
         description: 'Diagnosis and repair of water heater problems including element replacement or thermostat issues.',
         duration: '1-3 hours'
@@ -853,3 +851,89 @@ export const services: Service[] = [
         id: 'window-sealing',
         title: 'Seal Windows',
         price: 2
+      }
+    ]
+  }
+];
+
+export const getServiceById = (id: string): Service | undefined => {
+  return services.find(service => service.id === id);
+};
+
+export const getNearbyAvailableHandymen = (skillNeeded: string, count: number = 3): Handyman[] => {
+  const handymen: Handyman[] = [
+    {
+      id: 'h1',
+      name: 'John Smith',
+      photo: 'https://randomuser.me/api/portraits/men/32.jpg',
+      rating: 4.8,
+      reviewCount: 124,
+      skills: ['Plumbing', 'Electrical', 'Carpentry'],
+      experience: '8 years',
+      bio: 'Licensed plumber with expertise in residential and commercial repairs. Specializes in leak detection and fixture installation.',
+      distance: '2.3 miles',
+      availability: true
+    },
+    {
+      id: 'h2',
+      name: 'Maria Rodriguez',
+      photo: 'https://randomuser.me/api/portraits/women/44.jpg',
+      rating: 4.9,
+      reviewCount: 89,
+      skills: ['Electrical', 'TV Mounting', 'Smart Home'],
+      experience: '6 years',
+      bio: 'Certified electrician with additional expertise in home entertainment setup and smart home integration.',
+      distance: '3.1 miles',
+      availability: true
+    },
+    {
+      id: 'h3',
+      name: 'David Chen',
+      photo: 'https://randomuser.me/api/portraits/men/57.jpg',
+      rating: 4.7,
+      reviewCount: 102,
+      skills: ['Furniture Assembly', 'TV Mounting', 'Home Improvement'],
+      experience: '5 years',
+      bio: 'Specializes in furniture assembly and home organization. Can assemble even the most complex items quickly and correctly.',
+      distance: '1.8 miles',
+      availability: true
+    },
+    {
+      id: 'h4',
+      name: 'Sarah Johnson',
+      photo: 'https://randomuser.me/api/portraits/women/29.jpg',
+      rating: 4.9,
+      reviewCount: 76,
+      skills: ['Painting', 'Drywall Repair', 'Home Improvement'],
+      experience: '10 years',
+      bio: 'Professional painter with extensive experience in interior and exterior painting, as well as drywall repair and texturing.',
+      distance: '4.2 miles',
+      availability: false
+    },
+    {
+      id: 'h5',
+      name: 'Michael Williams',
+      photo: 'https://randomuser.me/api/portraits/men/41.jpg',
+      rating: 4.6,
+      reviewCount: 58,
+      skills: ['Plumbing', 'HVAC', 'Appliance Repair'],
+      experience: '12 years',
+      bio: 'Jack of all trades with primary expertise in plumbing. Also experienced with HVAC systems and appliance installation/repair.',
+      distance: '5.0 miles',
+      availability: true
+    }
+  ];
+  
+  const filteredHandymen = handymen
+    .filter(handyman => 
+      handyman.availability && 
+      handyman.skills.some(skill => 
+        skill.toLowerCase() === skillNeeded.toLowerCase() ||
+        skillNeeded.toLowerCase().includes(skill.toLowerCase()) ||
+        skill.toLowerCase().includes(skillNeeded.toLowerCase())
+      )
+    )
+    .slice(0, count);
+  
+  return filteredHandymen;
+};
