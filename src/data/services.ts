@@ -427,8 +427,8 @@ export const services: Service[] = [
       {
         id: 'cabinet-painting',
         title: 'Cabinet Painting',
-        price: 1500,
-        description: 'Professional painting of kitchen or bathroom cabinets including proper preparation, priming, and finishing.',
+        price: 2500,
+        description: 'Professional painting of kitchen or bathroom cabinets including proper preparation, priming, and finishing. Price for a standard kitchen (150 square feet).',
         duration: '2-3 days'
       },
       {
@@ -929,3 +929,4 @@ export const getNearbyAvailableHandymen = (serviceType: string, limit = 3): Hand
     })
     .slice(0, limit);
 };
+
