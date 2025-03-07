@@ -811,7 +811,7 @@ export const services: Service[] = [
     longDescription: 'Our HVAC specialists can install, repair, and maintain your heating and cooling systems for optimal comfort and efficiency. We also provide water heater services to ensure reliable hot water in your home.',
     tasks: [
       {
-        id: 'water-heater-standard',
+        id: 'water-heater-installation',
         title: 'Conventional Water Heater Installation',
         price: 750,
         description: 'Installation of standard tank-type water heater with proper connections and safety features.',
@@ -832,7 +832,7 @@ export const services: Service[] = [
         duration: '1-3 hours'
       },
       {
-        id: 'smart-thermostat',
+        id: 'smart-thermostat-hvac',
         title: 'Smart Thermostat Installation',
         price: 150,
         description: 'Installation and programming of smart thermostat systems with WiFi setup and app configuration.',
@@ -1067,14 +1067,14 @@ export const additionalServices: Service[] = [
         duration: '4-8 hours'
       },
       {
-        id: 'junk-removal',
+        id: 'cleaning-junk-removal',
         title: 'Junk Removal',
         price: 275,
         description: 'Professional removal and disposal of junk items from home or yard. Price varies based on volume.',
         duration: '2-4 hours'
       },
       {
-        id: 'pressure-washing',
+        id: 'cleaning-pressure-washing',
         title: 'Pressure Washing Home Exterior',
         price: 350,
         description: 'Professional pressure washing of home exterior surfaces including siding, driveways, and walkways.',
@@ -1105,7 +1105,7 @@ export const additionalServices: Service[] = [
         duration: '1-2 hours'
       },
       {
-        id: 'smart-thermostat',
+        id: 'smart-home-thermostat',
         title: 'Smart Thermostat Installation',
         price: 175,
         description: 'Installation and configuration of smart thermostats like Nest or Ecobee with app setup and testing.',
@@ -1143,7 +1143,7 @@ export const additionalServices: Service[] = [
     longDescription: 'Our safety and security services help protect your home and family. From security camera installation to childproofing, our professionals can implement a variety of solutions to enhance your home\'s security features and provide peace of mind.',
     tasks: [
       {
-        id: 'security-camera',
+        id: 'security-camera-system',
         title: 'Security Camera System Setup',
         price: 425,
         description: 'Professional installation and configuration of home security camera systems. Price varies based on number of cameras.',
@@ -1164,7 +1164,7 @@ export const additionalServices: Service[] = [
         duration: '3-5 hours'
       },
       {
-        id: 'childproofing',
+        id: 'security-childproofing',
         title: 'Childproofing Home',
         price: 275,
         description: 'Comprehensive childproofing including cabinet locks, outlet covers, furniture anchoring, and more.',
@@ -1209,7 +1209,7 @@ export const additionalServices: Service[] = [
         duration: '1-2 hours'
       },
       {
-        id: 'exercise-equipment',
+        id: 'moving-exercise-equipment',
         title: 'Exercise Equipment Assembly',
         price: 275,
         description: 'Professional assembly of treadmills, ellipticals, weight machines, and other exercise equipment.',
