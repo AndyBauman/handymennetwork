@@ -64,9 +64,9 @@ const Footer = () => {
         </div>
         
         <div className="pt-8 mt-8 border-t border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p>&copy; {currentYear} Handymen Network. All rights reserved.</p>
-            <div className="mt-4 md:mt-0 flex space-x-4 items-center">
+          <div className="flex flex-col items-center justify-center text-center">
+            <p className="mb-4">&copy; {currentYear} Handymen Network. All rights reserved.</p>
+            <div className="flex items-center space-x-4">
               <span className="text-gray-500">For Professionals:</span>
               <Link to="/handyman-login" className="hover:text-white">Pro Login</Link>
               <Link to="/handyman-signup" className="hover:text-white">Join as Pro</Link>
