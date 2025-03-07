@@ -1,15 +1,15 @@
 
-import { Paintbrush, Home, Shield } from 'lucide-react';
+import { Home } from 'lucide-react';
 import { Service } from '@/types';
 
 export const windowServices: Service[] = [
   {
     id: 'window-services',
     title: 'Window Services',
-    description: 'Professional window installation, replacement, and repair.',
-    icon: Home, // Changed from Window to Home icon
-    priceRange: '$150 - $3,500',
-    longDescription: 'Our window experts provide high-quality installation, replacement, and repair services for all types of windows. We offer energy-efficient options that can help reduce your utility bills while enhancing your home's appearance and comfort.',
+    description: 'Installation, repair, and replacement of windows',
+    icon: Home,
+    priceRange: '$125 - $3500',
+    longDescription: 'Our professional window services include installation of new windows, replacement of old or damaged windows, and repairs to improve energy efficiency. We work with all types of windows and ensure proper insulation and sealing.',
     tasks: [
       {
         id: 'window-installation',
@@ -57,8 +57,8 @@ export const windowServices: Service[] = [
         id: 'window-sealing',
         title: 'Seal Windows',
         price: 225,
-        description: 'Professional sealing of windows to prevent drafts and improve energy efficiency.',
-        duration: '2-3 hours'
+        description: 'Sealing of window frames and glass to improve energy efficiency and prevent drafts.',
+        duration: '2-4 hours'
       }
     ]
   }

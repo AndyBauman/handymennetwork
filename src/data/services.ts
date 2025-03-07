@@ -1,5 +1,10 @@
 import { Wrench, Zap, Tv, Hammer, Paintbrush, Sofa, Shield, Leaf, Brush, Wifi, Bell, Box, Home, Bug, Heater } from 'lucide-react';
 import { Service, Task, Handyman } from '@/types';
+import { windowServices } from './window-services';
+import { flooringServices } from './flooring';
+import { fencingServices } from './fencing';
+import { concreteServices } from './concrete';
+import { decorativeServices } from './decorative';
 
 export const services: Service[] = [
   {
@@ -845,10 +850,4 @@ export const services: Service[] = [
         id: 'window-tinting',
         title: 'Window Tinting and Coating Installation',
         price: 275,
-        description: 'Application of window film for privacy, UV protection, or security purposes.',
-        duration: '3-5 hours'
-      },
-      {
-        id: 'window-sealing',
-        title: 'Seal Windows',
-        price: 225,
+        description: 'Application of window
