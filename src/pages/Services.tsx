@@ -8,6 +8,7 @@ import ServiceCard from '@/components/ServiceCard';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { services } from '@/data/services';
+import SignupCallToAction from '@/components/SignupCallToAction';
 
 const Services = () => {
   const location = useLocation();
@@ -74,6 +75,7 @@ const Services = () => {
           </div>
         </div>
       </main>
+      <SignupCallToAction />
       <Footer />
     </div>
   );

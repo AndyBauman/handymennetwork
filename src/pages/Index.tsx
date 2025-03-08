@@ -6,6 +6,7 @@ import Testimonials from '@/components/Testimonials';
 import CallToAction from '@/components/CallToAction';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SignupCallToAction from '@/components/SignupCallToAction';
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
         <Testimonials />
         <CallToAction />
       </main>
+      <SignupCallToAction />
       <Footer />
     </div>
   );

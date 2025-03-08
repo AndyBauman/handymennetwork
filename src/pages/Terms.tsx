@@ -3,6 +3,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SignupCallToAction from "@/components/SignupCallToAction";
 
 const Terms = () => {
   return (
@@ -155,6 +156,7 @@ const Terms = () => {
           </Card>
         </div>
       </main>
+      <SignupCallToAction />
       <Footer />
     </div>
   );

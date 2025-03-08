@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Check, Clock, X, Star } from 'lucide-react';
@@ -8,6 +9,7 @@ import Footer from '@/components/Footer';
 import { getServiceById, getNearbyAvailableHandymen } from '@/data/services';
 import { useToast } from '@/components/ui/use-toast';
 import { Handyman } from '@/types';
+import SignupCallToAction from '@/components/SignupCallToAction';
 
 const ServiceDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -233,6 +235,7 @@ const ServiceDetail = () => {
           </div>
         </div>
       </main>
+      <SignupCallToAction />
       <Footer />
     </div>
   );

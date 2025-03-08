@@ -1,10 +1,10 @@
-
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import SignupCallToAction from "@/components/SignupCallToAction";
 
 const HowItWorks = () => {
   return (
@@ -155,25 +155,9 @@ const HowItWorks = () => {
               </ol>
             </CardContent>
           </Card>
-
-          <div className="mt-12 text-center">
-            <h2 className="text-2xl font-bold mb-4">Ready to Get Started?</h2>
-            <p className="mb-8 max-w-3xl mx-auto">
-              Whether you're a homeowner in need of professional help, a property manager juggling multiple projects, 
-              or a skilled handyman looking to expand your client base, Handymen Network simplifies the entire process. 
-              Sign up, submit requests, or start bidding on jobs—all in one trusted platform.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" asChild>
-                <Link to="/signup">Sign Up as Homeowner</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link to="/handyman-signup">Join as Handyman</Link>
-              </Button>
-            </div>
-          </div>
         </div>
       </main>
+      <SignupCallToAction />
       <Footer />
     </div>
   );

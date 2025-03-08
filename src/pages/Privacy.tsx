@@ -3,6 +3,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SignupCallToAction from "@/components/SignupCallToAction";
 
 const Privacy = () => {
   return (
@@ -166,6 +167,7 @@ const Privacy = () => {
           </Card>
         </div>
       </main>
+      <SignupCallToAction />
       <Footer />
     </div>
   );
