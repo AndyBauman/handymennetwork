@@ -168,7 +168,7 @@ const FAQ = () => {
             <p className="mb-2">If you need more information or assistance, please contact our support team at:</p>
             <ul className="mb-4">
               <li><strong>Email:</strong> support@handymennetwork.com</li>
-              <li><strong>Phone:</strong> (XXX) XXX-XXXX</li>
+              <li><strong>Phone:</strong> (360) 800-0009</li>
             </ul>
             <p>We're here to help make your experience with Handymen Network as smooth and successful as possible!</p>
           </div>
