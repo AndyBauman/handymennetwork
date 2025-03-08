@@ -1,5 +1,7 @@
 
 import { CalendarCheck, Search, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 const steps = [
   {
@@ -43,6 +45,12 @@ const HowItWorks = () => {
               </div>
             );
           })}
+        </div>
+        
+        <div className="mt-12 text-center">
+          <Button asChild>
+            <Link to="/how-it-works">Learn More About How It Works</Link>
+          </Button>
         </div>
       </div>
     </section>
