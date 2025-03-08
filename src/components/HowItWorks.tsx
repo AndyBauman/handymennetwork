@@ -7,7 +7,7 @@ const steps = [
   {
     icon: Search,
     title: '1. Choose Your Service',
-    description: 'Browse our services with transparent, upfront pricing. Know exactly what you'll pay before booking.'
+    description: 'Browse our services with transparent, upfront pricing. Know exactly what you\'ll pay before booking.'
   },
   {
     icon: Users,
