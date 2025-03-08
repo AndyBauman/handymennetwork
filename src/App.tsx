@@ -15,6 +15,7 @@ import HomeownerDashboard from "./pages/HomeownerDashboard";
 import HandymanSignup from "./pages/HandymanSignup";
 import HandymanLogin from "./pages/HandymanLogin";
 import HandymanDashboard from "./pages/HandymanDashboard";
+import PropertyManagerSignup from "./pages/PropertyManagerSignup";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/handyman-signup" element={<HandymanSignup />} />
           <Route path="/handyman-login" element={<HandymanLogin />} />
           <Route path="/handyman-dashboard" element={<HandymanDashboard />} />
+          <Route path="/property-manager-signup" element={<PropertyManagerSignup />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/pricing" element={<Pricing />} />
