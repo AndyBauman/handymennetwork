@@ -1,3 +1,4 @@
+
 import { Wrench, Zap, Tv, Hammer, Paintbrush, Sofa, Shield, Leaf, Brush, Wifi, Bell, Box, Home, Bug, Heater, Droplets, Fence, HardHat, Warehouse, Sun } from 'lucide-react';
 import { Service, Task, Handyman } from '@/types';
 
@@ -964,6 +965,11 @@ export const getTaskByIds = (serviceId: string, taskId: string): Task | undefine
   const service = getServiceById(serviceId);
   if (!service || !service.tasks) return undefined;
   return service.tasks.find(task => task.id === taskId);
+};
+
+// Add the missing getHandymanById function
+export const getHandymanById = (id: string): Handyman | undefined => {
+  return handymen.find(handyman => handyman.id === id);
 };
 
 export const getNearbyAvailableHandymen = (serviceType: string, limit: number = 5): Handyman[] => {
