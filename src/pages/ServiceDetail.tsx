@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Check, Clock, X, Star } from 'lucide-react';
@@ -53,12 +52,12 @@ const ServiceDetail = () => {
       return;
     }
     
-    const task = service.tasks?.find(task => task.id === selectedTask);
+    const task = service?.tasks?.find(task => task.id === selectedTask);
     
     navigate('/book', { 
       state: { 
-        serviceId: service.id, 
-        serviceName: service.title,
+        serviceId: service?.id, 
+        serviceName: service?.title,
         taskId: selectedTask,
         taskName: task?.title,
         price: task?.price,
@@ -79,7 +78,7 @@ const ServiceDetail = () => {
                 <X className="w-4 h-4 mr-2" />
                 Back
               </Button>
-              <h1 className="text-3xl font-bold">{service.title}</h1>
+              <h1 className="text-3xl font-bold">{service?.title}</h1>
             </div>
             
             <div className="grid gap-6 md:grid-cols-3">
@@ -87,14 +86,14 @@ const ServiceDetail = () => {
                 <Card className="overflow-hidden">
                   <CardContent className="p-6">
                     <div className="p-3 mb-4 text-white w-12 h-12 flex items-center justify-center rounded-full bg-brand-blue">
-                      <service.icon className="w-6 h-6" />
+                      {service?.icon && <service.icon className="w-6 h-6" />}
                     </div>
                     <h2 className="mb-4 text-xl font-bold">Service Description</h2>
-                    <p className="mb-6 text-gray-700">{service.longDescription}</p>
+                    <p className="mb-6 text-gray-700">{service?.longDescription}</p>
                     
                     <h2 className="mb-4 text-xl font-bold">Available Tasks</h2>
                     <div className="space-y-4">
-                      {service.tasks?.map((task) => (
+                      {service?.tasks?.map((task) => (
                         <div 
                           key={task.id}
                           className={`p-4 border rounded-lg cursor-pointer transition-all ${
@@ -200,9 +199,11 @@ const ServiceDetail = () => {
                                   <span 
                                     key={index} 
                                     className={`text-xs px-2 py-1 rounded ${
-                                      skill.toLowerCase() === service.title.toLowerCase() ||
-                                      service.title.toLowerCase().includes(skill.toLowerCase()) ||
-                                      skill.toLowerCase().includes(service.title.toLowerCase())
+                                      service && (
+                                        skill.toLowerCase() === service.title.toLowerCase() ||
+                                        service.title.toLowerCase().includes(skill.toLowerCase()) ||
+                                        skill.toLowerCase().includes(service.title.toLowerCase())
+                                      )
                                         ? 'bg-green-100 text-green-800'
                                         : 'bg-gray-100 text-gray-800'
                                     }`}
@@ -216,13 +217,13 @@ const ServiceDetail = () => {
                                 <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs mr-2">
                                   Available
                                 </span>
-                                <span className="text-xs">{handyman.distance} away</span>
+                                <span className="text-xs">{handyman.distance}</span>
                               </div>
                             </div>
                           ))}
                         </div>
                       ) : (
-                        <p className="text-gray-500 text-sm">No professionals with {service.title} skills are currently available. Please check back later.</p>
+                        <p className="text-gray-500 text-sm">No professionals with {service?.title} skills are currently available. Please check back later.</p>
                       )}
                     </div>
                   </CardContent>

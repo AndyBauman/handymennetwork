@@ -895,85 +895,95 @@ export const services: Service[] = [
 
 export const handymen: Handyman[] = [
   {
-    id: 1,
+    id: "1",
     name: 'John Smith',
-    profilePic: '/assets/handyman-1.jpg',
-    specialty: 'Plumbing',
+    photo: '/assets/handyman-1.jpg',
     rating: 4.9,
-    jobsCompleted: 243,
-    joinedDate: '2020-03-15',
+    reviewCount: 243,
+    skills: ['Plumbing', 'General Repairs', 'Installations'],
+    experience: '15 years',
     bio: 'Licensed master plumber with over 15 years of experience in residential and commercial plumbing services.',
-    location: 'Seattle, WA',
-    availability: 'Mon-Fri, 8am-5pm'
+    distance: '2.3 miles away',
+    availability: true
   },
   {
-    id: 2,
+    id: "2",
     name: 'Sarah Johnson',
-    profilePic: '/assets/handyman-2.jpg',
-    specialty: 'Electrical',
+    photo: '/assets/handyman-2.jpg',
     rating: 4.7,
-    jobsCompleted: 186,
-    joinedDate: '2021-01-10',
+    reviewCount: 186,
+    skills: ['Electrical', 'Lighting', 'Smart Home'],
+    experience: '8 years',
     bio: 'Certified electrician specializing in residential wiring, lighting installation, and electrical panel upgrades.',
-    location: 'Bellevue, WA',
-    availability: 'Mon-Sat, 7am-6pm'
+    distance: '3.5 miles away',
+    availability: true
   },
   {
-    id: 3,
+    id: "3",
     name: 'Michael Rodriguez',
-    profilePic: '/assets/handyman-3.jpg',
-    specialty: 'Carpentry',
+    photo: '/assets/handyman-3.jpg',
     rating: 4.8,
-    jobsCompleted: 204,
-    joinedDate: '2020-05-22',
+    reviewCount: 204,
+    skills: ['Carpentry', 'Furniture Assembly', 'Home Improvement'],
+    experience: '12 years',
     bio: 'Skilled carpenter with expertise in custom furniture, cabinetry, and general woodworking projects.',
-    location: 'Redmond, WA',
-    availability: 'Tue-Sat, 8am-4pm'
+    distance: '1.8 miles away',
+    availability: true
   },
   {
-    id: 4,
+    id: "4",
     name: 'David Williams',
-    profilePic: '/assets/handyman-4.jpg',
-    specialty: 'Painting',
+    photo: '/assets/handyman-4.jpg',
     rating: 4.6,
-    jobsCompleted: 158,
-    joinedDate: '2021-06-15',
+    reviewCount: 158,
+    skills: ['Painting', 'Drywall', 'Texture Work'],
+    experience: '10 years',
     bio: 'Professional painter offering interior and exterior painting services with attention to detail and quality finishes.',
-    location: 'Kirkland, WA',
-    availability: 'Mon-Fri, 9am-5pm'
+    distance: '4.2 miles away',
+    availability: true
   },
   {
-    id: 5,
+    id: "5",
     name: 'Jennifer Lee',
-    profilePic: '/assets/handyman-5.jpg',
-    specialty: 'Home Improvement',
+    photo: '/assets/handyman-5.jpg',
     rating: 4.9,
-    jobsCompleted: 217,
-    joinedDate: '2020-08-30',
+    reviewCount: 217,
+    skills: ['Home Improvement', 'Flooring', 'General Repairs'],
+    experience: '7 years',
     bio: 'Jack of all trades with skills in various home improvement projects including drywall, flooring, and general repairs.',
-    location: 'Sammamish, WA',
-    availability: 'Wed-Sun, 8am-6pm'
+    distance: '2.7 miles away',
+    availability: true
   }
 ];
 
-// Helper function to find a service by ID
 export const getServiceById = (id: string): Service | undefined => {
   return services.find(service => service.id === id);
 };
 
-// Helper function to find a task by ID and service ID
 export const getTaskByIds = (serviceId: string, taskId: string): Task | undefined => {
   const service = getServiceById(serviceId);
-  if (!service) return undefined;
+  if (!service || !service.tasks) return undefined;
   return service.tasks.find(task => task.id === taskId);
 };
 
-// Helper function to get a handyman by ID
-export const getHandymanById = (id: number): Handyman | undefined => {
-  return handymen.find(handyman => handyman.id === id);
+export const getNearbyAvailableHandymen = (serviceType: string, limit: number = 5): Handyman[] => {
+  const matchingHandymen = handymen.filter(handyman => 
+    handyman.skills.some(skill => 
+      skill.toLowerCase() === serviceType.toLowerCase() ||
+      serviceType.toLowerCase().includes(skill.toLowerCase()) ||
+      skill.toLowerCase().includes(serviceType.toLowerCase())
+    )
+  );
+  
+  const sortedHandymen = [...matchingHandymen].sort((a, b) => {
+    const distanceA = parseFloat(a.distance?.split(' ')[0] || '0');
+    const distanceB = parseFloat(b.distance?.split(' ')[0] || '0');
+    return distanceA - distanceB;
+  });
+  
+  return sortedHandymen.slice(0, limit);
 };
 
-// Helper function to format currency
 export const formatCurrency = (amount: number): string => {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
