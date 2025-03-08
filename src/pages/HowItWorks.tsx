@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
@@ -15,7 +16,7 @@ const HowItWorks = () => {
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold tracking-tight mb-3">How It Works</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              A step-by-step guide to using the Handymen Network platform
+              Below is an overview of how Handymen Network operates for homeowners, property managers, and the handyman professionals who power our platform. We use straightforward, transparent pricing to make every step clear and hassle-free.
             </p>
           </div>
 
@@ -28,37 +29,31 @@ const HowItWorks = () => {
                 <li>
                   <p className="font-semibold">Submit Your Request</p>
                   <p>
-                    Describe your project in detail. Include the type of service (e.g., plumbing, 
-                    painting, electrical), location, and any special requirements. The more specific 
-                    you are, the more accurate your quotes will be.
+                    Provide details about your project (e.g., plumbing, painting, electrical), your location, and any specific requirements. Our system has set pricing for standard services, so you'll know the cost before confirming the job.
                   </p>
                 </li>
                 <li>
-                  <p className="font-semibold">Receive & Compare Quotes</p>
+                  <p className="font-semibold">Choose Your Professional</p>
                   <p>
-                    Vetted service professionals review your request and provide estimates. Compare 
-                    quotes, check profiles, and read customer reviews to select the best fit for your needs.
+                    We match you with vetted, background-checked service providers in your area. Review their profiles, past work, and customer ratings to find the right fit for your needs.
                   </p>
                 </li>
                 <li>
                   <p className="font-semibold">Schedule the Work</p>
                   <p>
-                    Coordinate directly with the professional to confirm the date, time, and scope of the 
-                    project. You'll receive a clear timeline and cost breakdown before any work begins.
+                    Coordinate a convenient date and time directly with your chosen professional. You'll receive a clear breakdown of the agreed-upon tasks and the total cost upfront.
                   </p>
                 </li>
                 <li>
-                  <p className="font-semibold">Completion & Payment</p>
+                  <p className="font-semibold">Project Completion & Payment</p>
                   <p>
-                    Once the job is finished to your satisfaction, pay securely according to the agreed-upon 
-                    terms (either via our platform or directly to the handyman, as specified in the quote).
+                    Once the job is finished to your satisfaction, you'll pay securely using our platform or the method outlined during booking. No surprises—just straightforward pricing.
                   </p>
                 </li>
                 <li>
                   <p className="font-semibold">Review & Feedback</p>
                   <p>
-                    Share your experience by leaving a review. Your feedback helps maintain a network of 
-                    top-quality, reliable professionals.
+                    Help us maintain a high-quality network by rating and reviewing your experience. Your feedback ensures that only reliable, top-rated professionals remain on the platform.
                   </p>
                 </li>
               </ol>
@@ -74,37 +69,31 @@ const HowItWorks = () => {
                 <li>
                   <p className="font-semibold">Create a Property Profile</p>
                   <p>
-                    Sign up or log in to add details about your property (or multiple properties). 
-                    Provide a clear description of the work required—this might include regular maintenance 
-                    tasks, repairs, or renovations.
+                    Sign up or log in to add properties under your account. Include essential details like address, property type, and any ongoing maintenance needs.
                   </p>
                 </li>
                 <li>
-                  <p className="font-semibold">Issue Maintenance Requests</p>
+                  <p className="font-semibold">Submit Maintenance Requests</p>
                   <p>
-                    Whether it's a minor fix or a major project, submit service requests with deadlines, 
-                    budgets, and any specifications. Add photos or documents for clarity.
+                    For each repair or service, select the appropriate category from our list of standardized options. Attach photos or documents if needed, and confirm the fixed price for each task.
                   </p>
                 </li>
                 <li>
-                  <p className="font-semibold">Get Matched & Compare Options</p>
+                  <p className="font-semibold">Coordinate & Track Projects</p>
                   <p>
-                    Handymen Network will match you with multiple qualified professionals. Evaluate 
-                    their quotes, reviews, and availability to ensure you choose the best service provider for each task.
+                    Our platform lets you schedule tasks, track progress, and communicate directly with the assigned professional—all from a single, user-friendly dashboard.
                   </p>
                 </li>
                 <li>
-                  <p className="font-semibold">Manage Projects Effortlessly</p>
+                  <p className="font-semibold">Approve Work & Make Payment</p>
                   <p>
-                    Stay organized with integrated tracking tools. Monitor progress, schedule appointments, 
-                    and approve any change orders—all in one place.
+                    After confirming the work is complete, submit payment securely. Handymen Network keeps a record of every job, helping you stay organized across multiple properties.
                   </p>
                 </li>
                 <li>
-                  <p className="font-semibold">Finalize & Keep Records</p>
+                  <p className="font-semibold">Store Records & Leave Feedback</p>
                   <p>
-                    When the job is done, verify completion and submit payment through your preferred method. 
-                    Use our platform to store project history, receipts, and documentation for future reference.
+                    Keep a digital history of completed jobs, costs, and receipts for easy reference. Rate your professional to inform others and maintain the high standards of our community.
                   </p>
                 </li>
               </ol>
@@ -120,41 +109,42 @@ const HowItWorks = () => {
                 <li>
                   <p className="font-semibold">Join Our Network</p>
                   <p>
-                    Complete a simple registration process, including background and credential checks, 
-                    to become an approved professional in our system.
+                    Complete a simple registration process, including any required background checks and credential verifications. Once approved, you'll gain access to job opportunities in your area.
                   </p>
                 </li>
                 <li>
-                  <p className="font-semibold">View Relevant Job Leads</p>
+                  <p className="font-semibold">Browse & Accept Jobs</p>
                   <p>
-                    Once onboard, you'll gain access to local projects posted by homeowners and property managers. 
-                    Filter by location, project type, or budget to find leads that match your expertise.
+                    We post requests from homeowners and property managers with standardized pricing. Filter jobs by location or specialty, then accept the ones that fit your schedule and skill set.
                   </p>
                 </li>
                 <li>
-                  <p className="font-semibold">Send Quotes & Proposals</p>
+                  <p className="font-semibold">Communicate & Schedule</p>
                   <p>
-                    Submit your estimate with clear pricing, project timelines, and any additional information 
-                    the client might need. Your profile, reviews, and work history help you stand out.
+                    Connect with the client directly to finalize details like appointment time or any special considerations. Make sure everyone is on the same page before starting.
                   </p>
                 </li>
                 <li>
-                  <p className="font-semibold">Confirm & Complete the Work</p>
+                  <p className="font-semibold">Complete the Work</p>
                   <p>
-                    After the client accepts your quote, coordinate directly with them to schedule the job. 
-                    Make sure to communicate any changes in scope or pricing before starting.
+                    Perform the service according to the outlined scope. Should any issues or changes arise, promptly communicate with the client through our messaging system.
                   </p>
                 </li>
                 <li>
-                  <p className="font-semibold">Payment & Feedback</p>
+                  <p className="font-semibold">Get Paid & Earn Reviews</p>
                   <p>
-                    Receive payment for completed work as outlined in the original quote or contract. 
-                    Encourage clients to leave a review, which improves your visibility and credibility for future projects.
+                    Once the job is done, receive secure payment as outlined in the initial request. Encourage clients to leave a review, boosting your credibility and helping you attract more business.
                   </p>
                 </li>
               </ol>
             </CardContent>
           </Card>
+
+          <div className="mt-8 text-center">
+            <p className="text-lg text-muted-foreground mb-6">
+              Whether you're a homeowner looking for a quick fix, a property manager juggling multiple sites, or a seasoned handyman seeking consistent work, Handymen Network's transparent pricing and intuitive platform keep the process simple and reliable for everyone.
+            </p>
+          </div>
         </div>
       </main>
       <SignupCallToAction />

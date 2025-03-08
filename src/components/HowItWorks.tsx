@@ -7,17 +7,17 @@ const steps = [
   {
     icon: Search,
     title: '1. Choose Your Service',
-    description: 'Browse through our wide range of services, all with upfront pricing. No surprises, no hidden fees.'
+    description: 'Browse our services with transparent, upfront pricing. Know exactly what you'll pay before booking.'
   },
   {
     icon: Users,
     title: '2. Get Matched',
-    description: 'We instantly match you with available, qualified handymen in your area who are ready to help.'
+    description: 'We connect you with background-checked, qualified professionals in your area who are ready to help.'
   },
   {
     icon: CalendarCheck,
     title: '3. Job Done',
-    description: 'Track your handyman in real-time. Pay securely through our app once the job is completed to your satisfaction.'
+    description: 'Schedule the work, track progress, and pay securely once the job is completed to your satisfaction.'
   }
 ];
 
@@ -28,7 +28,7 @@ const HowItWorks = () => {
         <div className="text-center mb-14">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">How It Works</h2>
           <p className="mt-4 text-lg text-gray-600">
-            Getting help with Handycierge is quick and easy. Here's how:
+            Getting help with Handymen Network is quick and easy. Here's how:
           </p>
         </div>
         
