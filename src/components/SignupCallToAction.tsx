@@ -15,6 +15,9 @@ const SignupCallToAction = () => {
           <Button size="lg" asChild>
             <Link to="/signup">Sign Up as Homeowner</Link>
           </Button>
+          <Button size="lg" variant="secondary" asChild>
+            <Link to="/property-manager-signup">Sign Up as Property Manager</Link>
+          </Button>
           <Button size="lg" variant="outline" asChild>
             <Link to="/handyman-signup">Join as Handyman</Link>
           </Button>
