@@ -818,3 +818,166 @@ export const services: Service[] = [
       },
       {
         id: 'water-heater-repair',
+        title: 'Water Heater Repair',
+        price: 225,
+        description: 'Diagnosis and repair of malfunctioning water heaters to restore proper operation.',
+        duration: '1-3 hours'
+      },
+      {
+        id: 'hvac-tune-up',
+        title: 'HVAC Tune-Up & Maintenance',
+        price: 125,
+        description: 'Regular maintenance of heating and cooling systems to ensure optimal performance and efficiency.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'thermostat',
+        title: 'Thermostat Installation & Replacement',
+        price: 150,
+        description: 'Installation of new thermostats or replacement of existing units with proper wiring and programming.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'air-filter',
+        title: 'Air Filter Replacement',
+        price: 75,
+        description: 'Replacement of HVAC air filters to maintain air quality and system efficiency.',
+        duration: '30 minutes'
+      }
+    ]
+  },
+  {
+    id: 'pest-control',
+    title: 'Pest Control',
+    description: 'Effective solutions for insect and rodent problems.',
+    icon: Bug,
+    priceRange: '$95 - $750',
+    longDescription: 'Our pest control experts can identify and eliminate various pests from your home and property. We use safe, effective methods to remove current infestations and prevent future problems.',
+    tasks: [
+      {
+        id: 'general-pest-control',
+        title: 'General Pest Control',
+        price: 175,
+        description: 'Comprehensive treatment for common household pests including ants, roaches, and spiders.',
+        duration: '1-2 hours'
+      },
+      {
+        id: 'termite-treatment',
+        title: 'Termite Inspection & Treatment',
+        price: 550,
+        description: 'Professional inspection for termites and targeted treatment to eliminate infestations.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'rodent-control',
+        title: 'Rodent Control',
+        price: 275,
+        description: 'Identification and removal of mice, rats, and other rodents with prevention measures.',
+        duration: '1-3 hours'
+      },
+      {
+        id: 'bed-bug-treatment',
+        title: 'Bed Bug Treatment',
+        price: 450,
+        description: 'Specialized treatment to eliminate bed bug infestations from furniture and living areas.',
+        duration: '2-4 hours'
+      },
+      {
+        id: 'mosquito-control',
+        title: 'Mosquito Control',
+        price: 175,
+        description: 'Treatment of yard and outdoor areas to reduce mosquito populations.',
+        duration: '1-2 hours'
+      }
+    ]
+  }
+];
+
+export const handymen: Handyman[] = [
+  {
+    id: 1,
+    name: 'John Smith',
+    profilePic: '/assets/handyman-1.jpg',
+    specialty: 'Plumbing',
+    rating: 4.9,
+    jobsCompleted: 243,
+    joinedDate: '2020-03-15',
+    bio: 'Licensed master plumber with over 15 years of experience in residential and commercial plumbing services.',
+    location: 'Seattle, WA',
+    availability: 'Mon-Fri, 8am-5pm'
+  },
+  {
+    id: 2,
+    name: 'Sarah Johnson',
+    profilePic: '/assets/handyman-2.jpg',
+    specialty: 'Electrical',
+    rating: 4.7,
+    jobsCompleted: 186,
+    joinedDate: '2021-01-10',
+    bio: 'Certified electrician specializing in residential wiring, lighting installation, and electrical panel upgrades.',
+    location: 'Bellevue, WA',
+    availability: 'Mon-Sat, 7am-6pm'
+  },
+  {
+    id: 3,
+    name: 'Michael Rodriguez',
+    profilePic: '/assets/handyman-3.jpg',
+    specialty: 'Carpentry',
+    rating: 4.8,
+    jobsCompleted: 204,
+    joinedDate: '2020-05-22',
+    bio: 'Skilled carpenter with expertise in custom furniture, cabinetry, and general woodworking projects.',
+    location: 'Redmond, WA',
+    availability: 'Tue-Sat, 8am-4pm'
+  },
+  {
+    id: 4,
+    name: 'David Williams',
+    profilePic: '/assets/handyman-4.jpg',
+    specialty: 'Painting',
+    rating: 4.6,
+    jobsCompleted: 158,
+    joinedDate: '2021-06-15',
+    bio: 'Professional painter offering interior and exterior painting services with attention to detail and quality finishes.',
+    location: 'Kirkland, WA',
+    availability: 'Mon-Fri, 9am-5pm'
+  },
+  {
+    id: 5,
+    name: 'Jennifer Lee',
+    profilePic: '/assets/handyman-5.jpg',
+    specialty: 'Home Improvement',
+    rating: 4.9,
+    jobsCompleted: 217,
+    joinedDate: '2020-08-30',
+    bio: 'Jack of all trades with skills in various home improvement projects including drywall, flooring, and general repairs.',
+    location: 'Sammamish, WA',
+    availability: 'Wed-Sun, 8am-6pm'
+  }
+];
+
+// Helper function to find a service by ID
+export const getServiceById = (id: string): Service | undefined => {
+  return services.find(service => service.id === id);
+};
+
+// Helper function to find a task by ID and service ID
+export const getTaskByIds = (serviceId: string, taskId: string): Task | undefined => {
+  const service = getServiceById(serviceId);
+  if (!service) return undefined;
+  return service.tasks.find(task => task.id === taskId);
+};
+
+// Helper function to get a handyman by ID
+export const getHandymanById = (id: number): Handyman | undefined => {
+  return handymen.find(handyman => handyman.id === id);
+};
+
+// Helper function to format currency
+export const formatCurrency = (amount: number): string => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0
+  }).format(amount);
+};
