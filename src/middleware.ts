@@ -22,6 +22,11 @@ function resolveCountry(request: Request): string {
 }
 
 export const onRequest: MiddlewareHandler = async (context, next) => {
+  // Static generation has no real request headers — skip before touching them (avoids prerender warnings).
+  if (context.isPrerendered) {
+    return next();
+  }
+
   const geoDisabled =
     typeof process !== "undefined" &&
     typeof process.env !== "undefined" &&
