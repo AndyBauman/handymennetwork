@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CartView from "@/components/CartView";
+import { SITE_NAME } from "@/data/constants";
+
+const title = `Book a repair — ${SITE_NAME}`;
+const description =
+  "Review your repair list, enter your address, and book a vetted handyman. Fixed prices, no surprises.";
+---
+
+<BaseLayout title={title} description={description}>
+  <h1 class="font-display text-4xl font-bold text-brand-green">Your repair list</h1>
+  <p class="mt-2 text-xl text-brand-charcoal/80 max-w-2xl">
+    Review your items, enter your address, and continue to payment. The price you see is the price
+    you pay.
+  </p>
+  <div class="mt-8">
+    <CartView client:load />
+  </div>
+</BaseLayout>

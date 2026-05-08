@@ -1,0 +1,15 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AccountView from "@/components/AccountView";
+import { SITE_NAME } from "@/data/constants";
+
+const title = `My account — ${SITE_NAME}`;
+const description = "Manage your Handymen Network account, view projects, and update your profile.";
+---
+
+<BaseLayout title={title} description={description} noindex>
+  <h1 class="font-display text-4xl font-bold text-brand-green">My account</h1>
+  <div class="mt-8">
+    <AccountView client:load />
+  </div>
+</BaseLayout>

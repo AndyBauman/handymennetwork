@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-brand-stone text-brand-charcoal font-sans text-body antialiased;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-green;
+  }
+}

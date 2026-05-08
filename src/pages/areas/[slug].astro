@@ -1,0 +1,122 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { serviceAreas, getArea } from "@/data/areas";
+import { faqsForCity } from "@/data/areaFaqs";
+import { SITE_NAME, SITE_ORIGIN } from "@/data/constants";
+
+export function getStaticPaths() {
+  return serviceAreas.map((a) => ({ params: { slug: a.slug } }));
+}
+
+const { slug } = Astro.params;
+const area = getArea(slug!);
+
+if (!area) {
+  return Astro.redirect("/areas");
+}
+
+const cityFaqs = faqsForCity(area.name, area.state, area.stateName);
+const title = `Handyman menu pricing in ${area.name}, ${area.state} — ${SITE_NAME}`;
+const description = area.blurb;
+
+const pageUrl = `${SITE_ORIGIN}/areas/${area.slug}`;
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "All areas",
+      item: `${SITE_ORIGIN}/areas`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: area.stateName,
+      item: `${SITE_ORIGIN}/areas#${area.state}`,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: `${area.name}, ${area.state}`,
+      item: pageUrl,
+    },
+  ],
+};
+const cityWebPageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": pageUrl,
+  url: pageUrl,
+  name: title,
+  description: area.blurb,
+  isPartOf: { "@id": `${SITE_ORIGIN}/#website` },
+  about: {
+    "@type": "City",
+    name: area.name,
+    containedInPlace: {
+      "@type": "State",
+      name: area.stateName,
+      identifier: area.state,
+    },
+  },
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  faqJsonLd={cityFaqs}
+  extraJsonLd={[breadcrumbJsonLd, cityWebPageJsonLd]}
+>
+  <nav class="text-lg mb-6" aria-label="Breadcrumb">
+    <a href="/areas" class="text-brand-green font-semibold underline">All areas</a>
+    <span class="mx-2" aria-hidden="true">/</span>
+    <a href={`/areas#${area.state}`} class="text-brand-green font-semibold underline">{area.stateName}</a>
+    <span class="mx-2" aria-hidden="true">/</span>
+    <span>{area.name}</span>
+  </nav>
+  <h1 class="font-display text-4xl font-bold text-brand-green">
+    Handyman repairs in {area.name}, {area.state}
+  </h1>
+  <p class="mt-4 text-xl max-w-3xl">{area.blurb}</p>
+  <p class="mt-4 text-lg max-w-3xl text-brand-charcoal/90">
+    Handymen Network is available nationwide. We highlight major metros in every state so you can see how
+    fixed-price booking, vetting, and tracking work in your area.
+  </p>
+  <ul class="mt-8 text-lg list-disc pl-6 space-y-2">
+    <li>Fixed menu prices — see totals before you book.</li>
+    <li>Only active, nearby pros get your request.</li>
+    <li>Live tracking in plain English.</li>
+    <li>Need help? Use Help in the app or the Get help page — no call center number on the site.</li>
+  </ul>
+  <p class="mt-8">
+    <a
+      href="/services"
+      class="inline-flex min-h-tap-lg items-center px-6 rounded-xl bg-brand-green text-brand-cream font-bold text-lg"
+      >Open the repair menu</a
+    >
+  </p>
+
+  <section class="mt-16" aria-labelledby={`faq-${area.slug}`}>
+    <h2 id={`faq-${area.slug}`} class="font-display text-3xl font-bold text-brand-green">
+      {area.name}, {area.state} handyman FAQs
+    </h2>
+    <div class="mt-6 space-y-4">
+      {
+        cityFaqs.map((f) => (
+          <details class="rounded-xl bg-white border border-brand-green/15 p-5 text-lg group">
+            <summary class="font-semibold cursor-pointer list-none flex justify-between gap-4 items-start">
+              <span>{f.q}</span>
+              <span class="text-brand-amber shrink-0 group-open:rotate-180 transition-transform" aria-hidden="true">
+                ▼
+              </span>
+            </summary>
+            <p class="mt-4 text-brand-charcoal/95 leading-relaxed">{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

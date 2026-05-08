@@ -1,0 +1,37 @@
+---
+import { SITE_NAME } from "@/data/constants";
+---
+
+<footer class="bg-brand-green text-brand-cream mt-auto" role="contentinfo">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 grid gap-8 sm:grid-cols-2">
+    <div>
+      <p class="font-display text-xl font-bold">{SITE_NAME}</p>
+      <p class="mt-2 text-lg opacity-95 max-w-md">
+        Fixed prices on a simple menu. We match vetted, available pros near you — you don’t scroll
+        through profiles. Help lives in the app and on our Get help page.
+      </p>
+      <a
+        href="/contact"
+        class="mt-4 inline-flex min-h-tap-lg items-center px-5 rounded-xl bg-brand-amber text-brand-charcoal font-bold text-lg"
+        >Get help</a
+      >
+    </div>
+    <div class="text-lg">
+      <p class="font-semibold">Quick links</p>
+      <ul class="mt-2 space-y-2">
+        <li><a href="/book" class="underline hover:no-underline">Book a repair</a></li>
+        <li><a href="/trust" class="underline hover:no-underline">How we vet pros</a></li>
+        <li><a href="/handyman" class="underline hover:no-underline">Handyman sign-in</a></li>
+        <li><a href="/faq" class="underline hover:no-underline">All questions</a></li>
+        <li><a href="/contact" class="underline hover:no-underline">Get help</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-4 text-base opacity-90 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6">
+    <span>© {new Date().getFullYear()} {SITE_NAME}. All rights reserved.</span>
+    <span class="flex gap-4">
+      <a href="/terms" class="underline hover:no-underline">Terms of Service</a>
+      <a href="/privacy" class="underline hover:no-underline">Privacy Policy</a>
+    </span>
+  </div>
+</footer>

@@ -1,0 +1,52 @@
+---
+import { SITE_NAME } from "@/data/constants";
+import CartBadge from "@/components/CartBadge";
+import AuthNav from "@/components/AuthNav";
+
+const path = Astro.url.pathname;
+const nav = [
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Browse repairs" },
+  { href: "/how-it-works", label: "How it works" },
+  { href: "/trust", label: "Vetted pros" },
+  { href: "/areas", label: "Service areas" },
+  { href: "/faq", label: "Questions" },
+  { href: "/contact", label: "Get help" },
+];
+---
+
+<header
+  class="sticky top-0 z-50 bg-brand-green text-brand-cream shadow-md border-b border-black/10"
+  role="banner"
+>
+  <div
+    class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <a
+      href="/"
+      class="font-display text-xl sm:text-2xl font-bold tracking-tight text-brand-cream hover:underline focus:underline min-h-tap flex items-center"
+      >{SITE_NAME}</a
+    >
+    <nav aria-label="Main" class="flex flex-wrap items-center gap-2 sm:gap-3">
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              "px-3 py-2 rounded-lg font-semibold text-base min-h-tap inline-flex items-center",
+              path === item.href
+                ? "bg-brand-cream text-brand-green"
+                : "hover:bg-white/10 text-brand-cream",
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="flex items-center gap-3">
+      <CartBadge client:load />
+      <AuthNav client:load />
+    </div>
+  </div>
+</header>

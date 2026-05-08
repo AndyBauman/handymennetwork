@@ -1,0 +1,30 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SUPPORT_EMAIL, SITE_NAME } from "@/data/constants";
+
+const title = `Get help — ${SITE_NAME}`;
+const description =
+  "Help in the app first, then email. We don’t list a public phone number on the website.";
+---
+
+<BaseLayout title={title} description={description}>
+  <h1 class="font-display text-4xl font-bold text-brand-green">Get help</h1>
+  <p class="mt-4 text-xl max-w-3xl">
+    For order issues, refunds, or safety, open <strong>Help</strong> in the Handymen Network app — that’s
+    the fastest path once you’re live. This page is for email and non-urgent questions.
+  </p>
+  <div class="mt-10 rounded-2xl bg-white border border-brand-green/15 p-8 max-w-xl text-lg space-y-6">
+    <p>
+      <span class="font-bold text-brand-green">Email</span><br />
+      <a href={`mailto:${SUPPORT_EMAIL}`} class="text-xl font-bold underline">{SUPPORT_EMAIL}</a>
+    </p>
+    <p class="text-base text-brand-charcoal/90">
+      Property managers and partnerships: use the same email with “Accounts” or “Partnerships” in
+      the subject.
+    </p>
+    <p class="text-base text-brand-charcoal/90">
+      <strong>Emergency?</strong> If you are in immediate danger, call <strong>911</strong>. For
+      urgent in-job issues, use Help in the app so we can see your active order.
+    </p>
+  </div>
+</BaseLayout>

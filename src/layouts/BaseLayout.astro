@@ -1,0 +1,138 @@
+---
+import SiteHeader from "@/components/SiteHeader.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import JsonLd from "@/components/JsonLd.astro";
+import { SITE_NAME, SITE_TAGLINE, SUPPORT_EMAIL, SITE_ORIGIN } from "@/data/constants";
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  ogImagePath?: string;
+  faqJsonLd?: { q: string; a: string }[];
+  /** Kept out of XML sitemap; use on auth shells and account. */
+  noindex?: boolean;
+  extraJsonLd?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonicalPath = Astro.url.pathname,
+  ogImagePath,
+  faqJsonLd,
+  noindex = false,
+  extraJsonLd,
+} = Astro.props;
+
+const site = Astro.site?.toString().replace(/\/$/, "") ?? SITE_ORIGIN;
+const canonical = new URL(canonicalPath, Astro.site).toString();
+const orgId = `${site}/#organization`;
+const ogImageAbsolute =
+  ogImagePath && Astro.site ? new URL(ogImagePath, Astro.site).toString() : undefined;
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "@id": orgId,
+  name: SITE_NAME,
+  url: site,
+  description: SITE_TAGLINE,
+  areaServed: { "@type": "Country", name: "United States" },
+  email: SUPPORT_EMAIL,
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${site}/#website`,
+  url: site,
+  name: SITE_NAME,
+  description: SITE_TAGLINE,
+  inLanguage: "en-US",
+  publisher: { "@id": orgId },
+};
+
+const faqSchema =
+  faqJsonLd && faqJsonLd.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqJsonLd.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.a,
+          },
+        })),
+      }
+    : null;
+---
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={SITE_NAME} />
+    {
+      noindex ? (
+        <meta name="robots" content="noindex, nofollow" />
+      ) : (
+        <meta
+          name="robots"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+      )
+    }
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:locale" content="en_US" />
+    {ogImageAbsolute && <meta property="og:image" content={ogImageAbsolute} />}
+    <meta name="twitter:card" content={ogImageAbsolute ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImageAbsolute && <meta name="twitter:image" content={ogImageAbsolute} />}
+    <meta name="theme-color" content="#1E293B" />
+    <meta name="geo.region" content="US" />
+    <meta name="language" content="English" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap"
+      rel="stylesheet"
+    />
+    <JsonLd data={orgSchema} />
+    <JsonLd data={websiteSchema} />
+    {faqSchema && <JsonLd data={faqSchema} />}
+    {extraJsonLd?.map((data) => <JsonLd data={data} />)}
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-brand-cream focus:text-brand-charcoal focus:px-4 focus:py-3 focus:rounded-lg focus:shadow-lg"
+      >Skip to main content</a
+    >
+    <SiteHeader />
+    <main id="main" class="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-8">
+      <slot />
+    </main>
+    <SiteFooter />
+    <script type="text/javascript" is:inline>
+      var sc_project=13215644;
+      var sc_invisible=1;
+      var sc_security="fc6e50e2";
+    </script>
+    <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" is:inline async></script>
+    <noscript><div class="statcounter"><a title="web statistics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13215644/0/fc6e50e2/1/" alt="web statistics" referrerpolicy="no-referrer-when-downgrade"></a></div></noscript>
+  </body>
+</html>

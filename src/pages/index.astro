@@ -1,0 +1,219 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import TrustBar from "@/components/TrustBar.astro";
+import MenuCard from "@/components/MenuCard.astro";
+import CompareTable from "@/components/CompareTable.astro";
+import { TrackingDemo } from "@/components/TrackingDemo";
+import { SITE_NAME, SITE_TAGLINE } from "@/data/constants";
+import { getPopularItems } from "@/data/menu";
+import { faqsForHomepage } from "@/data/faqs";
+import { serviceAreas } from "@/data/areas";
+
+const popular = getPopularItems();
+const homeFaqs = faqsForHomepage();
+const title = `${SITE_NAME} — Fixed-price handyman, tracked like a ride`;
+const description = SITE_TAGLINE;
+---
+
+<BaseLayout title={title} description={description} faqJsonLd={homeFaqs}>
+  <section class="text-center max-w-4xl mx-auto py-6 sm:py-10" aria-labelledby="hero-heading">
+    <h1
+      id="hero-heading"
+      class="font-display text-3xl sm:text-5xl font-bold text-brand-green leading-tight"
+    >
+      Home repairs — fixed prices, fast help, track everything.
+    </h1>
+    <p class="mt-6 text-xl sm:text-2xl text-brand-charcoal max-w-3xl mx-auto">
+      Pick a repair from the menu. We match a <strong>vetted</strong> local pro by skills, reviews,
+      and who’s actually available — often today. See the price before you book. Track the job in
+      plain English. No browsing handymen on the site.
+    </p>
+    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center">
+      <a
+        href="/services"
+        class="inline-flex min-h-tap-lg items-center justify-center rounded-xl bg-brand-green px-8 font-bold text-brand-cream text-xl shadow"
+        >Browse repairs</a
+      >
+      <a
+        href="/trust"
+        class="inline-flex min-h-tap-lg items-center justify-center rounded-xl bg-brand-amber px-8 font-bold text-brand-charcoal text-xl"
+        >How we vet pros</a
+      >
+    </div>
+  </section>
+
+  <div class="mt-8">
+    <TrustBar />
+  </div>
+
+  <section class="mt-16" aria-labelledby="steps-heading">
+    <h2 id="steps-heading" class="font-display text-3xl font-bold text-brand-green text-center">
+      How it works
+    </h2>
+    <ol class="mt-8 grid gap-6 sm:grid-cols-3 text-lg">
+      <li class="rounded-2xl bg-white border border-brand-green/15 p-6 shadow-sm">
+        <span class="text-brand-amber font-display font-bold text-2xl">1</span>
+        <h3 class="mt-2 font-bold text-xl text-brand-green">Pick your repair</h3>
+        <p class="mt-2">
+          Browse the menu. Every repair has a set price and a clear “what’s included” line.
+        </p>
+      </li>
+      <li class="rounded-2xl bg-white border border-brand-green/15 p-6 shadow-sm">
+        <span class="text-brand-amber font-display font-bold text-2xl">2</span>
+        <h3 class="mt-2 font-bold text-xl text-brand-green">We match your pro</h3>
+        <p class="mt-2">
+          Only vetted pros who are Active, in range, qualified for that repair, and not on another
+          job get offered your work — then we pick the best fit by reviews and skills.
+        </p>
+      </li>
+      <li class="rounded-2xl bg-white border border-brand-green/15 p-6 shadow-sm">
+        <span class="text-brand-amber font-display font-bold text-2xl">3</span>
+        <h3 class="mt-2 font-bold text-xl text-brand-green">Track and relax</h3>
+        <p class="mt-2">
+          See on the way, arrived, working, and done. Rate when it’s finished.
+        </p>
+      </li>
+    </ol>
+    <p class="mt-6 text-center text-lg">
+      <a href="/how-it-works" class="font-semibold text-brand-green underline">See the full story →</a>
+    </p>
+  </section>
+
+  <section class="mt-16" aria-labelledby="popular-heading">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+      <h2 id="popular-heading" class="font-display text-3xl font-bold text-brand-green">
+        Popular repairs
+      </h2>
+      <a href="/services" class="text-lg font-semibold text-brand-green underline min-h-tap inline-flex items-center"
+        >See all repairs →</a
+      >
+    </div>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2">
+      {popular.map((item) => <MenuCard item={item} />)}
+    </div>
+  </section>
+
+  <section class="mt-16">
+    <CompareTable />
+  </section>
+
+  <section class="mt-16 grid gap-8 lg:grid-cols-2 items-start">
+    <div>
+      <h2 class="font-display text-3xl font-bold text-brand-green">Try the tracker</h2>
+      <p class="mt-3 text-lg">
+        No tech speak — just simple steps. (This is a preview; the real app updates live.)
+      </p>
+    </div>
+    <TrackingDemo client:load />
+  </section>
+
+  <section class="mt-16" aria-labelledby="reviews-heading">
+    <h2 id="reviews-heading" class="font-display text-3xl font-bold text-brand-green text-center">
+      Neighbors who used Handymen Network
+    </h2>
+    <ul class="mt-8 grid gap-6 sm:grid-cols-3">
+      <li class="rounded-2xl bg-white p-6 border border-brand-green/10 shadow-sm text-lg">
+        <p class="font-semibold text-brand-green">★★★★★</p>
+        <p class="mt-2">“I knew the price before anyone came. The door fix was done in one visit.”</p>
+        <p class="mt-3 text-base opacity-90">— Ruth, Columbus</p>
+      </li>
+      <li class="rounded-2xl bg-white p-6 border border-brand-green/10 shadow-sm text-lg">
+        <p class="font-semibold text-brand-green">★★★★★</p>
+        <p class="mt-2">“Mom doesn’t do apps — my sister booked from her phone. Same fixed price.”</p>
+        <p class="mt-3 text-base opacity-90">— James, Westerville</p>
+      </li>
+      <li class="rounded-2xl bg-white p-6 border border-brand-green/10 shadow-sm text-lg">
+        <p class="font-semibold text-brand-green">★★★★★</p>
+        <p class="mt-2">“Like ordering food, but for my rental punch list. Transparent.”</p>
+        <p class="mt-3 text-base opacity-90">— Priya, Dublin</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="mt-16" aria-labelledby="areas-heading">
+    <h2 id="areas-heading" class="font-display text-3xl font-bold text-brand-green">
+      Nationwide coverage
+    </h2>
+    <p class="mt-4 text-lg max-w-3xl">
+      Handymen Network serves homeowners across the United States. Explore
+      <strong class="font-semibold"> major metros in all 50 states</strong>—each city page includes local
+      FAQs and the same fixed-price repair menu.
+    </p>
+    <p class="mt-6">
+      <a
+        href="/areas"
+        class="inline-flex min-h-tap-lg items-center px-6 rounded-xl bg-brand-green text-brand-cream font-bold text-lg"
+        >Browse all cities by state</a
+      >
+    </p>
+    <ul class="mt-8 flex flex-wrap gap-3 text-lg text-brand-charcoal/90">
+      <li class="w-full sm:w-auto font-semibold text-brand-green">Popular metros:</li>
+      {
+        ["houston-tx", "los-angeles-ca", "chicago-il", "atlanta-ga", "phoenix-az", "philadelphia-pa"].map(
+          (slug) => {
+            const a = serviceAreas.find((x) => x.slug === slug);
+            return a ? (
+              <li>
+                <a
+                  href={`/areas/${a.slug}`}
+                  class="inline-flex min-h-tap items-center px-4 py-2 rounded-xl bg-white border-2 border-brand-green/20 font-semibold hover:border-brand-green"
+                >
+                  {a.name}, {a.state}
+                </a>
+              </li>
+            ) : null;
+          },
+        )
+      }
+    </ul>
+  </section>
+
+  <section class="mt-16" aria-labelledby="faq-heading">
+    <h2 id="faq-heading" class="font-display text-3xl font-bold text-brand-green">
+      Common questions
+    </h2>
+    <div class="mt-6 space-y-4">
+      {
+        homeFaqs.map((f) => (
+          <details class="rounded-xl bg-white border border-brand-green/15 p-5 text-lg group">
+            <summary class="font-bold cursor-pointer list-none flex justify-between gap-4 items-start">
+              <span>{f.q}</span>
+              <span class="text-brand-amber text-2xl leading-none group-open:rotate-45 transition" aria-hidden="true">
+                +
+              </span>
+            </summary>
+            <p class="mt-3 text-brand-charcoal">{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+    <p class="mt-6 text-center">
+      <a href="/faq" class="text-lg font-semibold text-brand-green underline">View all questions →</a>
+    </p>
+  </section>
+
+  <section
+    class="mt-16 rounded-2xl bg-brand-green text-brand-cream p-8 text-center"
+    aria-labelledby="final-cta"
+  >
+    <h2 id="final-cta" class="font-display text-3xl font-bold">
+      Ready to get it fixed?
+    </h2>
+    <p class="mt-4 text-xl max-w-2xl mx-auto">
+      Browse the menu or use <strong>Get help</strong> / Help in the app — we don’t list a public
+      phone on the website.
+    </p>
+    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="/book"
+        class="inline-flex min-h-tap-lg items-center justify-center rounded-xl bg-brand-amber px-8 font-bold text-brand-charcoal text-xl"
+        >Book now</a
+      >
+      <a
+        href="/contact"
+        class="inline-flex min-h-tap-lg items-center justify-center rounded-xl bg-brand-cream text-brand-green px-8 font-bold text-xl"
+        >Get help</a
+      >
+    </div>
+  </section>
+</BaseLayout>

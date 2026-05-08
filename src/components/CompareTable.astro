@@ -1,0 +1,50 @@
+---
+const rows = [
+  {
+    old: "Scroll profiles and guess who’s good",
+    now: "We match a vetted pro by skill, reviews, and availability",
+  },
+  {
+    old: "Call 5 handymen, hope one answers",
+    now: "Pick a repair — matching runs in the background",
+  },
+  {
+    old: "“I’ll send an estimate” (and you never hear back)",
+    now: "Price is on the menu before you book",
+  },
+  {
+    old: "No idea when they’ll show up",
+    now: "Live status: matched, on the way, arrived, working, done",
+  },
+  {
+    old: "Surprise bill at the end",
+    now: "Menu price for the work described. Period.",
+  },
+];
+---
+
+<section class="rounded-2xl bg-white border border-brand-green/15 p-6 sm:p-8 shadow-sm" aria-labelledby="compare-heading">
+  <h2 id="compare-heading" class="font-display text-2xl sm:text-3xl font-bold text-brand-green">
+    The old way vs Handymen Network
+  </h2>
+  <div class="mt-6 overflow-x-auto">
+    <table class="w-full text-left text-lg min-w-[320px]">
+      <thead>
+        <tr class="border-b-2 border-brand-green/30">
+          <th scope="col" class="py-3 pr-4 font-bold text-brand-charcoal">Old way</th>
+          <th scope="col" class="py-3 font-bold text-brand-green">Handymen Network</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          rows.map((r) => (
+            <tr class="border-b border-brand-green/10">
+              <td class="py-4 pr-4 align-top text-brand-charcoal">{r.old}</td>
+              <td class="py-4 align-top font-semibold">{r.now}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

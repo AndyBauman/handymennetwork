@@ -1,0 +1,26 @@
+---
+const items = [
+  "Fixed prices — no surprises",
+  "Vetted, insured pros",
+  "Smart matching by skill & reviews",
+  "Live tracking",
+];
+---
+
+<section
+  class="rounded-2xl bg-brand-green text-brand-cream px-4 py-5 sm:px-8"
+  aria-label="Why trust us"
+>
+  <ul
+    class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 text-lg font-semibold text-center sm:text-left"
+  >
+    {
+      items.map((t) => (
+        <li class="flex items-center justify-center sm:justify-start gap-2">
+          <span class="text-brand-teal text-2xl" aria-hidden="true">✓</span>
+          {t}
+        </li>
+      ))
+    }
+  </ul>
+</section>

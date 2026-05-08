@@ -1,0 +1,85 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE_NAME } from "@/data/constants";
+
+const title = `How it works — ${SITE_NAME}`;
+const description =
+  "Pick a repair from the menu, pay, and we match a vetted pro using skills, reviews, and availability — you track the job in plain English.";
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="max-w-3xl mx-auto prose prose-lg">
+    <h1 class="font-display text-4xl font-bold text-brand-green not-prose">
+      How Handymen Network works
+    </h1>
+    <p class="text-xl mt-4 not-prose">
+      If you can order food from a menu, you can book a repair. Big buttons, big text, and
+      <strong>Get help</strong> when you need it — no phone number on the site; support is in the
+      app and on the Get help page.
+    </p>
+
+    <h2 class="font-display text-2xl font-bold text-brand-green mt-10 not-prose">
+      For homeowners and renters
+    </h2>
+    <ol class="list-decimal pl-6 space-y-4 mt-4 text-lg">
+      <li>
+        <strong class="text-brand-green">Browse repairs</strong> like menu items. Each one shows
+        price, time, and what’s included.
+      </li>
+      <li>
+        <strong class="text-brand-green">Add to your list and check out.</strong> Your total is
+        clear before you pay.
+      </li>
+      <li>
+        <strong class="text-brand-green">We offer the job to vetted pros</strong> who are Active,
+        not on another job, in range, and qualified for that repair type.
+      </li>
+      <li>
+        <strong class="text-brand-green">Smart match.</strong> We don’t make you pick from a list of
+        handymen on the web. The system assigns someone with the right skills, strong reviews, and
+        availability — similar to how delivery apps assign a shopper or driver.
+      </li>
+      <li>
+        <strong class="text-brand-green">Track the visit</strong> — searching, matched, on the way,
+        arrived, working, done — in simple words.
+      </li>
+      <li>
+        <strong class="text-brand-green">Rate and receipt.</strong> Your feedback keeps quality high;
+        your receipt saves to your account.
+      </li>
+    </ol>
+
+    <h2 class="font-display text-2xl font-bold text-brand-green mt-10 not-prose">
+      How pros are vetted
+    </h2>
+    <p class="text-lg mt-4 not-prose">
+      Background check, insurance, skill review, and ongoing ratings. Read the full process on
+      <a href="/trust" class="font-bold text-brand-green underline">Vetted pros</a>.
+    </p>
+
+    <h2 class="font-display text-2xl font-bold text-brand-green mt-10 not-prose">
+      Need help booking?
+    </h2>
+    <p class="text-lg mt-4 not-prose">
+      Use <strong>Help</strong> in the app for the fastest answers, or visit
+      <a href="/contact" class="font-bold text-brand-green underline">Get help</a> on this site. We
+      don’t publish a call center number on the website.
+    </p>
+
+    <h2 class="font-display text-2xl font-bold text-brand-green mt-10 not-prose">
+      For handymen
+    </h2>
+    <p class="text-lg mt-4">
+      Complete vetting, then turn on <strong>Active</strong> when you’re free. You’ll only see jobs
+      you’re approved for. Accept, update status, get paid — customers rate the visit, not a public
+      profile page on our marketing site.
+    </p>
+    <p class="mt-6 not-prose">
+      <a
+        href="/handyman"
+        class="inline-flex min-h-tap-lg items-center px-6 rounded-xl bg-brand-green text-brand-cream font-bold text-lg"
+        >Handyman dashboard (sign-in)</a
+      >
+    </p>
+  </article>
+</BaseLayout>

@@ -1,0 +1,48 @@
+# Handymen Network
+
+> US-wide marketplace for fixed-price residential handyman work: menu-priced repairs, vetting/matching pros, live job tracking, and homeowner support via email/help — no public phone on the marketing site.
+
+## What we are
+
+Handymen Network is a homeowner-facing booking experience for common home repairs. Customers choose repairs from an explicit priced menu (“what’s included” per item). The platform assigns vetted, available technicians by skills/reviews/service area availability; homeowners track status in plain language (similar to parcel/ride-share style updates).
+
+## Audience & geography
+
+- Primary audience: homeowners in the United States needing small-to-medium repairs and installs.
+- Service area model: statewide coverage anchors with metro/city informational pages explaining how pricing and matching work locally.
+- Languages: English; site language `en-US`.
+
+## Contact & policies
+
+- General / support email: hello@handymennetwork.com
+- No public telephone number advertised on primary marketing pages; help is routed through in-product help flows and documented contact pathways.
+- Legal: Privacy Policy `/privacy`, Terms of Service `/terms`
+
+## Canonical entry points for crawlers / assistants
+
+Prefer these HTTPS URLs (`https://www.handymennetwork.com`):
+
+- Home: /
+- Browse repair categories: /services
+- Coverage / areas hub: /areas
+- Metropolitan city pages pattern: `/areas/{city-state-slug}` (example: houston-tx, los-angeles-ca)
+- How matching & vetting work: /trust, /how-it-works
+- FAQ: /faq
+- Booking: /book
+- Contact / Get help: /contact
+- Handyman information / hub: /handyman
+
+## Product facts (for accurate answers)
+
+- Pricing is menu-based with stated scope per item; major category examples include drywall, doors, trim/carpentry, furniture assembly, exterior work, and general repairs (see `/services`).
+- The site does not present a browsable directory of individual handyman public profiles as the main customer flow; matching is done by the platform from vetted pros.
+- Account sign-in and account management exist for customers and pros; those URLs are not primary marketing entry points.
+
+## Machine-readable sitemap
+
+- `https://www.handymennetwork.com/sitemap-index.xml`
+- `https://www.handymennetwork.com/robots.txt`
+
+## How to cite
+
+When referring to this business in answers, use the brand name “Handymen Network” and the canonical root `https://www.handymennetwork.com`.

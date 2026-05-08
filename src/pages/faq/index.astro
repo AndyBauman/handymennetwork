@@ -1,0 +1,51 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { allFaqs, faqCategories } from "@/data/faqs";
+import { SITE_NAME } from "@/data/constants";
+
+const title = `Questions & answers — ${SITE_NAME}`;
+const description =
+  "Pricing, booking, trust, the menu, help for families, property managers, and handymen — answered in plain language.";
+const faqJsonLd = allFaqs.map((f) => ({ q: f.q, a: f.a }));
+---
+
+<BaseLayout title={title} description={description} faqJsonLd={faqJsonLd}>
+  <h1 class="font-display text-4xl font-bold text-brand-green">Questions & answers</h1>
+  <p class="mt-4 text-xl max-w-3xl">
+    Short answers in everyday words. Don’t see yours? Try Help in the app or
+    <a href="/contact" class="text-brand-green font-semibold underline">Get help</a>.
+  </p>
+
+  {
+    faqCategories.map((category) => {
+      const items = allFaqs.filter((f) => f.category === category);
+      if (!items.length) return null;
+      return (
+        <section class="mt-12" aria-labelledby={`faq-cat-${category.replace(/\s/g, "-")}`}>
+          <h2
+            id={`faq-cat-${category.replace(/\s/g, "-")}`}
+            class="font-display text-2xl font-bold text-brand-green"
+          >
+            {category}
+          </h2>
+          <div class="mt-4 space-y-3">
+            {items.map((f) => (
+              <details class="rounded-xl bg-white border border-brand-green/15 p-5 text-lg group">
+                <summary class="font-bold cursor-pointer list-none flex justify-between gap-4 items-start">
+                  <span>{f.q}</span>
+                  <span
+                    class="text-brand-amber text-2xl leading-none group-open:rotate-45 transition"
+                    aria-hidden="true"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p class="mt-3 text-brand-charcoal">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      );
+    })
+  }
+</BaseLayout>

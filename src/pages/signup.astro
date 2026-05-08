@@ -1,0 +1,18 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AuthForm from "@/components/AuthForm";
+import { SITE_NAME } from "@/data/constants";
+
+const title = `Create an account — ${SITE_NAME}`;
+const description = "Sign up for Handymen Network as a homeowner or handyman. Fixed-price repairs, real-time tracking, vetted professionals.";
+---
+
+<BaseLayout title={title} description={description}>
+  <h1 class="font-display text-4xl font-bold text-brand-green text-center">Get started</h1>
+  <p class="mt-2 text-xl text-center text-brand-charcoal/80">
+    Create your account to book repairs or join as a handyman.
+  </p>
+  <div class="mt-8">
+    <AuthForm client:load initialMode="signup" />
+  </div>
+</BaseLayout>

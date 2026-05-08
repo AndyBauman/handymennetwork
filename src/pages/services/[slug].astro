@@ -1,0 +1,67 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import MenuCard from "@/components/MenuCard.astro";
+import { menuCategories, getCategory } from "@/data/menu";
+import { SITE_NAME, SITE_ORIGIN } from "@/data/constants";
+
+export function getStaticPaths() {
+  return menuCategories.map((c) => ({ params: { slug: c.slug } }));
+}
+
+const { slug } = Astro.params;
+const cat = getCategory(slug!);
+
+if (!cat) {
+  return Astro.redirect("/services");
+}
+
+const title = `${cat.title} — fixed prices — ${SITE_NAME}`;
+const description = `Menu-priced ${cat.title.toLowerCase()} for your home. Clear scope, no guessing.`;
+
+const pageUrl = `${SITE_ORIGIN}/services/${slug}`;
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "All repairs",
+      item: `${SITE_ORIGIN}/services`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: cat.title,
+      item: pageUrl,
+    },
+  ],
+};
+const collectionJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${pageUrl}#collection`,
+  url: pageUrl,
+  name: title,
+  description,
+  isPartOf: { "@id": `${SITE_ORIGIN}/#website` },
+};
+---
+
+<BaseLayout title={title} description={description} extraJsonLd={[breadcrumbJsonLd, collectionJsonLd]}>
+  <nav class="text-lg mb-6" aria-label="Breadcrumb">
+    <a href="/services" class="text-brand-green font-semibold underline">All repairs</a>
+    <span class="mx-2" aria-hidden="true">/</span>
+    <span>{cat.title}</span>
+  </nav>
+  <h1 class="font-display text-4xl font-bold text-brand-green">
+    <span aria-hidden="true">{cat.emoji}</span> {cat.title}
+  </h1>
+  <p class="mt-4 text-xl max-w-3xl">
+    Prices below are for the work described. Materials note is on each card. Related categories live
+    on the main menu page for easy bundling.
+  </p>
+  <div class="mt-8 grid gap-6 lg:grid-cols-2">
+    {cat.items.map((item) => <MenuCard item={item} />)}
+  </div>
+</BaseLayout>

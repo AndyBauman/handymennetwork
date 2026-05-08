@@ -1,0 +1,45 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { areasByState, serviceAreas } from "@/data/areas";
+import { SITE_NAME } from "@/data/constants";
+
+const title = `Nationwide service areas — ${SITE_NAME}`;
+const description =
+  "Handymen Network serves homeowners across the United States. Browse major metros in all 50 states and local FAQs for each city.";
+---
+
+<BaseLayout title={title} description={description}>
+  <h1 class="font-display text-4xl font-bold text-brand-green">Nationwide service areas</h1>
+  <p class="mt-4 text-xl max-w-3xl">
+    We operate across the United States. Below are major cities and metropolitan areas in every state—each
+    page includes local handyman FAQs and links to our fixed-price repair menu.
+  </p>
+  <p class="mt-4 text-lg max-w-3xl">
+    <strong class="font-semibold text-brand-charcoal">{serviceAreas.length} metro pages</strong> across
+    all 50 states. Enter your exact address at checkout to confirm coverage and pricing.
+  </p>
+
+  <div class="mt-12 space-y-14">
+    {
+      areasByState.map((s) => (
+        <section id={s.abbr} class="scroll-mt-8">
+          <h2 class="font-display text-2xl font-bold text-brand-green border-b border-brand-green/20 pb-2">
+            {s.name} ({s.abbr})
+          </h2>
+          <ul class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-lg">
+            {s.areas.map((a) => (
+              <li>
+                <a
+                  href={`/areas/${a.slug}`}
+                  class="inline-flex min-h-tap items-center px-4 py-2 rounded-xl bg-white border-2 border-brand-green/20 font-semibold hover:border-brand-green w-full"
+                >
+                  {a.name}, {s.abbr}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>

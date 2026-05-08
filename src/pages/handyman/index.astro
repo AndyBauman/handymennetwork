@@ -1,0 +1,29 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE_NAME } from "@/data/constants";
+
+const title = `Handyman dashboard — ${SITE_NAME}`;
+const description =
+  "Go active, accept nearby jobs, update status, and get paid. Supabase realtime powers the live board.";
+---
+
+<BaseLayout title={title} description={description}>
+  <h1 class="font-display text-4xl font-bold text-brand-green">Handyman hub</h1>
+  <p class="mt-4 text-xl max-w-3xl">
+    Pros toggle Active, see offers only when free, tap Accept, then move the job through en route →
+    arrived → working → done. Customers see friendly updates in their tracker.
+  </p>
+  <ol class="mt-8 text-lg list-decimal pl-6 space-y-3 max-w-3xl">
+    <li><strong>Active / Offline</strong> — you only get pings when Active and not on a job.</li>
+    <li><strong>Incoming</strong> — accept or pass; closest available get first look.</li>
+    <li><strong>Current job</strong> — one-tap navigation and status buttons.</li>
+    <li><strong>Earnings & reviews</strong> — weekly payout summary and star history.</li>
+    <li><strong>Onboarding &amp; vetting</strong> — ID, background check, insurance, skill tags for menu items you’re allowed to accept.</li>
+  </ol>
+  <div class="mt-10 rounded-2xl bg-white border border-brand-green/15 p-8 text-lg">
+    <p class="font-semibold text-brand-green">Phase 2</p>
+    <p class="mt-2">
+      Sign-in with Supabase, RLS policies, and a React dashboard route (or Expo) will live here.
+    </p>
+  </div>
+</BaseLayout>

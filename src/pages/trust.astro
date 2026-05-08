@@ -1,0 +1,49 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE_NAME } from "@/data/constants";
+
+const title = `Vetted pros & how matching works — ${SITE_NAME}`;
+const description =
+  "Handymen Network vets every handyman. Customers don’t browse profiles — the system matches the best qualified pro for your job, location, and timing.";
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="max-w-3xl mx-auto">
+    <h1 class="font-display text-4xl font-bold text-brand-green">Vetted pros — not a directory</h1>
+    <p class="mt-4 text-xl">
+      You’re not picking individual workers from a list on the website. You book the
+      <strong>repair</strong>. We send the job only to qualified, available pros in your area. The
+      system weighs who is best for that work.
+    </p>
+
+    <h2 class="font-display text-2xl font-bold text-brand-green mt-10">Handyman vetting (before anyone goes active)</h2>
+    <ul class="mt-4 text-lg list-disc pl-6 space-y-3">
+      <li><strong>Identity &amp; background</strong> — government ID and criminal background check.</li>
+      <li><strong>Insurance</strong> — general liability (and any trade coverage your market requires).</li>
+      <li><strong>Skills &amp; experience</strong> — review of trade history; menu categories tied to what they’re approved to accept.</li>
+      <li><strong>Quality bar</strong> — ongoing job ratings; low performers are reviewed or removed.</li>
+      <li><strong>Compliance</strong> — where the law requires a license for certain work, we verify it before those jobs are offered.</li>
+    </ul>
+
+    <h2 class="font-display text-2xl font-bold text-brand-green mt-10">How we choose who gets your job</h2>
+    <p class="mt-4 text-lg">
+      After you pay, we look at pros who are <strong>Active</strong>, <strong>not on another job</strong>,
+      within <strong>range</strong> of your address, and <strong>approved for that menu item</strong>.
+      From that pool we prioritize strong <strong>reviews</strong>, <strong>reliability</strong>, and
+      <strong>fit for the skills</strong> your repair needs — not whoever paid for placement.
+    </p>
+    <p class="mt-4 text-lg">
+      You’ll see <strong>job status</strong> in the app (searching, matched, on the way, arrived,
+      working, done). We don’t run a public “meet our handymen” gallery; trust is in the vetting,
+      matching, and your ratings after each visit.
+    </p>
+
+    <p class="mt-10">
+      <a
+        href="/services"
+        class="inline-flex min-h-tap-lg items-center px-6 rounded-xl bg-brand-green text-brand-cream font-bold text-lg"
+        >Browse the repair menu</a
+      >
+    </p>
+  </article>
+</BaseLayout>
