@@ -268,19 +268,20 @@ export const menuCategories: MenuCategory[] = [
 ];
 
 export const bundles: MenuBundle[] = [
+  // Advertised savings must equal (sum of component menu prices - bundle price).
+  // Run `node scripts/qa-bundle-math.mjs` after changing any price here.
   {
     id: "move-in-ready",
     name: "Move-In Ready Bundle",
     price: 350,
-    savings: "Save about $95",
     included:
-      "5 picture hangs + 1 shelf + 1 door fix + caulk bathroom (as listed on menu).",
+      "5 picture hangs + 1 shelf + 1 door fix + caulk bathroom (as listed on menu). Menu price for all four, done in one visit.",
   },
   {
     id: "rental-turnover",
     name: "Rental Turnover Bundle",
     price: 450,
-    savings: "Save about $120",
+    savings: "Save about $40",
     included:
       "Drywall patches (3 small) + door alignment + caulk bathroom + 5 outlet plates.",
   },
@@ -294,7 +295,7 @@ export const bundles: MenuBundle[] = [
     id: "property-manager-pack",
     name: "Property Manager Pack (4 hour block)",
     price: 320,
-    savings: "Save about $40",
+    savings: "Save about $30",
     included: "4 hours for punch list / multi-unit small repairs.",
   },
 ];

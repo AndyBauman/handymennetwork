@@ -39,7 +39,7 @@ export function faqsForCity(city: string, stateAbbr: string, stateName: string):
     },
     {
       q: `Is there a trip or dispatch fee for appointments in ${city}?`,
-      a: `Many orders $75 and up ship without a separate trip fee in supported markets, but fees can vary by address and job mix. Review your cart at checkout in the app—any trip or dispatch line items are shown before you pay.`,
+      a: `Many orders $75 and up have no separate trip fee in supported markets, but fees can vary by address and job mix. Review your cart at checkout in the app—any trip or dispatch line items are shown before you pay.`,
     },
     {
       q: `I live just outside ${city}. Can I still book?`,

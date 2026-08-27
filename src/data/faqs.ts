@@ -130,7 +130,7 @@ export const allFaqs: Faq[] = [
   {
     category: "Trust & safety",
     q: "Why isn’t there a phone number on the website?",
-    a: "We keep support in the product (Help in the app) and on the Get help page, That way every request is tied to your order and our team can help you faster.",
+    a: "We keep support in the product (Help in the app) and on the Get help page. That way every request is tied to your order and our team can help you faster.",
   },
   {
     category: "Trust & safety",
@@ -175,7 +175,7 @@ export const allFaqs: Faq[] = [
   {
     category: "Elderly & family help",
     q: "Can I just call instead of using the app?",
-    a: "We don’t publish a call center number on the website . A family member can book from their account, or you can email Get help for non-urgent assistance.",
+    a: "We don’t publish a call center number on the website. A family member can book from their account, or you can email Get help for non-urgent assistance.",
   },
   {
     category: "Elderly & family help",
