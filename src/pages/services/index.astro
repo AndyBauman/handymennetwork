@@ -2,12 +2,14 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import MenuCard from "@/components/MenuCard.astro";
 import AddToCartButton from "@/components/AddToCartButton";
+import GeoAnswerBlock from "@/components/GeoAnswerBlock.astro";
 import { menuCategories, bundles } from "@/data/menu";
 import { SITE_NAME } from "@/data/constants";
+import { getMenuPricingStats } from "@/lib/pricing-stats";
 
+const stats = getMenuPricingStats();
 const title = `Browse repairs — menu pricing — ${SITE_NAME}`;
-const description =
-  "Drywall, doors, trim, general repairs, furniture assembly, exterior work, and money-saving bundles — all with fixed prices.";
+const description = `Drywall, doors, trim, general repairs, furniture assembly, exterior work, and money-saving bundles — fixed prices from $${stats.minPrice}.`;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -19,12 +21,36 @@ const description =
     </p>
   </header>
 
+  <div class="mt-8 max-w-3xl">
+    <GeoAnswerBlock
+      id="menu-overview"
+      heading="What’s on the handyman menu?"
+      answer={`The Handymen Network repair menu lists ${stats.itemCount} fixed-price residential jobs across ${stats.categoryCount} categories (as of ${stats.asOfLabel}). Line items typically run $${stats.minPrice}–$${stats.maxPrice}. Pick what you need, see the total before you book, and we match a vetted local pro.`}
+      facts={[
+        "No profile browsing — matching is done by the platform.",
+        `${stats.bundleCount} bundles and time blocks for punch lists.`,
+        "Full cost breakdown available on the pricing guide.",
+      ]}
+    />
+    <p class="mt-4 text-lg">
+      <a href="/pricing" class="font-semibold text-brand-green underline">Open the handyman cost guide →</a>
+    </p>
+  </div>
+
   {
     menuCategories.map((cat) => (
       <section class="mt-14" id={cat.slug} aria-labelledby={`cat-${cat.slug}`}>
-        <h2 id={`cat-${cat.slug}`} class="font-display text-3xl font-bold text-brand-green">
-          <span aria-hidden="true">{cat.emoji}</span> {cat.title}
-        </h2>
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
+          <h2 id={`cat-${cat.slug}`} class="font-display text-3xl font-bold text-brand-green">
+            <span aria-hidden="true">{cat.emoji}</span> {cat.title}
+          </h2>
+          <a
+            href={`/services/${cat.slug}`}
+            class="text-brand-green font-semibold underline text-lg min-h-tap inline-flex items-center"
+          >
+            Category page →
+          </a>
+        </div>
         <div class="mt-6 grid gap-6 lg:grid-cols-2">
           {cat.items.map((item) => (
             <MenuCard item={item} />

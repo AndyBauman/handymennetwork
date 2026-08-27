@@ -3,5 +3,12 @@ interface Props {
   data: Record<string, unknown>;
 }
 const { data } = Astro.props;
+
+/**
+ * JSON.stringify leaves `<` and `>` intact, so any schema value containing
+ * `</script>` would close this block early. Escape them as unicode instead —
+ * still valid JSON, and inert inside HTML.
+ */
+const json = JSON.stringify(data).replace(/</g, "\\u003c").replace(/>/g, "\\u003e");
 ---
-<script type="application/ld+json" set:html={JSON.stringify(data)} />
+<script type="application/ld+json" set:html={json} />

@@ -1,0 +1,18 @@
+{
+  "name": "Handymen Network",
+  "short_name": "Handymen",
+  "description": "Fixed-price residential handyman repairs, matched to a vetted local pro and tracked in plain English.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#F5F3EF",
+  "theme_color": "#1E293B",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    }
+  ]
+}

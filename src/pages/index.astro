@@ -3,14 +3,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import TrustBar from "@/components/TrustBar.astro";
 import MenuCard from "@/components/MenuCard.astro";
 import CompareTable from "@/components/CompareTable.astro";
+import GeoAnswerBlock from "@/components/GeoAnswerBlock.astro";
 import { TrackingDemo } from "@/components/TrackingDemo";
 import { SITE_NAME, SITE_TAGLINE } from "@/data/constants";
 import { getPopularItems } from "@/data/menu";
 import { faqsForHomepage } from "@/data/faqs";
 import { serviceAreas } from "@/data/areas";
+import { getMenuPricingStats } from "@/lib/pricing-stats";
 
 const popular = getPopularItems();
 const homeFaqs = faqsForHomepage();
+const stats = getMenuPricingStats();
 const title = `${SITE_NAME} — Fixed-price handyman, tracked like a ride`;
 const description = SITE_TAGLINE;
 ---
@@ -35,12 +38,26 @@ const description = SITE_TAGLINE;
         >Browse repairs</a
       >
       <a
-        href="/trust"
+        href="/pricing"
         class="inline-flex min-h-tap-lg items-center justify-center rounded-xl bg-brand-amber px-8 font-bold text-brand-charcoal text-xl"
-        >How we vet pros</a
+        >See typical prices</a
       >
     </div>
   </section>
+
+  <div class="mt-10 max-w-4xl mx-auto">
+    <GeoAnswerBlock
+      id="what-is-handymen-network"
+      heading="What is Handymen Network?"
+      answer={`Handymen Network is a U.S. marketplace for fixed-price residential handyman work. Homeowners pick repairs from a published menu (as of ${stats.asOfLabel}, ${stats.itemCount} line items across ${stats.categoryCount} categories, typically $${stats.minPrice}–$${stats.maxPrice}), then the platform matches a vetted, available local pro. You see the price before booking and track the job in plain English—no scrolling a public directory of handymen.`}
+      facts={[
+        `Menu prices are published upfront. The average line item is about $${stats.avgPrice}, and ${stats.under100Count} repairs cost under $100.`,
+        "Pros must pass background checks and carry liability insurance before receiving job offers.",
+        "Matching uses skills, reviews, service radius, and real-time availability—not a call list.",
+        "Job status updates include matched, on the way, arrived, working, and done.",
+      ]}
+    />
+  </div>
 
   <div class="mt-8">
     <TrustBar />
@@ -113,17 +130,23 @@ const description = SITE_TAGLINE;
     </h2>
     <ul class="mt-8 grid gap-6 sm:grid-cols-3">
       <li class="rounded-2xl bg-white p-6 border border-brand-green/10 shadow-sm text-lg">
-        <p class="font-semibold text-brand-green">★★★★★</p>
+        <p class="font-semibold text-brand-green" role="img" aria-label="Rated 5 out of 5 stars">
+          <span aria-hidden="true">★★★★★</span>
+        </p>
         <p class="mt-2">“I knew the price before anyone came. The door fix was done in one visit.”</p>
         <p class="mt-3 text-base opacity-90">— Ruth, Columbus</p>
       </li>
       <li class="rounded-2xl bg-white p-6 border border-brand-green/10 shadow-sm text-lg">
-        <p class="font-semibold text-brand-green">★★★★★</p>
+        <p class="font-semibold text-brand-green" role="img" aria-label="Rated 5 out of 5 stars">
+          <span aria-hidden="true">★★★★★</span>
+        </p>
         <p class="mt-2">“Mom doesn’t do apps — my sister booked from her phone. Same fixed price.”</p>
         <p class="mt-3 text-base opacity-90">— James, Westerville</p>
       </li>
       <li class="rounded-2xl bg-white p-6 border border-brand-green/10 shadow-sm text-lg">
-        <p class="font-semibold text-brand-green">★★★★★</p>
+        <p class="font-semibold text-brand-green" role="img" aria-label="Rated 5 out of 5 stars">
+          <span aria-hidden="true">★★★★★</span>
+        </p>
         <p class="mt-2">“Like ordering food, but for my rental punch list. Transparent.”</p>
         <p class="mt-3 text-base opacity-90">— Priya, Dublin</p>
       </li>
@@ -136,8 +159,8 @@ const description = SITE_TAGLINE;
     </h2>
     <p class="mt-4 text-lg max-w-3xl">
       Handymen Network serves homeowners across the United States. Explore
-      <strong class="font-semibold"> major metros in all 50 states</strong>—each city page includes local
-      FAQs and the same fixed-price repair menu.
+      <strong class="font-semibold">major metros in all 50 states</strong> — each city page includes
+      local FAQs and the same fixed-price repair menu.
     </p>
     <p class="mt-6">
       <a

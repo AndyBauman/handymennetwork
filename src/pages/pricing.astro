@@ -1,0 +1,203 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import GeoAnswerBlock from "@/components/GeoAnswerBlock.astro";
+import { menuCategories, bundles } from "@/data/menu";
+import { SITE_NAME, SITE_ORIGIN } from "@/data/constants";
+import { getMenuPricingStats, getFeaturedPriceExamples } from "@/lib/pricing-stats";
+
+const stats = getMenuPricingStats();
+const examples = getFeaturedPriceExamples();
+const title = `Handyman Cost Guide — Fixed Menu Prices | ${SITE_NAME}`;
+const description = `How much does a handyman cost? Handymen Network menu prices range $${stats.minPrice}–$${stats.maxPrice} (avg ~$${stats.avgPrice}). See real line items, bundles, and what’s included.`;
+
+const pageUrl = `${SITE_ORIGIN}/pricing`;
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_ORIGIN },
+    { "@type": "ListItem", position: 2, name: "Pricing", item: pageUrl },
+  ],
+};
+const webPageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": pageUrl,
+  url: pageUrl,
+  name: title,
+  description,
+  dateModified: stats.reviewedOn,
+  isPartOf: { "@id": `${SITE_ORIGIN}/#website` },
+  about: { "@id": `${SITE_ORIGIN}/#organization` },
+};
+const faqJsonLd = [
+  {
+    q: "How much does a handyman cost on Handymen Network?",
+    a: `As of ${stats.asOfLabel}, published menu line items range from $${stats.minPrice} to $${stats.maxPrice}, with an average of about $${stats.avgPrice}. Of those, ${stats.under100Count} repairs are priced under $100. Your cart shows the exact total for the described scope before you book.`,
+  },
+  {
+    q: "Is the menu price the final price?",
+    a: "The menu price covers the work described on that line item. If the job expands beyond the listed scope, the pro confirms changes with you before doing extra work. Materials notes on each card explain whether basic supplies are included.",
+  },
+  {
+    q: "Do prices vary by city?",
+    a: "Menu rates follow local market conditions, so totals can differ slightly by metro. Checkout always shows the price for your address before you pay.",
+  },
+  {
+    q: "Are there trip or dispatch fees?",
+    a: "Many orders at or above common thresholds do not add a separate trip fee in supported markets, but fees can vary by address and job mix. Any trip or dispatch line appears in the cart before payment.",
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  faqJsonLd={faqJsonLd}
+  extraJsonLd={[breadcrumbJsonLd, webPageJsonLd]}
+>
+  <nav class="text-lg mb-6" aria-label="Breadcrumb">
+    <a href="/" class="text-brand-green font-semibold underline">Home</a>
+    <span class="mx-2" aria-hidden="true">/</span>
+    <span>Pricing</span>
+  </nav>
+
+  <h1 class="font-display text-4xl font-bold text-brand-green">
+    Handyman cost guide
+  </h1>
+  <p class="mt-3 text-base text-brand-charcoal/70">
+    Prices as of {stats.asOfLabel} · Updated from the live repair menu
+  </p>
+
+  <div class="mt-8">
+    <GeoAnswerBlock
+      id="how-much-handyman"
+      heading="How much does a handyman cost?"
+      answer={`On Handymen Network, handyman work is sold as fixed menu prices—not open-ended hourly quotes. As of ${stats.asOfLabel}, the published U.S. menu includes ${stats.itemCount} line items across ${stats.categoryCount} categories, ranging from $${stats.minPrice} to $${stats.maxPrice} (average about $${stats.avgPrice}). Most of the menu sits at the low end: ${stats.under150Count} of the ${stats.itemCount} items are $150 or less.`}
+      facts={[
+        `${stats.under100Count} repairs are under $100 (door hardware, small patches, quick fixes).`,
+        `${stats.bundleCount} bundles and time blocks for stacked punch-list work.`,
+        "You see the total for the described scope before booking.",
+        "City pages confirm local coverage; cart confirms the price for your address.",
+      ]}
+    />
+  </div>
+
+  <section class="mt-12" aria-labelledby="examples-heading">
+    <h2 id="examples-heading" class="font-display text-3xl font-bold text-brand-green">
+      Example menu prices
+    </h2>
+    <div class="mt-6 overflow-x-auto rounded-2xl border border-brand-green/15 bg-white shadow-sm">
+      <table class="w-full text-left text-lg min-w-[320px]">
+        <thead>
+          <tr class="border-b-2 border-brand-green/30">
+            <th scope="col" class="py-3 px-4 font-bold">Repair</th>
+            <th scope="col" class="py-3 px-4 font-bold">Category</th>
+            <th scope="col" class="py-3 px-4 font-bold">Typical time</th>
+            <th scope="col" class="py-3 px-4 font-bold text-right">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            examples.map((ex) => (
+              <tr class="border-b border-brand-green/10">
+                <td class="py-3 px-4">
+                  <a href={`/services/${ex.slug}`} class="font-semibold text-brand-green underline">
+                    {ex.name}
+                  </a>
+                </td>
+                <td class="py-3 px-4">{ex.category}</td>
+                <td class="py-3 px-4">{ex.time}</td>
+                <td class="py-3 px-4 text-right font-bold text-brand-green">${ex.price}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mt-12" aria-labelledby="by-category">
+    <h2 id="by-category" class="font-display text-3xl font-bold text-brand-green">
+      Price ranges by category
+    </h2>
+    <ul class="mt-6 grid gap-4 sm:grid-cols-2">
+      {
+        menuCategories.map((cat) => {
+          const prices = cat.items.map((i) => i.price);
+          const low = Math.min(...prices);
+          const high = Math.max(...prices);
+          return (
+            <li class="rounded-xl bg-white border border-brand-green/15 p-5">
+              <a href={`/services/${cat.slug}`} class="font-bold text-xl text-brand-green underline">
+                {cat.emoji} {cat.title}
+              </a>
+              <p class="mt-2 text-lg">
+                ${low}–${high}
+                <span class="text-base text-brand-charcoal/70"> · {cat.items.length} options</span>
+              </p>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </section>
+
+  <section class="mt-12" aria-labelledby="bundles-pricing">
+    <h2 id="bundles-pricing" class="font-display text-3xl font-bold text-brand-green">
+      Bundles & time blocks
+    </h2>
+    <ul class="mt-6 grid gap-4 sm:grid-cols-2">
+      {
+        bundles.map((b) => (
+          <li class="rounded-xl border-2 border-brand-amber/40 bg-brand-cream p-5">
+            <p class="font-bold text-lg text-brand-green">{b.name}</p>
+            <p class="mt-1 text-2xl font-bold">${b.price}</p>
+            {b.savings && <p class="text-brand-green font-semibold">{b.savings}</p>}
+            <p class="mt-2 text-base">{b.included}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="mt-12" aria-labelledby="pricing-faq">
+    <h2 id="pricing-faq" class="font-display text-3xl font-bold text-brand-green">
+      Pricing questions
+    </h2>
+    <div class="mt-6 space-y-4">
+      {
+        faqJsonLd.map((f) => (
+          <details class="rounded-xl bg-white border border-brand-green/15 p-5 text-lg group">
+            <summary class="font-bold cursor-pointer list-none flex justify-between gap-4">
+              <span>{f.q}</span>
+              <span class="text-brand-amber text-2xl leading-none group-open:rotate-45" aria-hidden="true">
+                +
+              </span>
+            </summary>
+            <p class="mt-3">{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-16 rounded-2xl bg-brand-green text-brand-cream p-8 text-center">
+    <h2 class="font-display text-3xl font-bold">Ready to book at a fixed price?</h2>
+    <p class="mt-4 text-xl max-w-2xl mx-auto">
+      Browse the full menu or open a city page to see how coverage works near you.
+    </p>
+    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="/services"
+        class="inline-flex min-h-tap-lg items-center justify-center rounded-xl bg-brand-amber px-8 font-bold text-brand-charcoal text-xl"
+        >Browse repairs</a
+      >
+      <a
+        href="/areas"
+        class="inline-flex min-h-tap-lg items-center justify-center rounded-xl bg-brand-cream text-brand-green px-8 font-bold text-xl"
+        >Find your city</a
+      >
+    </div>
+  </section>
+</BaseLayout>

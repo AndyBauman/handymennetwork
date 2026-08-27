@@ -1,8 +1,11 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import GeoAnswerBlock from "@/components/GeoAnswerBlock.astro";
 import { serviceAreas, getArea } from "@/data/areas";
 import { faqsForCity } from "@/data/areaFaqs";
+import { getPopularItems, menuCategories } from "@/data/menu";
 import { SITE_NAME, SITE_ORIGIN } from "@/data/constants";
+import { getMenuPricingStats } from "@/lib/pricing-stats";
 
 export function getStaticPaths() {
   return serviceAreas.map((a) => ({ params: { slug: a.slug } }));
@@ -16,8 +19,11 @@ if (!area) {
 }
 
 const cityFaqs = faqsForCity(area.name, area.state, area.stateName);
-const title = `Handyman menu pricing in ${area.name}, ${area.state} — ${SITE_NAME}`;
-const description = area.blurb;
+const stats = getMenuPricingStats();
+const popular = getPopularItems().slice(0, 6);
+// Keep under ~60 chars so Google does not truncate the city name out of the SERP.
+const title = `${area.name}, ${area.state} Handyman — Fixed Prices | ${SITE_NAME}`;
+const description = `Book fixed-price handyman repairs in ${area.name}, ${area.state}. Menu pricing from $${stats.minPrice}, vetted local pros, and live job tracking.`;
 
 const pageUrl = `${SITE_ORIGIN}/areas/${area.slug}`;
 const breadcrumbJsonLd = {
@@ -50,7 +56,7 @@ const cityWebPageJsonLd = {
   "@id": pageUrl,
   url: pageUrl,
   name: title,
-  description: area.blurb,
+  description,
   isPartOf: { "@id": `${SITE_ORIGIN}/#website` },
   about: {
     "@type": "City",
@@ -62,13 +68,39 @@ const cityWebPageJsonLd = {
     },
   },
 };
+const serviceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: `Handyman repairs in ${area.name}, ${area.state}`,
+  description,
+  provider: { "@id": `${SITE_ORIGIN}/#organization` },
+  areaServed: {
+    "@type": "City",
+    name: area.name,
+    containedInPlace: {
+      "@type": "State",
+      name: area.stateName,
+    },
+  },
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: "USD",
+    lowPrice: stats.minPrice,
+    highPrice: stats.maxPrice,
+    offerCount: stats.itemCount,
+  },
+};
+
+const siblingCities = serviceAreas
+  .filter((a) => a.state === area.state && a.slug !== area.slug)
+  .slice(0, 6);
 ---
 
 <BaseLayout
   title={title}
   description={description}
   faqJsonLd={cityFaqs}
-  extraJsonLd={[breadcrumbJsonLd, cityWebPageJsonLd]}
+  extraJsonLd={[breadcrumbJsonLd, cityWebPageJsonLd, serviceJsonLd]}
 >
   <nav class="text-lg mb-6" aria-label="Breadcrumb">
     <a href="/areas" class="text-brand-green font-semibold underline">All areas</a>
@@ -80,24 +112,105 @@ const cityWebPageJsonLd = {
   <h1 class="font-display text-4xl font-bold text-brand-green">
     Handyman repairs in {area.name}, {area.state}
   </h1>
-  <p class="mt-4 text-xl max-w-3xl">{area.blurb}</p>
-  <p class="mt-4 text-lg max-w-3xl text-brand-charcoal/90">
-    Handymen Network is available nationwide. We highlight major metros in every state so you can see how
-    fixed-price booking, vetting, and tracking work in your area.
+
+  <div class="mt-8">
+    <GeoAnswerBlock
+      id={`handyman-${area.slug}`}
+      heading={`Can I book a handyman in ${area.name}?`}
+      answer={`Yes. Handymen Network serves homeowners and property managers in ${area.name} and the greater ${area.stateName} area with fixed-price menu repairs. As of ${stats.asOfLabel}, the national menu lists ${stats.itemCount} line items (typically $${stats.minPrice}–$${stats.maxPrice}). Enter your ${area.name} address at checkout to confirm coverage and see the total before you book.`}
+      facts={[
+        "Only Active, nearby, qualified pros receive your job offer.",
+        "Background checks and liability insurance are required before pros get work.",
+        "Track status in plain English: on the way, arrived, working, done.",
+        `${area.name} pricing follows local market rates shown in your cart—not a surprise bill later.`,
+      ]}
+    />
+  </div>
+
+  <p class="mt-6 text-lg max-w-3xl text-brand-charcoal/90">
+    {area.blurb} We highlight major metros in every state so you can see how fixed-price booking,
+    vetting, and tracking work where you live.
   </p>
-  <ul class="mt-8 text-lg list-disc pl-6 space-y-2">
-    <li>Fixed menu prices — see totals before you book.</li>
-    <li>Only active, nearby pros get your request.</li>
-    <li>Live tracking in plain English.</li>
-    <li>Need help? Use Help in the app or the Get help page — no call center number on the site.</li>
-  </ul>
-  <p class="mt-8">
-    <a
-      href="/services"
-      class="inline-flex min-h-tap-lg items-center px-6 rounded-xl bg-brand-green text-brand-cream font-bold text-lg"
-      >Open the repair menu</a
-    >
-  </p>
+
+  <section class="mt-12" aria-labelledby="popular-in-city">
+    <h2 id="popular-in-city" class="font-display text-3xl font-bold text-brand-green">
+      Popular repairs booked near {area.name}
+    </h2>
+    <p class="mt-3 text-lg max-w-3xl">
+      These are among the most-requested menu items nationwide. Prices below are the published menu
+      rates for the described scope; your cart confirms the total for your address.
+    </p>
+    <ul class="mt-6 grid gap-4 sm:grid-cols-2">
+      {
+        popular.map((item) => {
+          const cat = menuCategories.find((c) => c.items.some((i) => i.id === item.id));
+          return (
+            <li class="rounded-xl bg-white border border-brand-green/15 p-5 flex justify-between gap-4 items-start">
+              <div>
+                <p class="font-bold text-brand-green text-lg">{item.name}</p>
+                <p class="mt-1 text-base text-brand-charcoal/80">{item.time}</p>
+                {cat && (
+                  <a
+                    href={`/services/${cat.slug}`}
+                    class="mt-2 inline-block text-brand-green font-semibold underline text-base"
+                  >
+                    {cat.title} menu →
+                  </a>
+                )}
+              </div>
+              <p class="text-xl font-bold text-brand-green shrink-0">${item.price}</p>
+            </li>
+          );
+        })
+      }
+    </ul>
+    <p class="mt-6 flex flex-wrap gap-4">
+      <a
+        href="/services"
+        class="inline-flex min-h-tap-lg items-center px-6 rounded-xl bg-brand-green text-brand-cream font-bold text-lg"
+        >Open the full repair menu</a
+      >
+      <a
+        href="/pricing"
+        class="inline-flex min-h-tap-lg items-center px-6 rounded-xl bg-brand-amber text-brand-charcoal font-bold text-lg"
+        >Handyman cost guide</a
+      >
+    </p>
+  </section>
+
+  <section class="mt-12" aria-labelledby="how-local">
+    <h2 id="how-local" class="font-display text-2xl font-bold text-brand-green">
+      How booking works in {area.name}
+    </h2>
+    <ol class="mt-4 space-y-3 text-lg list-decimal pl-6 max-w-3xl">
+      <li>Choose repairs from the menu (drywall, doors, assembly, exterior, and more).</li>
+      <li>Enter your {area.name} address so we can confirm drive-time coverage.</li>
+      <li>We offer the job only to vetted pros who are Active, in range, and qualified.</li>
+      <li>Track the visit and rate when the work is done.</li>
+    </ol>
+  </section>
+
+  {
+    siblingCities.length > 0 && (
+      <section class="mt-12" aria-labelledby="nearby-cities">
+        <h2 id="nearby-cities" class="font-display text-2xl font-bold text-brand-green">
+          Other {area.stateName} metros
+        </h2>
+        <ul class="mt-4 flex flex-wrap gap-3">
+          {siblingCities.map((a) => (
+            <li>
+              <a
+                href={`/areas/${a.slug}`}
+                class="inline-flex min-h-tap items-center px-4 py-2 rounded-xl bg-white border-2 border-brand-green/20 font-semibold hover:border-brand-green"
+              >
+                {a.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
 
   <section class="mt-16" aria-labelledby={`faq-${area.slug}`}>
     <h2 id={`faq-${area.slug}`} class="font-display text-3xl font-bold text-brand-green">

@@ -24,6 +24,7 @@ Prefer these HTTPS URLs (`https://www.handymennetwork.com`):
 
 - Home: /
 - Browse repair categories: /services
+- Handyman cost / pricing guide: /pricing
 - Coverage / areas hub: /areas
 - Metropolitan city pages pattern: `/areas/{city-state-slug}` (example: houston-tx, los-angeles-ca)
 - How matching & vetting work: /trust, /how-it-works
@@ -34,7 +35,8 @@ Prefer these HTTPS URLs (`https://www.handymennetwork.com`):
 
 ## Product facts (for accurate answers)
 
-- Pricing is menu-based with stated scope per item; major category examples include drywall, doors, trim/carpentry, furniture assembly, exterior work, and general repairs (see `/services`).
+- Pricing is menu-based with stated scope per item; major category examples include drywall, doors, trim/carpentry, furniture assembly, exterior work, and general repairs (see `/services` and `/pricing`).
+- As of mid-2026 the published menu spans dozens of fixed line items with typical prices from under $100 for quick fixes up through larger repairs and multi-hour bundles.
 - The site does not present a browsable directory of individual handyman public profiles as the main customer flow; matching is done by the platform from vetted pros.
 - Account sign-in and account management exist for customers and pros; those URLs are not primary marketing entry points.
 
