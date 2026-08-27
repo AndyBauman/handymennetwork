@@ -3,10 +3,13 @@ import { SITE_NAME } from "@/data/constants";
 import CartBadge from "@/components/CartBadge";
 import AuthNav from "@/components/AuthNav";
 
-const path = Astro.url.pathname;
+/** Astro emits directory routes, so pathname carries a trailing slash that hrefs don't. */
+const normalize = (p: string) => (p.length > 1 ? p.replace(/\/+$/, "") : p);
+const path = normalize(Astro.url.pathname);
 const nav = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Browse repairs" },
+  { href: "/pricing", label: "Pricing" },
   { href: "/how-it-works", label: "How it works" },
   { href: "/trust", label: "Vetted pros" },
   { href: "/areas", label: "Service areas" },
@@ -20,33 +23,115 @@ const nav = [
   role="banner"
 >
   <div
-    class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+    class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-2"
   >
     <a
       href="/"
-      class="font-display text-xl sm:text-2xl font-bold tracking-tight text-brand-cream hover:underline focus:underline min-h-tap flex items-center"
+      class="order-1 font-display text-xl sm:text-2xl font-bold tracking-tight text-brand-cream hover:underline focus:underline min-h-tap flex items-center"
       >{SITE_NAME}</a
     >
-    <nav aria-label="Main" class="flex flex-wrap items-center gap-2 sm:gap-3">
-      {
-        nav.map((item) => (
-          <a
-            href={item.href}
-            class:list={[
-              "px-3 py-2 rounded-lg font-semibold text-base min-h-tap inline-flex items-center",
-              path === item.href
-                ? "bg-brand-cream text-brand-green"
-                : "hover:bg-white/10 text-brand-cream",
-            ]}
-          >
-            {item.label}
-          </a>
-        ))
-      }
-    </nav>
-    <div class="flex items-center gap-3">
+
+    <div class="order-2 sm:order-3 flex items-center gap-2 sm:gap-3">
       <CartBadge client:load />
-      <AuthNav client:load />
+      <button
+        type="button"
+        id="nav-toggle"
+        class="sm:hidden inline-flex items-center justify-center min-h-tap min-w-tap rounded-xl border border-brand-cream/30 bg-brand-cream/15 hover:bg-white/10"
+        aria-controls="site-nav"
+        aria-expanded="false"
+        aria-label="Open main menu"
+      >
+        <svg
+          data-nav-open
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          class="w-6 h-6"
+          aria-hidden="true"
+        >
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+        <svg
+          data-nav-close
+          class="w-6 h-6 hidden"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
     </div>
+
+    <nav
+      id="site-nav"
+      aria-label="Main"
+      data-open="false"
+      class="order-3 sm:order-2 w-full sm:w-auto hidden data-[open=true]:flex sm:flex flex-wrap items-center gap-x-1 gap-y-1 sm:gap-2 lg:gap-3 pb-1 sm:pb-0"
+    >
+      {
+        nav.map((item) => {
+          const current =
+            item.href === "/" ? path === "/" : path === item.href || path.startsWith(`${item.href}/`);
+          return (
+            <a
+              href={item.href}
+              aria-current={current ? "page" : undefined}
+              class:list={[
+                "px-3 py-2 rounded-lg font-semibold text-base min-h-tap inline-flex items-center",
+                current
+                  ? "bg-brand-cream text-brand-green"
+                  : "hover:bg-white/10 text-brand-cream",
+              ]}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+      <!-- Account link lives in the nav so the mobile bar stays one row. -->
+      <div class="mt-2 sm:mt-0 sm:ml-1 flex">
+        <AuthNav client:load />
+      </div>
+    </nav>
   </div>
 </header>
+
+<script is:inline>
+  (() => {
+    const toggle = document.getElementById("nav-toggle");
+    const menu = document.getElementById("site-nav");
+    if (!toggle || !menu) return;
+
+    const openIcon = toggle.querySelector("[data-nav-open]");
+    const closeIcon = toggle.querySelector("[data-nav-close]");
+
+    const setOpen = (open) => {
+      // Display is driven by `hidden data-[open=true]:flex sm:flex`, so the
+      // desktop row stays visible regardless of this state.
+      menu.dataset.open = String(open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close main menu" : "Open main menu");
+      openIcon?.classList.toggle("hidden", open);
+      closeIcon?.classList.toggle("hidden", !open);
+    };
+
+    toggle.addEventListener("click", () =>
+      setOpen(toggle.getAttribute("aria-expanded") !== "true"),
+    );
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+  })();
+</script>
