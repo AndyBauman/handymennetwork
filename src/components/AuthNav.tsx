@@ -6,10 +6,18 @@ export default function AuthNav() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      setLoggedIn(!!data.user);
+    if (!supabase) {
       setLoaded(true);
-    });
+      return;
+    }
+    // Always resolve `loaded`, otherwise a network or config failure leaves the
+    // header with no sign-in entry point at all.
+    supabase.auth
+      .getUser()
+      .then(({ data }) => setLoggedIn(!!data.user))
+      .catch(() => setLoggedIn(false))
+      .finally(() => setLoaded(true));
+
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       setLoggedIn(!!session?.user);
     });

@@ -14,33 +14,50 @@ export default function AccountView() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      setUser(data.user);
-      if (data.user) fetchProfile(data.user.id);
-      else setLoading(false);
-    });
+    if (!supabase) {
+      setLoading(false);
+      return;
+    }
+
+    supabase.auth
+      .getUser()
+      .then(({ data }) => {
+        setUser(data.user);
+        if (data.user) return fetchProfile(data.user.id);
+        setLoading(false);
+      })
+      // Without this the page is stuck on "Loading your account..." forever.
+      .catch(() => setLoading(false));
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
       if (session?.user) fetchProfile(session.user.id);
+      else setLoading(false);
     });
 
     return () => listener.subscription.unsubscribe();
   }, []);
 
   async function fetchProfile(userId: string) {
-    const { data } = await supabase
-      .from("profiles")
-      .select("full_name, role, phone")
-      .eq("id", userId)
-      .single();
-    setProfile(data);
-    setLoading(false);
+    if (!supabase) return;
+    try {
+      const { data } = await supabase
+        .from("profiles")
+        .select("full_name, role, phone")
+        .eq("id", userId)
+        .single();
+      setProfile(data);
+    } finally {
+      setLoading(false);
+    }
   }
 
   async function handleSignOut() {
-    await supabase.auth.signOut();
-    window.location.href = "/";
+    try {
+      await supabase?.auth.signOut();
+    } finally {
+      window.location.href = "/";
+    }
   }
 
   if (loading) {

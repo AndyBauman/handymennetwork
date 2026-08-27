@@ -5,6 +5,7 @@ import {
   updateQuantity,
   clearCart,
   cartTotal,
+  formatUsd,
   type CartItem,
 } from "@/lib/cart";
 
@@ -43,7 +44,7 @@ export default function CartView() {
         <div className="divide-y divide-brand-green/10">
           {items.map((item) => (
             <div
-              key={item.id}
+              key={`${item.type}:${item.id}`}
               className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-5"
             >
               <div className="flex-1">
@@ -61,9 +62,9 @@ export default function CartView() {
                 <div className="flex items-center border-2 border-brand-green/20 rounded-lg overflow-hidden">
                   <button
                     type="button"
-                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    onClick={() => updateQuantity(item.id, item.quantity - 1, item.type)}
                     className="w-10 h-10 flex items-center justify-center text-xl font-bold hover:bg-brand-stone"
-                    aria-label="Decrease quantity"
+                    aria-label={`Decrease quantity of ${item.name}`}
                   >
                     −
                   </button>
@@ -72,19 +73,19 @@ export default function CartView() {
                   </span>
                   <button
                     type="button"
-                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    onClick={() => updateQuantity(item.id, item.quantity + 1, item.type)}
                     className="w-10 h-10 flex items-center justify-center text-xl font-bold hover:bg-brand-stone"
-                    aria-label="Increase quantity"
+                    aria-label={`Increase quantity of ${item.name}`}
                   >
                     +
                   </button>
                 </div>
                 <span className="font-bold text-lg text-brand-green min-w-[5rem] text-right">
-                  ${item.price * item.quantity}
+                  {formatUsd(item.price * item.quantity)}
                 </span>
                 <button
                   type="button"
-                  onClick={() => removeFromCart(item.id)}
+                  onClick={() => removeFromCart(item.id, item.type)}
                   className="w-10 h-10 flex items-center justify-center text-brand-charcoal/50 hover:text-red-600 rounded-lg"
                   aria-label={`Remove ${item.name}`}
                 >
@@ -101,7 +102,7 @@ export default function CartView() {
       <div className="rounded-2xl bg-white border-2 border-brand-green/20 p-5 space-y-4">
         <div className="flex justify-between text-xl font-bold">
           <span>Total</span>
-          <span className="text-brand-green">${total}</span>
+          <span className="text-brand-green">{formatUsd(total)}</span>
         </div>
         <p className="text-brand-charcoal/70">
           Price shown is for the described scope of work. No hidden fees.
@@ -160,7 +161,7 @@ export default function CartView() {
             )
           }
         >
-          Continue to payment — ${total}
+          Continue to payment — {formatUsd(total)}
         </button>
 
         <div className="flex justify-between items-center pt-2">

@@ -14,35 +14,54 @@ export default function AuthForm({ initialMode = "signin" }: { initialMode?: Mod
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    if (!supabase) {
+      setMessage({
+        type: "error",
+        text: "Accounts are temporarily unavailable. Please try again later or use Get help.",
+      });
+      return;
+    }
+
     setLoading(true);
     setMessage(null);
 
-    if (mode === "signup") {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: { full_name: fullName, role },
-          emailRedirectTo: `${window.location.origin}/account`,
-        },
-      });
-      if (error) {
-        setMessage({ type: "error", text: error.message });
-      } else {
-        setMessage({
-          type: "success",
-          text: "Check your email for a confirmation link, then sign in.",
+    try {
+      if (mode === "signup") {
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: { full_name: fullName, role },
+            emailRedirectTo: `${window.location.origin}/account`,
+          },
         });
-      }
-    } else {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) {
-        setMessage({ type: "error", text: error.message });
+        if (error) {
+          setMessage({ type: "error", text: error.message });
+        } else {
+          setMessage({
+            type: "success",
+            text: "Check your email for a confirmation link, then sign in.",
+          });
+        }
       } else {
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) {
+          setMessage({ type: "error", text: error.message });
+          return;
+        }
         window.location.href = "/account";
       }
+    } catch {
+      // A rejected promise (offline, DNS, CORS) would otherwise strand the button
+      // on "Please wait..." with no explanation.
+      setMessage({
+        type: "error",
+        text: "We could not reach the server. Check your connection and try again.",
+      });
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   return (

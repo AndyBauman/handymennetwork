@@ -18,7 +18,7 @@ export default function CartBadge() {
     <a
       href="/book"
       className="relative inline-flex items-center justify-center min-h-[3rem] px-4 rounded-xl bg-brand-cream text-brand-green font-bold text-lg shadow hover:brightness-95"
-      aria-label={`Cart with ${count} items`}
+      aria-label={count === 1 ? "Cart with 1 item" : `Cart with ${count} items`}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

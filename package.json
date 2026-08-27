@@ -8,7 +8,9 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "firewall": "node scripts/firewall.mjs",
+    "firewall:status": "vercel api \"/v1/security/firewall/config?projectId=prj_OlfXaXLexd2Gh6vdH5bfzP5ZXpYT&teamId=team_K718LQ4ow7ZHfsLc2zOuollB\""
   },
   "dependencies": {
     "@astrojs/react": "^4.2.0",
